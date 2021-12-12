@@ -1,0 +1,110 @@
+1.99.8 [December 11th 2021]
+	-Fixed a crash that would happen if you had an ongoing button that no longer exists and openned the active button window,
+	-Fixed a crash that would happen if the stop button command deleted its own button after a deck was saved.
+	-Fixed a crash regarding reaching max undo after the introduction of command window close warning.
+	-Fixed a crash when a community gift trigger happened
+	-...
+
+1.99.7 [December 11th 2021]
+	-escape now closes current window
+	-command window will now tell you if you close without saving.
+	-Fixed a bug when you had multiple trigger on the same button and one triggered, throwing the system out of sync
+	-Fixed twitch profile pic not reseting between each one.
+	-Fixed Filter change setting not working
+	-Removed turn to real options from trigger pull and obs fetch
+	-yellow alert message appears when you get sub/bits/channel redeem
+	-You can press F4 to test memory leaks, the numbers should not go up unless you add stuff, if you add anything, the count should go up, if it goes up and nothing was added, you need to tell me
+	-...
+	
+1.99.6 [December 10th 2021]
+	-Get HTTP request		New command, can now do normal http request from LioranBoard.
+	-Swap Red & Blue		New Command, swap the red and blue color in a number, some program do RGB and some do BGR, this will help you if you need that
+	-name_color for twitch chat trigger no longer include the # so its a pure hex string
+	-Fixed Source Change Settings
+	-true/false will now return true and false when used like a variable
+	-fixed the transmitter so it connects fine for OBS browser.
+	-Rearranged the command list menu, if you dont like it, send me a better one.
+	-home,end,pageup,pagedown work properly now,don'T ask for insert, nobody likes it
+	-...
+
+
+1.99.5 [December 8th 2021]
+	-Changed the transmitter a bit, the LioranBoardJSON was setup wrong, dont do LioranBoardJSON.Data.Value, just do LioranBoardJSON.Value
+	-Data for executed commands will now include the button if of the button which triggered it
+	-Fixed an array bracket evaluation problem,
+	-doing += with number + text is now allowed, the number will be turned into a text, if your text contains number, it will not be turned to a number, its a 1 way street
+	-yellow box can now do text for complex math such as ("Name: "+array[0])
+	-inserts /$$/ invoke yellow box , so /$(1+2)$/ or /$(variable+"Hello World")$/ is possible
+	-array brackets [] invoke a parantese yellow box, so array[1+variable*3] is possible
+	-File: Save/Load Text can now save new lines and "
+	-Stringify Array		New Command, stringify an array
+	-Parse Array/Object		New Command, turn a string from stringify object or array into an object or array.
+	-Shift+Tab now shift to the previous text box, like tab goes to the next one.
+	-Alt+double click now opens settings instead of release
+	-appearance window no longer pops on button create
+	-scrolling no longer works on both commands and menu at the same time
+	-increase the max amount of search result to 20
+	-...
+
+1.99.4 [December 7th 2021]
+	-Extension install system is now done, you can start making extensions
+		explanation in the extension folder
+		all Christinna's transmitter function have been remove due to them being incompatible
+	-Fixed a bug where the create reward button was missing if you had no Owned channel points
+	-Increase the japanese font size and spacing.
+	-changed the way decks get saved to clipboard
+	-...
+
+1.99.3 [December 5th 2021]
+	-Can now Undo in text box.
+	-Can no longer undo commands with the shortcut ctrl+Z, use the button insteads
+	-Can no longer scroll text box with the mouse wheel
+	-Made it so the same trigger can not trigger the same button twice.
+	-Fixed Wait commands not expiring after time out
+	-...
+
+1.99.2 [December 5th 2021]
+	-Added a new option to stretch or keep image to button size, can be found in the appearance window.
+	-Fixed a crash with the stream deck when switching a button's image.
+	-Fixed the stream deck not immediately showing a modify button when applied to a different button.
+	-New global variable "since_2020" this is the amount of seconds past since beginning of 2020.
+	-Clicking the reset button in LB now clears the modified button list
+	-Fixed crash that could happen if obs sent back an error
+	-Default OBS sound source now have their status being fetched properly on connect.
+	-along with the version number at the bottom, you now see the last key and character that were triggered by the keyboard(will be removed in the futur)
+	-Fixed an unrecoverable crash that would happened if you saved a deck with a Repeat interval trigger of 0
+	-Now support character font for Cyrillic,Japanese,Korean and various other one.(Does not include button font)
+	-Changed the way typing occures in the input boxes, let me know if there are any problems with it
+	-other fixes
+	-...
+
+1.99.1 [December 3rd 2021]
+	-New Command:	Get Object Variable				gets a key inside an object and saves it in a given variable name
+	-New Command:	Set Object Variable				Set a key inside an object to a given value
+	-Fixed a crash that happened if you edited OBS connection after cancelling them.
+	-Fixed Menu search box to return text header, resulting in crash when you select them
+	-Added the potential to add background picture to stream deck
+	-Some scrolling areas were missing wheel mouse scrolling possibility, all scrolling should scroll with mouse wheel.
+	-Fixed some OBS commands that were working if you changed source from other scenes
+	-Background image is now possible in the stream deck
+	-Change the way the Reinitialize variable button work, will no longer delete new character, will just merge the new and old together instead, this should prevent some crash
+	-Modify button now changes the image properly in the stream deck, can no longer type in the path box since LB need to have control of those files
+	-sound path box can now be typed in
+	-transmitter hidden menu now work fine
+	-Motion and transition command now work fine
+	-can now tab to the next box, Tab no longer counts as a valid character you can type, pasted one will still show up as tofu
+	-Scroll bar for input box were sometimes a bit glitchy, fixed that.
+	-delete button now works on selected text
+	-OBS pull source value now sets the variable to 0 if it doesnt exists, this is to prevent crash if a source no longer exists or if obs is not connected.
+	-global.main_directory is now a variable that tells you what folder lioranboard is in
+	-global.<obsname>.current_scene and previous_scene are now available
+	-Version number now shows at the bottom like LB1 did
+	-Group source now show up in the scene list
+	-Source inside group now show up properly
+	-some other fixes
+	-...
+	
+
+1.99.0 [December 1st 2021]
+	-It Lives
+	-...

@@ -1,0 +1,62 @@
+========================
+LB2, What changed?
+========================
+-New improved interface
+
+-Minimize to Tray
+
+-Updater
+
+-Variables are now local to each button.
+	To use a variable system like the old system.
+	You need to use the global variable by either using the global variable commands
+	or just simply putting global. before the variable name
+	You can set initial variable to a specifict button with a JSON format
+	
+-Object and array can be created
+	Array replace the old stack system, all same functionnality
+	can create object inside object and array inside object
+	Something like     objectname.arrayname[0].anotherobject.variable    is possible
+	
+
+-Parametter inserts work a bit differently
+	old insert like /$variable_name$/ are still valid
+	but will not work in any yellow boxes.
+	Yellow boxes either take Variables, numbers or strings
+	Variable can be an array, ArrayName[0]
+	string have to be "Like this" or 'Like that'
+	/$insert$/ technically calls a yellow box.
+	you can do math by wrapping the whole box in paranthesis
+	((varialbe/2)+2+variable*10) is possible
+	
+-New and improved variable window.
+	
+-Buttons now have an OnRelease command list
+	OnRelease only happen from stream deck button release or hotkey trigger release.
+	They can happen along side normal commands, they are independent of each other.
+	
+-Keyboard Key press simulation and play sound effect
+	are now commands instead of their own category
+	
+-Can now connect to multiple OBS
+	To use variable like current_scene/previous_scene
+	you need to do global.<obsname>.current_scene, default would be global.Main.current_scene
+	the "Main" obs can not be deleted or renamed so everyone is on the same page.
+	
+-Stream deck and transmitter is now a unified system
+	There is now a websocket protocol anyone and use to create their own app that connects to lioranboard
+	
+-Easier Twitch account linking
+	Can edit channel point straight from lioranboard.
+	can link multiple account more easily
+	
+-Can run stream deck and transmitter straight from the receiver
+
+-Can disable deck
+
+-Can double click a button to open the command system
+	alt+double click, Open release commands
+	ctrl+double click, Open the trigger window
+	shift+double click, Open the appearence window
+	
+-old extension have to be modified a bit before they can be installed to LB2 transmitter

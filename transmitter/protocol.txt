@@ -1,0 +1,343 @@
+You can connect to Lioranboard from the streamdeck/transmitter port
+and can do anything you want from there.
+
+Lioranboard 2 will only accept json format request
+Formated as such
+
+{
+	"rq":"RequestName",
+	"id":"anything you wish"
+	+any data that might be required.
+	
+}
+and lioranboard will reply with
+status 200 if successful
+{
+	"status":200,
+	"rq":"RequestName",
+	"id":"what you sent"
+	+any other data you might have asked for
+
+}
+
+
+====================
+Available Request
+====================
+
+"Authentication"
+	Required value
+	"Name"				Name of the what is trying to connect, Exemple the transmitter will connect as "Transmitter" and the official stream deck will connect as "", no name
+
+
+	Receiver's reply
+	"AuthRequired"		true or false,
+		if true, this will be included, else you are in now authenticated and can use any other command
+	"Challenge"		string of the challenge
+	"Salt"			string of the salt
+		You will need to use the request "Authenticate" if this is true
+
+"Authenticate"
+	Required Value
+	"Enigma"		string, the completed challenge, This enigma is basically the resuld of the challenge and salt, works the same as OBSwebsocket authentication
+
+	reply with
+	"Success"		bool., you will never receive false, the connection will simply be closed.
+
+"GetVersion"
+	fields
+	none
+	
+	reply
+	"Version"			String, Version of Lioranboard 
+	"AuthRequired"      True/False If authentication is requires
+	
+ONCE YOU'RE AUTHENTICATED, THESE COMMANDS WILL BE AVAILABLE.
+
+"Close"				Close the connection
+	fields
+	none
+	
+	reply basic
+	
+"Pong"				Lioranboard will send a ping every 30 seconds, you need to reply to it or the connection will be closed
+	fields
+	none
+	
+	reply basic
+	
+"SetStayInformed"       this is telling the receiver that you want to stay up to date on deck status, when a buttons starts or end or when decks are updated
+	fields
+	"Enabled"		bool
+	
+	reply
+	basic, no extra data
+
+
+"GetDeckList"
+	no fields
+	
+	Reply
+	"DeckList":[]	array of all decks as such 
+		["Deck1 Name","Unique ID",crc32,"Deck2 Name","Unique ID",crc32,...]
+		You can use the crc32 to verify if the deck you saved localy is the same.
+		Names can be duplicate, unique ID can't
+	
+
+"GetDeck"
+	fields
+	"UniqueId"		unique id of the deck, can not be duplicate
+	
+	reply
+	"Deck":{}		object of the whole deck
+	"DeckName"		string of the deck name
+	"UniqueId"		the unique id
+	"Sum"			the crc32
+
+	
+"GetImage"			Get an image base64 code
+	fields
+	"FileName"		file name without the path, exemple: "image.png"
+	
+	reply
+	"Image"			Base64 string of the whole picture, turn the string into a binary and you will have an image file
+	"FileName"		name of the file
+
+
+"GetSum"
+	fields
+	"Name"		name of the file, exemple "image.png"
+	
+	reply
+	"Sum"		integer, return the crc32 of the
+	
+"GetOngoingButtons"
+	fields
+	none
+	
+	reply
+	"Data": [{ Array of objects
+		"Overlappable"	true/false if the button is overlappable
+		"ReleaseType"	true/false if the button is normal or release type
+		"Duration"		total duration regardless of time elapsed in Milliseconds
+		"Elapsed"		how long the button as been going for in Milliseconds
+		"ButtonId"		button id
+		"GroupId"		group id
+		},
+		{for every ongoing button...}
+	]
+	
+"GetTwitchList"
+	fields
+	none
+	
+	reply
+	"twitch_list":{"accountid":{alot of data}}		A full json full of data on all linked accounts
+	
+	
+"SendTrigger"		Send a trigger, will not trigger the release command list
+	fields
+	"Type"			number of the type of trigger *see below
+	"Data":{		Object, you can trigger anything from lioranboard,
+		Whatever data is required for the trigger *see below
+		"trigger_data":{whatever trigger pull you feel like including}
+	}
+
+	
+	reply
+	basic
+
+	
+	
+"TriggerButton"
+	fields
+	"ButtonId"		String, Button ID to trigger
+	
+	reply
+	basic
+	
+"ReleaseButton"
+	fields
+	"ButtonId"		String, Button ID to trigger the release command list
+	
+	reply
+	basic
+	
+"ModifyButton"
+	fields
+	"ButtonId"		string name of the button
+	"Data"{			object of the modification, not including one of these will count it as default, send an empty object to reset the button back to default
+		"color"			int, you will have to swap red and blue
+		"text"			string, text of the button,
+		"image"			string, file name of the picture, must be already available
+		"border"		int,0-7		size of the border
+	}
+	
+	reply
+	basic
+	
+"GetModifications"
+	no fields
+	
+	reply			
+	"Data"{				object of objects of every button that is currently modified
+		<key buttonid>:{"color":0,"text":"","image":"","border":0},
+		<key buttonid>:{"color":0,"text":"","image":"","border":0}
+	
+	
+	}
+	
+"SendExtensionCommands"		add a command to the command list
+	fields
+	"Data"				Data of the extension command you want to send, explained in mre details in "what changed.txt"
+	
+	
+	reply
+	basic
+	
+"ExtensionTrigger"		send an extension trigger
+	fields
+	"Trigger"		string extension trigger
+	"Data":{}		object of data to include for the trigger pull
+	
+	reply
+	basic
+	
+
+"GetVariable"		get a variable
+	fields
+	"ButtonId"		string, button id, global for global
+	"Variable"		what variable you want to get
+	
+	reply
+	"Variable"		string, same as what you sent
+	"Value"			value you asked for, can be int,string,object,array,null
+	
+"SetVariable"		Set a variable
+	fields
+	"ButtonId"		string, button id, global for global
+	"Variable"		variable name
+	"Value"			the value, can be, int,string,object,array,null
+	
+	reply
+	basic
+	
+"DeleteVariable"
+	fields
+	"ButtonId"		string, button id, global for global
+	"Variable"		String
+	
+	reply
+	basic
+
+	
+"InsertArrayValue"
+	fields
+	"ButtonId"		string, button id, global for global
+	"Array"			string, same as variable name
+	"Slot"			slot to insert the new array at
+	"Value"			Can be anything. if you throw an array, you wont be able to acess it
+	
+	reply
+	basic
+
+"DeleteArraySlot"
+	fields
+	"ButtonId"		string, button id, global for global
+	"Array"			string, same as variable name
+	"Slot"			slot to insert the new array at
+	
+	reply
+	basic
+	
+"PopupMessage"		show a popup message
+	fields
+	"Message"		String of the message
+	
+	reply
+	basic
+	
+"AlertMessage"		show a yellow message at the bottom of lioranboard
+	fields
+	"Message"		message
+	
+	reply
+	basic
+	
+"NotificationMessage"		show a bubble message from the tray icon
+	fields
+	"Message"		string of the message
+	
+	reply
+	basic
+	
+	
+	
+	
+====================
+Lioranboard updates triggers
+====================
+Lioranboard might send you some of these updates in a json format, 
+exemple, for a ping update, you will need to reply to a ping update with a pong request
+{
+"upd":"Ping"
+}
+
+
+List of update
+
+"Ping"
+
+
+"ExecuteCommand",
+	extra data
+	"CommandName"		string name of the command
+	"Data":{			data included
+		"FromButton"		string, id of the button that sent the command
+		+any other data that was provided from the extension command
+	}
+	
+	
+	
+Stay Informed stuff update
+
+"SIModification"		When modification happen on a button
+	"ButtonId"			id of the button
+	"Data":{			object of the modification, if the object is empty then its back to default
+		"color"			optionnal, color of the button
+		"text"			optionnal, text that appear on the button
+		"border"		optionnal, border size 0-6
+		"image"			optionnal, image file name
+		}
+
+
+"SIButtonTriggered"		when a button was trigger
+	"ButtonId"			button id
+	"GroupId"
+	"Overlappable"		true/false
+	"Duration"			Expected duration in MS
+
+"SIButtonOver"			When a button is Over(Does not include release_"
+	"ButtonId"			button id
+	"GroupId"
+	"Overlappable"		true/false
+	
+"SIReleaseTriggered"	when a button was released
+	"ButtonId"			button id
+	"GroupId"
+	"Overlappable"		true/false
+	"Duration"			Expected duration in MS
+
+"SIReleaseOver"			When a button is Over(Does not include release"
+	"ButtonId"			button id
+	"GroupId"
+	"Overlappable"		true/false
+	
+"SIDecksUpdated"		When decks have been updated
+	"Data"				A list of all decks and their crc32 ["Deck1 Name","Unique ID",crc32,"Deck2 Name","Unique ID",crc32,...]
+	
+	
+	
+
+
+
