@@ -1,5 +1,4 @@
-Taskkill /im "LioranBoard 2.0.exe"
-TIMEOUT /T 1 /NOBREAK
+TIMEOUT /T 2 /NOBREAK
 del "LioranBoard 2.0.exe"
 del "data.win"
 del "DLLExtension.dll"
