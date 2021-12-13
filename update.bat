@@ -11,7 +11,6 @@ move "%cd%\update\LioranBoard 2.0.exe" "%cd%\"
 move "%cd%\update\data.win" "%cd%\"
 move "%cd%\update\dllextension.dll" "%cd%\"
 TIMEOUT /T 1 /NOBREAK
-"%cd%\LioranBoard 2.0.exe"
+"%cd%\LioranBoard 2.0.exe" "%cd%\"
 TIMEOUT /T 1 /NOBREAK
-del update.bat
-del "update.bat"
+del "%cd%\update.bat"
