@@ -9,5 +9,4 @@ rename "%cd%\update\dllextensiondll.dat" "DLLExtension.dll"
 move "%cd%\update\LioranBoard 2.0.exe" "%cd%\"
 move "%cd%\update\data.win" "%cd%\"
 move "%cd%\update\dllextension.dll" "%cd%\"
-start "LioranBoard 2.0.exe"
-close
+"%cd%\LioranBoard 2.0.exe"
