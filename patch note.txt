@@ -1,3 +1,16 @@
+1.99.9 [December 11th 2021]
+	-Built in auto patcher now operationnal
+		automatically update and replace,
+		the receiver
+		the windows stream deck
+		the transmitter(will re-install all extensions automatically)
+	-New patch note and update window
+	-Add an option in the transmitter menu to re-install all extension that were previously installed(installed folder)
+	-Fixed a crash when unknow moderation triggers happened, added more moderation triggers
+	-Fixed a bug causing motion commands to not happen properly.
+	-Fixed a crash that would happen when calling round/floor/ceil/abs in a complex math setup
+	-...
+
 1.99.8 [December 11th 2021]
 	-Fixed a crash that would happen if you had an ongoing button that no longer exists and openned the active button window,
 	-Fixed a crash that would happen if the stop button command deleted its own button after a deck was saved.
