@@ -1,0 +1,145 @@
+What do you need to change in your extension
+1. any lioranboardclient.send need to be modified to fit LB2, Protocol in the protocol.txt
+2. change your hook name if the command has space in it, spaces will be included
+3. change your included decks
+4. Add an info section, this is only whatever info you want to put in,
+
+The only real difference is the protocol of how the transmitter and LB2 communicate.
+=====================
+1.Adding command
+=====================
+In LB1, to add a command to the receiver you send something like this
+
+lioranboardclient.send('{
+	"type":"MESSAGE",
+	"topic":"ExtensionCommand",
+	"name":"Command Name",
+	"boxcount":2,
+	"boxname1":"Box Name",
+	"boxtype1":"string",
+	"boxname2":"another Name",
+	"boxtype2":"string"
+	}');
+lioranboardclient.send('{
+	"type":"MESSAGE",
+	"topic":"ExtensionCommand",
+	"name":"Command 2 Name",
+	"boxcount":1,
+	"boxname1":"Box 2 Name",
+	"boxtype1":"real"
+	}');
+
+To get the same result in LB2, you send this
+
+lioranboardclient.send('{
+	"rq":"SendExtensionCommands",
+	"id":"whatever",
+	"Data":[{
+		"name":"Command Name",
+		"color":3355443,
+		"height":52,		
+		
+		"ud_n0":"Box Name",
+		"ud0":14,
+		"ud_t0":"BoxName,
+		"ud_d0":""
+	},{
+		"name":"Command 2 Name",
+		"color":3355443,
+		"height":52,		
+		
+		"ud_n0":"Box 2 Name",
+		"ud0":15,
+		"ud_t0":"Box2Name,
+		"ud_d0":"0"
+	}]
+	}')
+	
+	
+	
+Notice that you can send multiple command in 1 message.
+
+Lets go through what it all means(ud stands for user defined)
+"name" will be what the user sees in the command list under the extension command menu, and also what  will be sent to the transmitter and trigger your hook under that name, SPACES INCLUDED
+"color" will be the color of the box, 3355443 is default
+"height" height of the command,  normally should be 52, if you use a resizable text box, make it 80 or up
+
+"ud_nX" Name of the box, this is visual only
+"udX" Type of box, **SEE BELOW FOR AVAILABLE BOXEX
+"ud_tX" Target, this is what the variable will be saved as in the json and also what it will sent as over back to the transmitter when its triggered
+"ud_dX" Default, what the variable should be set as by default, this is required, if you make this a number, the user will never be able to type in anything but numbers
+
+Optional info you can provide
+"ud_mX" size modifier, this is how much estate the parametter box will take horizontally, 1 is normal, if you increase it or lower it, you need to increase or lower other boxes
+	if you have 3 boxes, the total amount should be 3, if you make one 1.5, it will be 50% bigger but another one needs to be shrunk by .5 so it will fit ,
+"ud_oX":[] An array of option for the user to select, You need this only when using Select Option, Select Text or Select Text typeable Box,
+	these will reflect what option are possible for the user when they click the box
+
+	
+Box Value
+0 = Resizable text box that allow for newline,ud_d can be anything
+2 = Check box, ud_d should be set to true or false or it will crash, will always return true or false when triggered
+7 = keyboard button, ud_d should be 0, shouldn't really need this but this will send over a select key code
+8 = compare box, ud_d should be "==", returns a string from the compare box such as == or >=
+9 = math box, ud_d should be "=", return a string from the compare box such as = or +=
+10 = sound path box, ud_d should be "", return a path to said sound effect select
+11 = slider 0 to 100%, ud_d should be 0-1, will return a float 0 to 1
+14 = normal white box, ud_d can be anything if you want just normal 
+15 = Variable box(yellow box), ud_d should be a string, will return whatever variable is in the yellow box
+17 = color box, ud_d should be a number, will return the selected color
+18 = select box, ud_d should be 0, will show a list when click, of what you defined in ud_oX, will return a number, if user select 3rd option, it will return 2
+19 = select box string, ud_d should be a string, will return whatever string the user selected.
+20 = select box string typeable, ud_d should be a string,  will return whatever the user selected or typed in the box
+22 = file path, ud_d should be a string
+23 = image path, ud_d should be a string
+
+Any box that has a string ud_d will accept inserts(/$$/) exept yellow box(number 15)
+notice that some numbers are mixing, those are boxes that require a context to work, such as scene/source/filter boxes and various others.
+
+
+=====================
+2.Change hook
+=====================
+the hook now include the spaces from the command name, that's it.
+the hook will trigger exactly the same as the command name
+
+Regarding hook, hook work the same as before BUT
+Same as before, extension command will trigger a hook, but now you can also have a hook from a request.
+when you send a request to Lioranboard receiver, lioranboard will reply with the same request,
+You can set a hook on the ID you sent, so if you send a request as such
+	{
+	"rq":"GetVariable",
+	"id":"ReturnVariableID",
+	"ButtonId":"myButton",
+	"Variable":"Vname"
+	}
+In this case
+you can set a hook for "ReturnVariableID" and you will see the whole reply,
+restriction on ping,authentication and twitchlist request
+make id an empty string to set it to not hook
+
+
+
+=====================
+3.Change deck
+=====================
+You will need to remake your deck in Lioranboard 2, there is no easy shortcut that exists currently.
+
+Once your deck is remade, just right click the deck in the receiver, Export JSON, and just past that under [insert_over]
+
+To do the checks that LB does such as check version and if OBS is connected.
+just add these variable to the main json you just copied.
+
+"lioranboard_version":"2.00.0"				Check if lioranboard version is working fine
+"transmitter":true							Check if the transmitter is connected
+"obswebsocket":"4.9.1"						Check if OBS Main is connect and correct version
+"donot_include_deck":false					Check if the deck should be create, if the deck does not exists it doesnt matter, this is if you want an optionnal deck or hidden deck
+"extension_triggers":["TRG1","TRG",...]		These are all the Extension triggers that should happen, trigger pull data will include "path" for the path of where the extension was.
+
+
+
+====================
+4.Add an info section
+====================
+Just under the [extension_name] section you need to add [extension_info],
+and put whatever info you want in that section
