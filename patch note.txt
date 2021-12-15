@@ -1,4 +1,12 @@
-1.99.9 [December 11th 2021]
+2.00.1 [December 15th 2021]
+	-Twitch: Change Stream Status - New command, Sets twitch game/title/language
+	-Twitch: Get User Info - New command, Get various infos on a give user, id or login name
+	-Twitch: Get Game Info - New Command, Get varios info on a game.
+	-Added a message for when TLS encryptions windows options are turned off.
+	-better display of whats happening with versions when clicking the update button.
+	-...
+
+1.99.9 [December 14th 2021]
 	-Built in auto patcher now operationnal
 		automatically update and replace,
 		the receiver
