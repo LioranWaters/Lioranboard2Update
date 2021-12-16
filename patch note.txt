@@ -1,3 +1,14 @@
+2.00.2 [December ? 2021]
+	-Can now reference other button variable by simply doing ButtonId.Variable
+	-Minimize to tray is now off by default on first run
+	-New Commands
+		Twitch: Get Stream Info          Get Some information about a stream, doesn't have to be yours.
+		Twitch: Get Channel Info         Get Some information about a channel, doesn't have to be yours.
+		Twitch: Get Subscriber Status    Get the sub status of a viewer, has to be your own channel, can not fetch this for other channel.
+		Twitch: Get Subscriber Count     Get the amount of subscriber from your channel
+		twitch: Get Follower Count       Get the amount of follower form your channel
+	-...
+
 2.00.1 [December 15th 2021]
 	-Twitch: Change Stream Status - New command, Sets twitch game/title/language
 	-Twitch: Get User Info - New command, Get various infos on a give user, id or login name
