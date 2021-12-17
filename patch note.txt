@@ -1,4 +1,19 @@
-2.00.2 [December ? 2021]
+2.00.3 [December 17th 2021]
+	-Changed commands from 2.00.2 to take Login Name instead of broadcaster id
+		If it says Login Name then it needs to be YOUR account, not someone else
+	-New Commands
+		Twitch: Create Marker                Create a new stream marker
+		Twitch: Create Poll                  Create a poll
+		Twitch: End Poll                     end a created poll, get its id using get latest poll
+		Twitch: Create Prediction            Create a prediction
+		Twitch: End Prediction               End Predictionm get its id using get latest prediction
+		Twitch: Get Poll/Prediction Result   Get state or result of a prediction or poll
+		Get Latest Poll/Prediction ID        Get id of a poll or prediction and its choices
+		Twitch: Edit Reward                  Edit title,cost,visibility, pause state of a reward
+		Twitch: Change Redemption Status     Fulfill or cancel a redeemed reward
+	-...
+
+2.00.2 [December 16th 2021]
 	-Can now reference other button variable by simply doing ButtonId.Variable
 	-Minimize to tray is now off by default on first run
 	-New Commands
