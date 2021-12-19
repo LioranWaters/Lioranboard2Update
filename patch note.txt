@@ -1,10 +1,19 @@
+2.00.5 [December 19th 2021]
+	-raid triggers are fixed
+	-You can now record various network connections just open settings.ini and set these to record them localy,
+	do not leve these on they will cause massive lag eventually if left unattended
+	a text file for each will be created inside lioranboard folder
+		record_twitchchat="1"
+		record_http="1"
+		record_pubsub="1"
+		record_transmitter="1"
+
 2.00.4 [December 19th 2021]
 	-Fixed pause/unpause enable/disable being swaped for channel point edit command
 	-Changed ini save to make sure certain symbols wouldn't be broken when you tried to save em as strings.
 	-Changed some button command name to include /group as well when supported by that command.
 	-Changed it so inserts (/$ $/) inside strings would not be recognized as actual inserts which could have easily caused a crash from user input if allowed.
 	-Get Date command now has an option to return only numbers
-	-Raid is probably fixed, you test it
 	-extension installing no longer remove returns
 	-Empty menu no longer crashes LB
 	-New Commands
