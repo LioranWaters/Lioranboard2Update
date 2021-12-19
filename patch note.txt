@@ -1,3 +1,16 @@
+2.00.4 [December 19th 2021]
+	-Fixed pause/unpause enable/disable being swaped for channel point edit command
+	-Changed ini save to make sure certain symbols wouldn't be broken when you tried to save em as strings.
+	-Changed some button command name to include /group as well when supported by that command.
+	-Changed it so inserts (/$ $/) inside strings would not be recognized as actual inserts which could have easily caused a crash from user input if allowed.
+	-Get Date command now has an option to return only numbers
+	-Raid is probably fixed, you test it
+	-extension installing no longer remove returns
+	-Empty menu no longer crashes LB
+	-New Commands
+		Twitch: Create Clip                  Create a clip and save its id as a variable
+		Block Button/Group                   One of the missing commands from LB1
+
 2.00.3 [December 17th 2021]
 	-Changed commands from 2.00.2 to take Login Name instead of broadcaster id
 		If it says Login Name then it needs to be YOUR account, not someone else
