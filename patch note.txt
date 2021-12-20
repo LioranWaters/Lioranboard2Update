@@ -1,3 +1,10 @@
+2.00.6 [December ? 2021]
+	-Host triggers are back
+	-Changed the wording when closing the twitch window so its clearer.
+	-Fixed a bug in the stream deck that allowed you to press button on the current deck if you pressed back space to go back to deck select screen
+	-fixed the DLL not being swapped properly when updating.
+	-...
+
 2.00.5 [December 19th 2021]
 	-raid triggers are fixed
 	-You can now record various network connections just open settings.ini and set these to record them localy,
@@ -7,6 +14,7 @@
 		record_http="1"
 		record_pubsub="1"
 		record_transmitter="1"
+	-...
 
 2.00.4 [December 19th 2021]
 	-Fixed pause/unpause enable/disable being swaped for channel point edit command
@@ -19,6 +27,7 @@
 	-New Commands
 		Twitch: Create Clip                  Create a clip and save its id as a variable
 		Block Button/Group                   One of the missing commands from LB1
+	-...
 
 2.00.3 [December 17th 2021]
 	-Changed commands from 2.00.2 to take Login Name instead of broadcaster id
