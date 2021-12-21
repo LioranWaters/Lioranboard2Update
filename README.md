@@ -22,6 +22,7 @@ Mac
 - Click Settings at the Bottom to edit preference, You can enable `Allow Stream Deck and Transmitter` if you wish to use either.(You will get a network permission request when you enable it, you need to allow it.)
 - Link a Twitch Account by clicking the Twitch logo at the bottom under `Twitch Connections` (Same network permission if you haven't done previous step.)
 - Link to OBS by click the OBS logo at the bottom under `OBS Connections`, Default values are the same default values of OBS websocket 4.9.1.(OBS websocket 5 is currently not fully supported.)
+- Right click the Tray Icon to check for new updates
 
 
 ### How to Edit Deck
