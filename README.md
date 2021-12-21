@@ -32,3 +32,7 @@ Mac
 - Once a button is created you can right click to edit various settings(Double Click = Open command window, Alt+D.Click = Open Setting Window, Shift+D.Click = Open Appearance Window, Ctrl+D.Click = Open Trigger Window)
 - The command window is what the button does when it is triggered. There are 100s of commands to choose from, explore and read up on what they do if you are not sure.
 - To Trigger a button you can do it through the Stream Deck or setup a trigger for it in the Edit Triggers window(Twitch Trigger currently require the transmitter to be connected.)
+
+## Happy Testing!
+
+Report any bugs on [Discord](https://discord.gg/dXez8Zh) in `#lb2-discussion-suggestions`
