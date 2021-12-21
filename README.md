@@ -11,17 +11,26 @@ Windows
 
 [32bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x86.zip)
 
+Linux
+
+`TBA`
+
+Mac
+
+`TBA`
+
 ### How to use
 
-- Unzip whole package in a New Directory.
-- Run `LioranBoard 2.0.exe`
+- Unzip whole package in a New Directory. 
+- Run `LioranBoard 2.0.exe` (Lioranboard 1 is not compatible)
 - Click Settings at the Bottom to edit preference, You can enable `Allow Stream Deck and Transmitter` if you wish to use either.(You will get a network permission request when you enable it, you need to allow it.)
-- You can Link Twitch Account by clicking the Twitch logo at the bottom under `Twitch Connections` (Same network permission if you haven't done previous step.)
+- Link a Twitch Account by clicking the Twitch logo at the bottom under `Twitch Connections` (Same network permission if you haven't done previous step.)
 - Link to OBS by click the OBS logo at the bottom under `OBS Connections`, Default values are the same default values of OBS websocket 4.9.1.(OBS websocket 5 is currently not fully supported.)
-- Click the Big + button at the top to create a new deck and start being creative.
+
 
 ### How to Edit Deck
 
+- Click the Big + button at the top to create a new deck and start being creative.
 - Double Click or Right click a deck to bring up the Deck Editing window.
 - Clicking in the grid will bring up a menu to create or paste a button
 - Once a button is created you can right click to edit various settings(Double Click = Open command window, Alt+D.Click = Open Setting Window, Shift+D.Click = Open Appearance Window, Ctrl+D.Click = Open Trigger Window)
