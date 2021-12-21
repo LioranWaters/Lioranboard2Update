@@ -6,18 +6,14 @@
 ##  Downloads
 
 Windows
-
-[64bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x64.zip)
-
-[32bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x86.zip)
+- [64bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x64.zip)
+- [32bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x86.zip)
 
 Linux
-
-`TBA`
+- `TBA`
 
 Mac
-
-`TBA`
+- `TBA`
 
 ### How to use
 
