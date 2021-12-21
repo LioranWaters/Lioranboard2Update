@@ -19,7 +19,7 @@ Mac
 
 - Unzip whole package in a New Directory. 
 - Run `LioranBoard 2.0.exe` (Lioranboard 1 is not compatible)
-- Click Settings at the Bottom to edit preference, You can enable `Allow Stream Deck and Transmitter` if you wish to use either.(You will get a network permission request when you enable it, you need to allow it.)
+- Click Settings at the Bottom to edit preference, You can enable `Allow Stream Deck and Transmitter` if you wish to use either.DO NOT change the port unless you know what you're doing. (You will get a network permission request when you enable it, you need to allow it.)
 - Link a Twitch Account by clicking the Twitch logo at the bottom under `Twitch Connections` (Same network permission if you haven't done previous step.)
 - Link to OBS by click the OBS logo at the bottom under `OBS Connections`, Default values are the same default values of OBS websocket 4.9.1.(OBS websocket 5 is currently not fully supported.)
 - Right click the Tray Icon to check for new updates
@@ -33,6 +33,7 @@ Mac
 - Once a button is created you can right click to edit various settings(Double Click = Open command window, Alt+D.Click = Open Setting Window, Shift+D.Click = Open Appearance Window, Ctrl+D.Click = Open Trigger Window)
 - The command window is what the button does when it is triggered. There are 100s of commands to choose from, explore and read up on what they do if you are not sure.
 - To Trigger a button you can do it through the Stream Deck or setup a trigger for it in the Edit Triggers window(Twitch Trigger currently require the transmitter to be connected.)
+- You can test Triggers in the Transmitter
 
 ## Happy Testing!
 

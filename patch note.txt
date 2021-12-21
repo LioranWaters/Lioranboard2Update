@@ -4,6 +4,7 @@
 	-File: Save String no longer crashes
 	-Twitch: Create Clip should now returns the id fine, need testing
 	-The stop sound icon is now properly associated to stop sound effect command
+	-if no transmitter is selected it will automatically select the one that's included.
 	-...
 
 2.00.6 [December 20th 2021]
