@@ -1,4 +1,12 @@
-2.00.6 [December ? 2021]
+2.01.0 [December 20th 2021]
+	-Can no longer click behind the patch note window when updating.
+	-tab button in the main screen now opens the variable window.
+	-File: Save String no longer crashes
+	-Twitch: Create Clip should now returns the id fine, need testing
+	-The stop sound icon is now properly associated to stop sound effect command
+	-...
+
+2.00.6 [December 20th 2021]
 	-Host triggers are back
 	-Changed the wording when closing the twitch window so its clearer.
 	-Fixed a bug in the stream deck that allowed you to press button on the current deck if you pressed back space to go back to deck select screen
