@@ -1,3 +1,14 @@
+2.02.0 [December 22nd 2021]
+	-Entering the wrong password for OBS now warns you properly that it is wrong.
+	-Entering the wrong password for OBS no longer crashes Lioranboard after a few seconds.
+	-Fixed a problem when selecting the first transmitter command not being added in as a command
+	-Fixed a crash that would happen if the transmitter sent a misformated pubsub message
+	-Fixed a crash that happened when modifying button from the transmitter twice.
+	-Fixed a crash that would happen with arrays
+	-Create Clip should work now... again
+	-Selecting `Set Button Variable` will now set it properly instead of `Set Global Variable`
+	-...
+
 2.01.0 [December 20th 2021]
 	-Can no longer click behind the patch note window when updating.
 	-tab button in the main screen now opens the variable window.
@@ -17,7 +28,7 @@
 2.00.5 [December 19th 2021]
 	-raid triggers are fixed
 	-You can now record various network connections just open settings.ini and set these to record them localy,
-	do not leve these on they will cause massive lag eventually if left unattended
+	do not leave these on they will cause massive lag eventually if left unattended
 	a text file for each will be created inside lioranboard folder
 		record_twitchchat="1"
 		record_http="1"
