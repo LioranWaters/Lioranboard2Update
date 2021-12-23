@@ -1,4 +1,15 @@
-2.02.0 [December 22nd 2021]
+2.02.0 [December 23rd 2021]
+	-New check all box for disabling commands
+	-Disabling a statement command will now hide its content.
+	-Can now listen for Followers,Polls,Predictions and hype train althought we need data on hypetrain, let us know if you get hypetrain routinely.
+	-New triggers for polls, predictions
+	-There is now an update button in the setting window
+	-fixed a crash that would happened when trying to paste an invalid button
+	-Removed 1
+	-Transmitter was changed, changing is required for the new triggers
+	-...
+
+2.01.1 [December 22nd 2021]
 	-Entering the wrong password for OBS now warns you properly that it is wrong.
 	-Entering the wrong password for OBS no longer crashes Lioranboard after a few seconds.
 	-Fixed a problem when selecting the first transmitter command not being added in as a command

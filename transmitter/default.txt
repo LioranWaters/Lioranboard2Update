@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.01-->
+<!--Transmitter V5.02-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <title>LioranBoard Transmitter</title>
-<link rel="shortcut icon" type="image/x-icon" href="https://christinna9031.github.io/LioranBoard-Transmitter/favicon.ico"/>
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/LioranBoard/LioranBoard-2-Transmitter/main/favicon.ico"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/christinna9031/LioranBoard-Files@main/lib/bootstrap.min.css">
 <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 <style>
@@ -41,6 +41,9 @@ a:hover {
   content:'Hide Options \01F845' ;
   width:15px;
 }
+.LBTestTriggers .form-check-input[type=checkbox] {
+  vertical-align: text-bottom;
+}
 #footer .tslCollapse.collapsed:before {
   content:'Show Installed Extensions \01F847' ;
   width:15px;
@@ -50,7 +53,7 @@ a:hover {
   width:15px;
 }
 
-#LBreceiverlog, #LBchatlog, #LBpubsublog {
+#LBreceiverlog, #LBpubsublog {
   background:rgb(10, 11, 26);
   padding:5px 15px;
   display:block;
@@ -69,7 +72,7 @@ a:hover {
 #debugLog .nav-link {
   padding: .2rem 1rem;
 }
-#LBChat, #LBPubSub, #LBreceiver {
+#LBPubSub, #LBreceiver {
   overflow: hidden;
   padding:5px;
   margin:2px;
@@ -100,7 +103,6 @@ button:active{
   padding-left: 0;
   margin-bottom: 0;
 }
-
 .nav-pills .nav-link {
   font-family: Arial;
   padding: .4em .6em .1em .6em;
@@ -113,7 +115,6 @@ button:active{
   text-shadow: 0px 1px 2px rgb(195, 195, 195);
   transition: 0.01s;
 }
-
 .nav-pills > li > .nav-link.active {
    background-image: linear-gradient(to bottom, #E28B3B, #B96C23);
    color: rgb(255, 255, 255);
@@ -134,21 +135,6 @@ button:active{
    opacity: 0;
  }
 
-#versionOBS:after {
- content:'OBS Studio'
-}
-#versionOBSWS:after {
- content:'OBS Websocket'
-}
-#versionReceiver:after {
- content:'LB Receiver'
-}
-#versionStreamDeck:after {
- content:'LB StreamDeck (PC)'
-}
-#versionTransmitter:after {
- content:'LB Transmitter'
-}
 @media (max-width: 576px) {
   .nav-pills .nav-link {
       border-radius: 5px 5px 0px 0px;
@@ -168,23 +154,7 @@ button:active{
      box-shadow:0 0 rgb(223, 223, 223);
      transform:translateY(1px)
  }
-  #versionOBS:after {
-     content:'OBS'
- }
-  #versionOBSWS:after {
-     content:'OBSWS'
- }
-  #versionReceiver:after {
-     content:'LBR'
- }
-  #versionStreamDeck:after {
-     content:'LBS PC'
- }
-  #versionTransmitter:after {
-     content:'LBT'
- }
 }
-
 
 .notabs>.tab-pane {
   display: block !important;
@@ -204,9 +174,7 @@ button:active{
 
 </style>
 </head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-</script>
-  <body>
+<body>
 <div class="container">
 <h1 class="text-center">LioranBoard Transmitter </h1>
 <!-- Connection Info -->
@@ -230,163 +198,526 @@ button:active{
 </div>  
  <!-- Tab Content -->
  <div class="tab-content" id="extensions-tabContent">
-<div class="tab-pane" id="content-basic" role="tabpanel" title="Transmitter" data-type="default">
-		Lioranboard Connection<br>
-       Connect To:	
-       <input type="text" id="nIPbox" name="nIPbox" size="20" value='127.0.0.1'><br>
-       Port:
-       <input type="number" min="0" max="65535" id="nPortBox" name="nPortBox" value=9425> <br>
-       Password:	
-       <input type="password" id="nPassBox" name="nPassBox" size="20" value=''>(optional)<br>
-	   <button type="button" id="cnctbutton" onclick="connectbutton()">Connect</button><br>
-	   <br>
-	   Test Triggers<br>
-	   
-    <button type="button" onclick="fakesub2()">Test Sub</button>
+<!--Twitch Triggers -->
+<div class="tab-pane" id="content-basic" role="tabpanel" title="Twitch Triggers" data-type="default">
+   <form id="LBTestTwitchFollow" class="LBTestTriggers">
+      <button type="submit" class="btn btn-primary btn-sm me-1">Test Follower</button>
+   </form>
+    <form id="LBTestTwitchSubs" class="LBTestTriggers">
+    <button type="submit" class="btn btn-primary btn-sm me-1">Test Sub</button>
     <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#hidesubs" role="button" aria-expanded="false" aria-controls="hidesubs"></a>  
-
-	  
     <div class="collapse" id="hidesubs"> 
-       <input type="radio" id="itier1" name="tier" value="vtier1" checked>
+       <input type="radio" class="form-check-input" id="tier1" name="tier" value="Tier 1" checked>
        Tier 1
-       <input type="radio" id="itier2" name="tier" value="vtier2">
+       <input type="radio" class="form-check-input" id="tier2" name="tier" value="Tier 2">
        Tier 2
-       <input type="radio" id="itier3" name="tier" value="vtier3" >
+       <input type="radio" class="form-check-input" id="tier3" name="tier" value="Tier 3" >
        Tier 3
-       <input type="radio" id="iprime" name="tier" value="vprime" onclick="CheckUncheckSubGift(this)" >
+       <input type="radio" class="form-check-input" id="prime"name="tier" value="Prime" onclick="CheckUncheckSubGift(this)" >
        Prime <br>
-       <input type="checkbox" id="isubgift" name="subgift" value="vsubgift" onclick="CheckUncheckSubGift(this)">
+       <input type="checkbox" class="form-check-input" id="subgift" value="subgift" onclick="CheckUncheckSubGift(this)">
        SubGift
-       <input type="checkbox" id="ianongift" name="subgift" value="vanongift" onclick="CheckUncheckSubGift(this)">
+       <input type="checkbox" class="form-check-input" id="anongift" value="anongift" onclick="CheckUncheckSubGift(this)">
        AnonGift 
-       <input type="number" min="0" max="100" id="nsubmonths" name="nsubmonths" value=1> Months <br>
+       <input type="number" min="0" max="100" id="submonths" value=1> Months <br>
        Message:	
-       <input type="text" id="nsubmessage" name="nsubmessage" size="20" value='Hello World!'>
+       <input type="text" id="submessage" size="20">
     </div>
     <div>
-       <button type="button" onclick="fakegiftamount()">Test Subs Gift Amount</button>
+   </form>
+   <form id="LBTestTwitchSubGift" class="LBTestTriggers">
+
+       <button type="submit" class="btn btn-primary btn-sm me-1">Test Subs Gift Amount</button>
        Amount:
-       <input type="number" min="0" max="999" id="igiftamount" name="ngiftamount" value=1> 
+       <input type="number" min="1" max="99" id="subGiftAmount" value=1> 
     </div>
-    <button type="button" onclick="fakebits()">Test Bits</button>
+   </form>
+   <form id="LBTestTwitchBits" class="LBTestTriggers">
+    <button type="submit" class="btn btn-primary btn-sm me-1">Test Bits</button>
     <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#hidebits" role="button" aria-expanded="false" aria-controls="hidebits"></a>
     <div class='collapse' id="hidebits"> 
        Amount of bits:
-       <input type="number" min="0" max="999" id="ibitsamount" name="nbitsamount"  value=1>
+       <input type="number" min="0" max="999" id="bitsamount" value=1>
        Total bits: 	
-       <input type="number" min="0" max="999" id="ibitstotal" name="ibitstotal" value=1000><br/>
+       <input type="number" min="0" max="999" id="bitstotal" value=100><br/>
        Message:	
-       <input type="text" id="ibitsmessage" name="ibitsmessage" size="20" style="margin:5px 0px;" value='Hello World!'>
+       <input type="text" id="bitsmessage" size="20" style="margin:5px 0px;" value='Hello World!'>
     </div>
-    <div><button type="button" onclick="fakepoints()">Test Channel Points</button> 
+   </form>
+   <form id="LBTestTwitchPoints" class="LBTestTriggers">
+    <div><button type="submit" class="btn btn-primary btn-sm me-1">Test Channel Points</button> 
        <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#hidepoints" role="button" aria-expanded="false" aria-controls="hidebits"></a>
     </div>
     <div class="collapse" id="hidepoints" >
-      Redeem Name:
-      <input type="text" id="ichannelpoints" name="nchannelpoints" size="10" style="margin:5px 0px">	<input type="checkbox" id="nchannelpointinput" name="nchannelpointinput" > User Input Required <br>
-      Redeem Message:	
-      <input type="text" id="nchannelpointsmsg" name="nchannelpointsmsg" size="20"  >	<br>
-      Redeem Cost:	
-      <input type="text" id="nchannelpointscost" name="nchannelpointscost" size="5"  >	
-   </div>
-    <div><button type="button" onclick="fakeraid()">Test Raid</button>
-       Amount:
-       <input type="number" min="0" max="999" id="iraidamount" name="nraidamount"  value=1> 
+       Redeem Name:
+       <input type="text" id="channelPointsName" size="10" style="margin:5px 0px" value="Test Reward">	<input type="checkbox" class="form-check-input" id="channelPointsInput"> User Input Required <br>
+       Redeem Message:	
+       <input type="text" id="channelPointsMsg" size="20">	<br>
+       Redeem Cost:	
+       <input type="number" min="0" max="9999" id="channelPointsCost" size="5" value=50>	
     </div>
-    <div><button type="button" onclick="fakechatmsg()">Test Chat Message </button> 	
+   </form>
+   <form id="LBTestTwitchRaid" class="LBTestTriggers">
+    <div><button type="submit" class="btn btn-primary btn-sm me-1">Test Raid</button>
+       Amount:
+       <input type="number" min="0" max="999" id="raidAmount" value=5> 
+    </div>
+   </form>
+   <form id="LBTestTwitchHost" class="LBTestTriggers">
+    <div><button type="submit" class="btn btn-primary btn-sm me-1">Test Host</button>
+       Amount:
+       <input type="number" min="0" max="999" id="hostamount" value=5>
+    </div>
+   </form>
+   <form id="LBTestTwitchChat" class="LBTestTriggers">
+    <div><button type="submit" class="btn btn-primary btn-sm me-1">Test Chat Message </button> 	
        <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#hidechatmsg" role="button" aria-expanded="false" aria-controls="hidechatmsg"></a>
     </div>
     <div class="collapse" id="hidechatmsg">
-       Username: <input type="text" id="ichatname" size="10" value="Lioran"> <br> Message: <input type="text" id="ichatmsg" size="20" style="margin:5px 0px"; value="Hello World">	<br>
-       <input type="checkbox" id="ichatbroadcaster"> Broadcaster <input type="checkbox" id="ichatmod"> Mod <input type="checkbox" id="ichatsub"> Subscriber <input type="checkbox" id="ichatvip"> VIP <input type="checkbox" id="ichatfounder"> Founder <br>
+       Username: <input type="text" id="chatName" size="10" value="Lioran"> <br> Message: <input type="text" id="chatMsg" size="20" style="margin:5px 0px"; value="Hello World">	<input type="checkbox" class="form-check-input" id="chatFirstTime"> 1st <br>
+       <input type="checkbox" class="form-check-input" id="chatBroadcaster"> Broadcaster <input type="checkbox" class="form-check-input" id="chatMod"> Mod <input type="checkbox" class="form-check-input" id="chatSub"> Subscriber <input type="checkbox" class="form-check-input" id="chatVip"> VIP <input type="checkbox" class="form-check-input" id="chatFounder"> Founder <br>
        Subscriber Tier: 
-       <select id="chatmsgsubtier">
+       <select id="chatMsgSubTier">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
        </select>
-       Month:  <input type="number" min=0 max=12 maxlength="2" oninput="javascript: if (parseInt(this.value) > parseInt(this.max)) this.value = this.max;" id="chatmsgsubmonth" value=1>
-	</div>
-	<br>
-	Tab options
-	<div class="col col-md-auto"><button type="button" onclick="TSLNoTabs()">No Tabs</button><button type="button" onclick="TSLTabs()">Show Tabs</button></div>
+       Month:  <input type="number" min=0 max=12 maxlength="2" oninput="javascript: if (parseInt(this.value) > parseInt(this.max)) this.value = this.max;" id="chatMsgSubMonth" value=1>
+    </div>
+   </form>
   </div>
-
+  <!--Twitch Triggers end-->
+<div class="tab-pane" id="content-status" role="tabpanel" title="Status" data-type="default">
+  <div class='row pt-3'>
+    <h5>Transmitter Connection</h5>
+    <div class="col">
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">IP Address:</label>
+      <div class="col-sm-4 w-auto">
+        <input type="text" id="nIPbox" name="nIPbox" value='127.0.0.1' class="form-control form-control-sm" >
+      </div>
+    </div>
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">Port:</label>
+      <div class="col-sm-4 w-auto">
+        <input type="number" min="0" max="65535" id="nPortBox" name="nPortBox" value=9425 class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">Password (optional):</label>
+      <div class="col-sm-4 w-auto">
+        <input id="nPassBox" type="password" name="nPassBox" size="20" value='' class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="mt-1 row">
+      <button type="button" id="cnctbutton" class="btn btn-primary btn-sm mb-2 w-auto ms-3" onclick="connectbutton()">Connect</button>
+    </div>
+    </div>
+ </div>
+  <div class='row pt-3'>
+     <h5>Appearance</h5>
+     <div class="col col-md-auto"><button type="button" class="btn btn-primary btn-sm mb-2 w-auto me-2" onclick="TSLNoTabs()">No Tabs</button><button type="button" class="btn btn-primary btn-sm mb-2 w-auto" onclick="TSLTabs()">Show Tabs</button></div>
+  </div>
+<!--Message Logging -->
+<div class='row pt-3 d-block'>
+    <h5>Message Logging</h5>
+    <div class='pl-5 ml-5'>
+       <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="dbgReceiver" onclick="LBDebugLog(this)" >
+          <label class="form-check-label"for="flexSwitchCheckDefault">Receiver</label>
+       </div>
+       <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="dbgPubsub" onclick="LBDebugLog(this)">
+          <label class="form-check-label" for="flexSwitchCheckDefault">PubSub</label>
+       </div>
+       <ul class="nav nav-tabs mt-3" id="debugLog" role="tablist">
+          <li class="nav-item" role="presentation">
+             <button class="nav-link active" id="LBreceiver-tab" data-bs-toggle="tab" data-bs-target="#LBreceiver" type="button" role="tab" aria-controls="LBreceiver" aria-selected="true">Receiver</button>
+          </li>
+          <li class="nav-item" role="presentation">
+             <button class="nav-link" id="LBPubSub-tab" data-bs-toggle="tab" data-bs-target="#LBPubSub" type="button" role="tab" aria-controls="LBPubSub" aria-selected="false">PubSub</button>
+          </li>
+       </ul>
+       <div class="tab-content p-0 " id="debugLogContent">
+          <!--LB Receiver Log-->
+          <div class="tab-pane fade show active" id="LBreceiver" role="tabpanel" aria-labelledby="LBreceiver-tab" >
+             <div id="LBreceiverlog" class="col col-10 text-wrap">Logging is disabled.</div>
+          </div>
+          <!--LB Pubsub Log-->
+          <div class="tab-pane fade" id="LBPubSub" role="tabpanel" aria-labelledby="LBPubSub-tab">
+             <div id="LBpubsublog" class="col col-10 text-wrap">Logging is disabled.</div>
+          </div>
+       </div>
+    </div>
+ </div>
+<!--Message Logging end-->
+</div>
 <!--Your external script will be inserted here-->
 <!--<script src="example.js"></script>-->
 <!--INSERT PART 1-->
-
-
+ 
 </div>
 <div class="row justify-content-center mt-3 px-2 mb-5" id="footer"> <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#installedextensions" role="button" aria-expanded="false" aria-controls="installedextensions"></a>
   <span class='collapse' id="installedextensions"></span>
   <span id ='extensions-tab-buttons' class="mt-2">
-  <button id="extensionsshow">Show All Tabs</button> <button id="extensionshide">Hide All Tabs</button> <button id="extensionsresetorder">Reset Tab Order</button> <button onclick="location.reload()">Refresh</button></span>
+  <button id="extensionsshow" class="btn btn-primary btn-sm me-1">Show All Tabs</button> <button id="extensionshide" class="btn btn-primary btn-sm me-1">Hide All Tabs</button> <button id="extensionsresetorder" class="btn btn-primary btn-sm me-1">Reset Tab Order</button> <button onclick="location.reload()" class="btn btn-primary btn-sm me-1">Refresh</button></span>
 </div>
 
 
 </div>
 </body>
-
-</script>
 <script>
-// url for lioranboard no longer managed this way
-//let url = 'ws://127.0.0.1:9425';
-// if you make an extension and it connects to twitch, use this id
-const TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n"; // value that says if pubsub is connected or not
+/** LB2 Helper Functions
+ * You can call them with LB.{helperfunction}
+ * Use promises if you want to get a reply back from LB
+ * No promise example: LB.setVariable(myVariable, 'some value', 'someButtonID')
+ * Promise example: LB.getVariable(myVariable, 'someButtonID').then(reply=>console.log(reply))
+ */
+ function LBCommands() {
+  const LBSendCommand = {
+    /**
+     * Get a variable from LB
+     * @param {string} name - name of the variable
+     * @param {string} buttonId - button ID for local variable, default = global variable
+     */
+    async getVariable(name, buttonId = "global") {
+      return sendToLB("GetVariable", {
+        Variable: name,
+        ButtonId: buttonId
+      });
+    },
 
-let server_on = 0;
-let receiver_on = 0;
-let i_force = "";
-let force_close = false; //boxes constant value
+    /**
+     * Set a variable in LB
+     * @param {string} name - name of the variable
+     * @param {(string|number|object|array|null)} value - new value of the variable
+     * @param {string} buttonId - button ID for local variable, default = global variable
+     */
+    async setVariable(name, value, buttonId = "global") {
+      return sendToLB("SetVariable", {
+        Variable: name,
+        Value: value,
+        ButtonId: buttonId
+      });
+    },
 
-const box_newline = 0;
-const box_checkbox = 2;
-const box_keyboard = 7;
-const box_compare = 8;
-const box_math = 9;
-const box_sound = 10;
-const box_slider = 11;
-const box_normal = 14;
-const box_variable = 15;
-const box_color = 17;
-const box_selectvalue = 18;
-const box_selectstring = 19;
-const box_selectstringwritable = 20;
-const box_loadfile = 22;
-const box_imagefile = 23;
+    /**
+     * Send a popup message to LB
+     * @param {string} msg - message to send
+     */
+    async popUp(msg) {
+      return sendToLB("PopupMessage", {
+        Message: msg
+      });
+    },
 
-load_connection();
+    /**
+     * Send a yellow notification message to LB
+     * @param {string} msg - message to send
+     */
+    async alert(msg) {
+      return sendToLB("AlertMessage", {
+        Message: msg
+      });
+    },
 
-function load_connection() {
-  var ls_ip = localStorage.getItem("nIPbox");
-  var ls_port = localStorage.getItem("nPortBox");
-  var ls_pass = localStorage.getItem("nPassBox");
+    /**
+     * send extension command to LB
+     * @param {string} name - name of the extension command
+     * @param {string} color - box color, accepts hex/dec colors (include # for hex), default 3355443
+     * @param {string} height - height of the box in pixels, 52 for regular or 80 for resizable box, default 52
+     * @param {Object} boxes
+     * - one object per box, key = boxVariable, value = array of box params
+     * - boxVariable = variable to save the box value under
+     * - boxName = name of the box shown in the user interface
+     * - boxType = type of the box, 0 = resizable, 2 = checkbox (true/false), 14 = regular box, 15 = variable box, 18 = select box, see extension guide for more
+     * - defaultValue = default value of the variable
+     * - (optional) sizeModifier = horizontal box size, 1 is normal
+     * - (optional) [] selectOptions = array of options for the user to select (when using Select box type)
+     * @param {[boxName: string, boxType: number, defaultValue: (string | number), sizeModifier: (number|undefined), selectOptions: Array|undefined]} boxes.boxVariable
+     * */
+    async extCommand(name, color = 3355443, height = 52, boxes) {
+      const ext = new LBConstructExtCommand(name, color, height);
 
-  if (ls_ip == null) {
-    ls_ip = "127.0.0.1";
+      for (const [key, value] of Object.entries(boxes)) {
+        ext.addBox(key, value);
+      }
+
+      return sendToLB("SendExtensionCommands", {
+        Data: [ext]
+      });
+    },
+
+    /**
+     * Close LioranBoard connection to Transmitter.
+     */
+    async close() {
+      return sendToLB("Close");
+    },
+
+    /**
+     * Get deck and button updates
+     * @param {boolean} enabled - enable or disable updates
+     */
+    async stayInformed(enabled) {
+      return sendToLB("SetStayInformed", {
+        Enabled: enabled
+      });
+    },
+
+    /**
+     * Request an array of all decks
+     * - Replies with an array ["Deck1 Name","Unique ID",crc32,"Deck2 Name","Unique ID",crc32,...]
+     * - Use crc32 value to verify deck you saved localy is the same
+     */
+    async getDeckList() {
+      return sendToLB("GetDeckList");
+    },
+
+    /**
+     * Request a deck params
+     * @param {string} id - Unique deck ID retrieved from getDeckList
+     * - Replies with an object containing a full deck
+     */
+    async getDeck(id) {
+      return sendToLB("GetDeck", {
+        UniqueId: id
+      });
+    },
+
+    /**
+     * Retrieve an image in base64
+     * @param {string} fileName - image file name without the path (image.png)
+     * - Replies with an object containing the Base64 string of the image
+     */
+    async getImage(fileName) {
+      return sendToLB("GetImage", {
+        FileName: fileName
+      });
+    },
+
+    /**
+     * Retrieves CRC32 of a file
+     * @param {string} fileName - file name without the path (image.png)
+     */
+    async getSum(fileName) {
+      return sendToLB("GetSum", {
+        Name: fileName
+      });
+    },
+
+    /**
+     * Retrieves all currently active buttons
+     * - Replies with an array of button param objects
+     */
+    async getActiveButtons() {
+      return sendToLB("GetOngoingButtons");
+    },
+
+    /**
+     * Retrieves params of all linked Twitch accounts
+     */
+    async getTwitchList() {
+      return sendToLB("GetTwitchList");
+    },
+
+    /**
+     * Sends a trigger
+     * @param {number} type - type of trigger
+     * - trigger types: 0 Twitch chat, 1 Twitch Sub, 2 Twitch Gift, 3 Twitch redeem
+     * 4 Twitch Raid, 5 Twitch Bits, 6 Twitch Follower, 7 Hotkey
+     * 8 Timer, 9 OBS Trigger, 10 lioranboard, 11 twitch moderation, 12 extension trigger
+     * @param {object} data - whatever data is required for the trigger, see manual
+     */
+    async trigger(type, data) {
+      return sendToLB("SendTrigger", {
+        Type: type,
+        Data: data
+      });
+    },
+
+    /**
+     * Triggers a button
+     * @param {string} id - button ID to trigger
+     */
+    async triggerButton(id) {
+      return sendToLB("TriggerButton", {
+        ButtonId: id
+      });
+    },
+
+    /**
+     * Releases a button
+     * @param {string} id - button ID to trigger
+     */
+    async releaseButton(id) {
+      return sendToLB("ReleaseButton", {
+        ButtonId: id
+      });
+    },
+
+    /**
+     * Modifies a button
+     * @param {string} id - button ID to trigger
+     * @param {number|undefined} color - decimal button color (BGR)
+     * @param {string|undefined} text - button text
+     * @param {string|undefined} image - button image file name
+     * @param {number|undefined} border - border size, 0-7
+     * - leave parameters empty to reset button back to default values
+     */
+    async modifyButton(id, color, text = "", image, border) {
+      return sendToLB("ModifyButton", {
+        ButtonId: id,
+        Data: {
+          color: color || undefined,
+          text: text || undefined,
+          image: image || undefined,
+          border: border || undefined
+        }
+      });
+    },
+
+    /**
+     * Retrieves all currently modified buttons
+     * - object of button objects that are currently modified
+     */
+    async getModifiedButtons() {
+      return sendToLB("GetModifications");
+    },
+
+    /**
+     * Sends an extension trigger
+     * @param {string} trigger - name of the trigger
+     * @param {object} data - object containing all trigger pull data
+     */
+    async triggerExt(trigger, data = {}) {
+      return sendToLB("ExtensionTrigger", {
+        Trigger: trigger,
+        Data: data
+      });
+    },
+
+    /**
+     * Deletes a variable
+     * @param {string} name - name of the variable
+     * @param {string} buttonId - button ID for local variable, default = global variable
+     */
+    async deleteVariable(name, buttonId = "global") {
+      return sendToLB("DeleteVariable", {
+        Variable: name,
+        ButtonId: buttonId
+      });
+    },
+
+    /**
+     * Insert an array value
+     * @param {string} arrayName - name of the array
+     * @param {number} index - index to insert the new item at
+     * @param {string|number|object|array} value - item value
+     * @param {string} buttonId - button id, default is global
+     */
+    async insertArray(arrayName, index, value, buttonId = "global") {
+      return sendToLB("InsertArrayValue", {
+        Array: arrayName,
+        Slot: slot,
+        Value: value,
+        ButtonId: buttonId
+      });
+    },
+
+    /**
+     * Delete an array slot
+     * @param {string} arrayName - name of the array
+     * @param {number} index - index of the item to delete
+     * @param {string} buttonId - button id, default is global
+     */
+    async deleteArray(arrayName, slot, buttonId = "global") {
+      return sendToLB("DeleteArraySlot", {
+        Array: arrayName,
+        Slot: slot,
+        ButtonId: buttonId
+      });
+    },
+
+    /**
+     * Shows a message bubble from the tray icon
+     * @param {string} msg - message to show
+     */
+    async notification(msg) {
+      return sendToLB("NotificationMessage", {
+        Message: msg
+      });
+    }
+  };
+
+  async function sendToLB(command, data) {
+    const res = await lioranboardclient.send(command, data);
+    return res;
+  } // construct extension command object
+
+  class LBConstructExtCommand {
+    constructor(name, color, height) {
+      let p = 0;
+      this.name = name;
+      this.color = color;
+      this.height = height;
+
+      this.addBox = (boxVar, params) => {
+        this[`ud_t${p}`] = boxVar;
+        this[`ud_n${p}`] = params[0];
+        this[`ud${p}`] = params[1];
+        this[`ud_d${p}`] = params[2];
+        this[`ud_m${p}`] = params[3] || undefined;
+        this[`ud_o${p}`] = params[4] || undefined;
+        p += 1;
+      };
+    }
   }
 
-  if (ls_port == null) {
-    ls_port = 9425;
-  }
+  return LBSendCommand;
+} // Twitch client ID to use for Twitch API requests
 
-  if (ls_pass == null) {
-    ls_pass = "";
-  }
+const TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n"; // init object with all available LB command methods
 
-  nIPbox.value = ls_ip;
-  nPortBox.value = ls_port;
-  nPassBox.value = ls_pass;
-}
+const LB = new LBCommands(); // Expose websocket client, pubsub client and logIt function for global access
 
-function LBAuthenticate(salt, challenge, msg) {
-  const authHash = CryptoJS.enc.Base64.stringify(CryptoJS.SHA256(msg + salt));
-  const result = CryptoJS.enc.Base64.stringify(
-    CryptoJS.SHA256(authHash + challenge)
-  );
-  return result;
-} // modify UI on load
+let lioranboardclient;
+let pubsubserver;
+let logIt;
+let i_force = ""; // LioranBoard global object with variables
+
+const LBVars = {
+  LBdebug: JSON.parse(localStorage.getItem("LBdebug")) || {},
+  pubsubinterval: null,
+  twitchList: {},
+  force_close: false,
+  box_newline: 0,
+  box_checkbox: 2,
+  box_keyboard: 7,
+  box_compare: 8,
+  box_math: 9,
+  cbox_sound: 10,
+  box_slider: 11,
+  box_normal: 14,
+  box_variable: 15,
+  box_color: 17,
+  box_selectvalue: 18,
+  box_selectstring: 19,
+  box_selectstringwritable: 20,
+  box_loadfile: 22,
+  box_imagefile: 23
+}; // define LioranBoard connection on load and try to immediately connect
+
+window.addEventListener(
+  "load",
+  function () {
+    lioranboardclient = new LBWebSocket();
+    load_connection();
+    connecttoboard();
+    LBTestTriggers();
+  },
+  false
+); // modify UI on load
 
 window.addEventListener("load", LBLoadTabsUI, false);
 
@@ -581,194 +912,381 @@ Element.prototype.setAttributes = function (obj) {
   for (const prop in obj) {
     this.setAttribute(prop, obj[prop]);
   }
-}; // fake subscriber testing
+};
 
-function fakesub() {
-  let i_str;
-  let i_name = fakename();
+// fake subscriber testing
 
-  if (i_force != "") {
-    i_name = i_force;
-  }
+function LBTestTriggers() {
+  const processTrigger = {
+    LBTestTwitchSubs(form, notUsed, gifted = false, gifterName = "") {
+      const type = 1;
+      const subtype = form.subgift.checked
+        ? 2
+        : form.anongift.checked
+        ? 4
+        : gifted
+        ? 2
+        : 1;
+      const context = form.subgift.checked
+        ? "subgift"
+        : form.anongift.checked
+        ? "anonsubgift"
+        : gifted
+        ? "subgift"
+        : "resub";
+      const month = parseInt(form.submonths.value) || 1;
+      const name = gifted
+        ? gifterName
+        : form.anongift.checked
+        ? "Anonymous User"
+        : generateName();
+      const giftedName = subtype !== 1 ? generateName(name) : "";
+      const message = form.submessage.value || generateMessage();
+      const tiers = form.querySelectorAll('input[name="tier"]');
+      let selectedTier;
+      let selectedTierD;
 
-  const i_name2 = fakename(i_name);
-  const i_value = itier2.checked
-    ? 2000
-    : itier3.checked
-    ? 3000
-    : iprime.checked
-    ? "Prime"
-    : 1000;
-  const i_context = isubgift.checked
-    ? "subgift"
-    : ianongift.checked
-    ? "anonsubgift"
-    : "resub";
-  const messages = [
-    "Hello world!",
-    "Love your stream, you are a very genuine guy and you're not affraid to say it how it is. But, I would just prefer if you didn't give your opinion, just saying.",
-    "Supporting how I can, keep up the great work.",
-    "All that glitters is not gold. Fair is foul, and foul is fair Hover through the fog and filthy air. These violent delights have violent ends. Hell is empty and all the devils are here. By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!"
-  ];
-  const i_message =
-    nsubmessage.value || messages[Math.floor(Math.random() * messages.length)];
-  const months = nsubmonths.value || Math.ceil(Math.random() * 10);
-  const context = months > 1 ? "resub" : "sub";
-
-  if (i_context === "resub") {
-    i_str = `{"rq":"PubSubMessage","id":"","Data":{"type": "MESSAGE","data": {"topic": "channel-subscribe-events-v1.44322889","message": "{\\"user_name\\": \\"${i_name.toLowerCase()}\\",\\"display_name\\": \\"${i_name}\\",\\"channel_name\\": \\"twitch\\",\\"user_id\\": \\"44322889\\",\\"channel_id\\": \\"12826\\",\\"time\\": \\"2015-12-19T16:39:57-08:00\\",\\"sub_plan\\": \\"${i_value}\\",\\"sub_plan_name\\": \\"Channel Subscription (mr_woodchuck)\\",\\"cumulative_months\\": ${months},\\"streak_months\\": 1,\\"context\\": \\"${context}\\",\\"sub_message\\": {\\"message\\": \\"${i_message}\\",\\"emotes\\": [{\\"start\\": 23,\\"end\\": 7,\\"id\\": 2867}]}}"}}}`;
-  }
-
-  if (i_context === "subgift") {
-    i_str = `{"rq":"PubSubMessage","id":"","Data":{"type": "MESSAGE","data": {"topic": "channel-subscribe-events-v1.44322889","message": "{\\"user_name\\": \\"${i_name.toLowerCase()}\\",\\"display_name\\": \\"${i_name}\\",\\"channel_name\\": \\"twitch\\",\\"user_id\\": \\"44322889\\",\\"channel_id\\": \\"12826\\",\\"time\\": \\"2015-12-19T16:39:57-08:00\\",\\"sub_plan\\": \\"${i_value}\\",\\"sub_plan_name\\": \\"Channel Subscription (mr_woodchuck)\\",\\"months\\": ${months},\\"context\\": \\"subgift\\",\\"sub_message\\": {\\"message\\": \\"${i_message}\\",\\"emotes\\": null },\\"recipient_id\\": \\"13405587\\",\\"recipient_user_name\\": \\"${i_name2.toLowerCase()}\\",\\"recipient_display_name\\": \\"${i_name2}\\"}}"}}}`;
-  }
-
-  if (i_context === "anonsubgift") {
-    i_str = `{"rq":"PubSubMessage","id":"","Data":{"type": "MESSAGE","data": {"topic": "channel-subscribe-events-v1.44322889","message": "{\\"channel_name\\": \\"twitch\\",\\"channel_id\\": \\"12826\\",\\"time\\": \\"2015-12-19T16:39:57-08:00\\",\\"sub_plan\\": \\"${i_value}\\",\\"sub_plan_name\\": \\"Channel Subscription (mr_woodchuck)\\",\\"months\\": ${months},\\"context\\": \\"anonsubgift\\",\\"sub_message\\": {\\"message\\": \\"${i_message}\\",\\"emotes\\": null },\\"recipient_id\\": \\"13405587\\",\\"recipient_user_name\\": \\"${i_name2.toLowerCase()}\\",\\"recipient_display_name\\": \\"${i_name2}\\"}"}}}`;
-  }
-
-  console.log("Fake Test Sub sent.");
-  lioranboardclient.send(i_str);
-}
-
-function fakesub2() {
-  if (i_force == "") {
-    fakesub();
-  }
-} // fake gift sub testing
-
-function fakegiftamount() {
-  if (i_force !== "") {
-    return 0;
-  }
-
-  i_force = fakename();
-
-  if (igiftamount.value < 1) {
-    igiftamount.value = 1;
-  }
-
-  if (igiftamount.value > 100) {
-    igiftamount.value = 100;
-  }
-
-  if (iprime.checked == true) {
-    iprime.checked = false;
-    itier1.checked = true;
-  }
-
-  if (ianongift.checked == false) {
-    isubgift.checked = true;
-  } else {
-    i_force = "Anonymous User";
-  }
-
-  let i_value = "Tier 1";
-
-  if (itier2.checked == true) {
-    i_value = "Tier 2";
-  }
-
-  if (itier3.checked == true) {
-    i_value = "Tier 3";
-  }
-
-  console.log(`Fake sub gift amount of ${igiftamount.value} sent.`);
-  const raid_obj = {
-    rq: "SendTrigger",
-    id: "",
-    Type: 2,
-    Data: {
-      amount: igiftamount.value,
-      tier: 1,
-      trigger_data: {
-        user_name: i_force.toLowerCase(),
-        display_name: i_force,
-        user_id: 123456789,
-        amount: igiftamount.value,
-        tier: "Tier 1"
+      for (const tier of tiers) {
+        if (tier.checked) {
+          selectedTier = tier.value;
+        }
       }
-    }
-  };
-  lioranboardclient.send(JSON.stringify(raid_obj));
 
-  for (let ii = 0; ii < igiftamount.value; ii++) {
-    setTimeout(fakesub, 1000 + ii * 10);
-  }
-
-  setTimeout(forcenameoff, 2100);
-} // check/uncheck boxes if sub is anon, prime etc.
-
-function CheckUncheckSubGift(e) {
-  itier1.checked =
-    (e.id === "isubgift" || e.id === "ianongift") && iprime.checked
-      ? true
-      : itier1.checked;
-  iprime.checked = !(e.id === "isubgift" || e.id === "ianongift");
-  ianongift.checked =
-    e.id === "iprime" || e.id === "isubgift" ? false : ianongift.checked;
-  isubgift.checked =
-    e.id === "iprime" || e.id === "ianongift" ? false : isubgift.checked;
-}
-
-function forcenameoff() {
-  i_force = "";
-} // fake bits testing
-
-function fakebits() {
-  const i_name = fakename();
-  ibitsamount.value = ibitsamount.value < 1 ? 1 : ibitsamount.value;
-  const message =
-    ibitsmessage.value.replace(/"/g, "'") ||
-    "Enjoy the non-existant bits, Even if, only for a short time you got the dopamine of seeing a bits notification. Have a good day.";
-  const total = ibitstotal.value || Math.ceil(Math.random() * 5000);
-  i_value = parseFloat(ibitsamount.value);
-  if (isNaN(i_value) == true) i_value = 1;
-  if (i_value <= 0) i_value = 1;
-  i_str = `{"rq":"PubSubMessage","id":"","Data":{"type": "MESSAGE","data": {"topic": "channel-bits-events-v2.46024993","message": "{\\"data\\":{\\"user_name\\":\\"${i_name.toLowerCase()}\\",\\"channel_name\\":\\"twitch\\",\\"user_id\\":\\"95546976\\",\\"channel_id\\":\\"46024993\\",\\"time\\":\\"2017-02-09T13:23:58.168Z\\",\\"chat_message\\":\\"${message}\\",\\"bits_used\\":${i_value},\\"total_bits_used\\":${total},\\"context\\":\\"cheer\\",\\"badge_entitlement\\":{\\"new_version\\":25000,\\"previous_version\\":10000}},\\"version\\":\\"1.0\\",\\"message_type\\":\\"bits_event\\",\\"message_id\\":\\"8145728a4-35f0-4cf7-9dc0-f2ef24de1eb6\\",\\"is_anonymous\\":true}"}}}`;
-  console.log(`Fake Test bits for ${i_value}`);
-  lioranboardclient.send(i_str);
-} // fake channel points testing
-
-function fakepoints() {
-  const i_name = fakename();
-  const title = ichannelpoints.value || "Test Redeem";
-  const message =
-    nchannelpointsmsg.value.replace(/"/g, "'") || "Testing Message";
-  const cost = nchannelpointscost.value || 100;
-  i_str = `{"rq":"PubSubMessage","id":"","Data":{"type":"MESSAGE","data":{"topic":"channel-points-channel-v1.23071698","message":"{\\"type\\":\\"reward-redeemed\\",\\"data\\":{\\"timestamp\\":\\"2020-05-10T02:42:01.699693419Z\\",\\"redemption\\":{\\"id\\":\\"f2418f14-1e2b-41f3-90e5-fcad7ab2c701\\",\\"user\\":{\\"id\\":\\"23071698\\",\\"login\\":\\"${i_name.toLowerCase()}\\",\\"display_name\\":\\"${i_name}\\"},\\"channel_id\\":\\"23071698\\",\\"redeemed_at\\":\\"2020-05-10T02:42:01.674616194Z\\",\\"reward\\":{\\"id\\":\\"46b39721-ce2b-4670-8b2d-b520762a3f1e\\",\\"channel_id\\":\\"23071698\\",\\"title\\":\\"${title}\\",\\"prompt\\":\\"Testing Message\\",\\"cost\\":${cost},\\"is_user_input_required\\":${
-    nchannelpointinput.checked
-  },\\"is_sub_only\\":false,\\"image\\":{\\"url_1x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/23071698/46b39721-ce2b-4670-8b2d-b520762a3f1e/d50acf1d-4a0c-4dd0-8596-e5ca0c386332/custom-1.png\\",\\"url_2x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/23071698/46b39721-ce2b-4670-8b2d-b520762a3f1e/d50acf1d-4a0c-4dd0-8596-e5ca0c386332/custom-2.png\\",\\"url_4x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/23071698/46b39721-ce2b-4670-8b2d-b520762a3f1e/d50acf1d-4a0c-4dd0-8596-e5ca0c386332/custom-4.png\\"},\\"default_image\\":{\\"url_1x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/default-1.png\\",\\"url_2x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/default-2.png\\",\\"url_4x\\":\\"https://static-cdn.jtvnw.net/custom-reward-images/default-4.png\\"},\\"background_color\\":\\"#00C7AC\\",\\"is_enabled\\":true,\\"is_paused\\":false,\\"is_in_stock\\":true,\\"max_per_stream\\":{\\"is_enabled\\":false,\\"max_per_stream\\":100},\\"should_redemptions_skip_request_queue\\":true,\\"template_id\\":null,\\"updated_for_indicator_at\\":\\"2020-02-12T18:00:03.401562134Z\\"},\\"user_input\\":\\"${message}\\",\\"status\\":\\"FULFILLED\\"}}}"}}}`;
-  console.log(
-    `Fake Test Channel Points Redeem "${ichannelpoints.value}" sent.`
-  );
-  lioranboardclient.send(i_str);
-} // fake raid and host testing
-
-function fakeraid() {
-  if (iraidamount.value < 1) {
-    iraidamount.value = 1;
-  }
-
-  console.log(`Fake Raid of ${iraidamount.value} sent.`);
-  const name = fakename();
-  const raid_obj = {
-    rq: "SendTrigger",
-    id: "",
-    Type: 4,
-    Data: {
-      amount: iraidamount.value,
-      trigger_data: {
+      const selecterTierNum =
+        selectedTier === "Tier 1"
+          ? 1
+          : selectedTier === "Tier 2"
+          ? 2
+          : selectedTier === "Tier 3"
+          ? 4
+          : 8;
+      const msg =
+        subtype !== 1
+          ? `${name} gifted a sub to ${giftedName}!`
+          : `${name} subscribed for ${month} months!`;
+      const data = {
+        tier: selecterTierNum,
+        month,
+        subtype,
+        communitygift: gifted ? 1 : 0
+      };
+      const pullData = {
         user_name: name.toLowerCase(),
         display_name: name,
         user_id: 123456789,
-        amount: iraidamount.value
+        gifted_user_name: giftedName.toLowerCase(),
+        gifted_display_name: giftedName,
+        gifted_user_id: 123456789,
+        tier: selectedTier,
+        context,
+        message,
+        month,
+        community_gift: gifted ? 1 : 0
+      };
+      sendTriggerToLB(type, msg, data, pullData);
+    },
+
+    LBTestTwitchSubGift(form) {
+      const subForm = document.getElementById("LBTestTwitchSubs");
+      if (subForm.prime.checked) subForm.tier1.checked = true;
+      if (subForm.anongift.checked === false) subForm.subgift.checked = true;
+      const tiers = subForm.querySelectorAll('input[name="tier"]');
+      let selectedTier;
+
+      for (const tier of tiers) {
+        if (tier.checked) {
+          selectedTier = tier.value;
+        }
       }
+
+      const selecterTierNum =
+        selectedTier === "Tier 1"
+          ? 1
+          : selectedTier === "Tier 2"
+          ? 2
+          : selectedTier === "Tier 3"
+          ? 4
+          : 1;
+      const gifterName = subForm.anongift.checked
+        ? "Anonymous user"
+        : generateName();
+      const amount = parseInt(form.subGiftAmount.value) || 1;
+      const pullData = {
+        user_name: gifterName.toLowerCase(),
+        display_name: gifterName,
+        user_id: 123456789,
+        amount,
+        tier: selectedTier
+      };
+      sendTriggerToLB(
+        2,
+        `${gifterName} has gifted ${amount} subs!`,
+        {
+          tier: selecterTierNum,
+          amount
+        },
+        pullData
+      );
+
+      for (let i = 0; i < amount; i++) {
+        setTimeout(() => {
+          this.LBTestTwitchSubs(subForm, null, true, gifterName);
+        }, 1000 + i * 10);
+      }
+    },
+
+    LBTestTwitchBits(form, pullData) {
+      const amount = parseInt(form.bitsamount.value) || 50;
+      const totalAmount = parseInt(form.bitstotal.value) || amount + 100;
+      const message = form.bitsmessage.value || generateMessage();
+      pullData.addvalues({
+        amount,
+        total_amount: totalAmount,
+        message
+      });
+      sendTriggerToLB(
+        5,
+        `${pullData.user_name} donated ${amount} bits!`,
+        {
+          amount
+        },
+        pullData
+      );
+    },
+
+    LBTestTwitchPoints(form, pullData) {
+      const channelID = Math.floor(Math.random() * 1000000000);
+      const redeemName = form.channelPointsName.value || "Test Reward";
+      const userInput = form.channelPointsInput.checked;
+      const message = userInput
+        ? form.channelPointsMsg.value || generateMessage()
+        : undefined;
+      const cost = parseInt(form.channelPointsCost.value) || 50;
+      const image =
+        "https://static-cdn.jtvnw.net/custom-reward-images/default-4.png";
+      const rewardId = generateUUID();
+      const redeemId = generateUUID();
+      pullData.addvalues({
+        channel_id: channelID,
+        redeem_name: redeemName,
+        message,
+        cost,
+        image,
+        reward_id: rewardId,
+        redeem_id: redeemId
+      });
+      sendTriggerToLB(
+        5,
+        `${pullData.display_name} has redeemed ${redeemName}!`,
+        {
+          redeemname: redeemName,
+          message
+        },
+        pullData
+      );
+    },
+
+    LBTestTwitchRaid(form, pullData) {
+      const amount = parseInt(form.raidAmount.value) || 5;
+      pullData.addvalues({
+        amount
+      });
+      sendTriggerToLB(
+        4,
+        `${pullData.display_name} is raiding you with ${amount} viewers!`,
+        {
+          amount
+        },
+        pullData
+      );
+    },
+
+    LBTestTwitchHost(form, pullData) {
+      const amount = parseInt(form.hostamount.value) || 5;
+      pullData.addvalues({
+        amount
+      });
+      sendTriggerToLB(
+        14,
+        `${pullData.display_name} is hosting you with ${amount} viewers!`,
+        {
+          amount
+        },
+        pullData
+      );
+    },
+
+    LBTestTwitchChat(form) {
+      const name = form.chatName.value || generateName();
+      const userId = Math.floor(Math.random() * 1000000000);
+      const message = form.chatMsg.value || generateMessage();
+      const channel = Math.floor(Math.random() * 1000000000);
+      const color = "#189A8D";
+      const emoteList = "304822798:0-9/304682444:11-19";
+      const firstTime = form.chatFirstTime.checked;
+      const badge = [];
+      if (form.chatBroadcaster.checked) badge.push("broadcaster/1");
+      if (form.chatMod.checked) badge.push("moderator/1");
+      if (form.chatVip.checked) badge.push("vip/1");
+      if (form.chatFounder.checked) badge.push("founder/1");
+
+      if (form.chatSub.checked) {
+        const tier = parseInt(form.chatMsgSubTier.value);
+        let month =
+          form.chatMsgSubMonth.value != 1
+            ? parseInt(form.chatMsgSubMonth.value)
+            : 0;
+        month =
+          month > 3 && month < 6
+            ? (month = 3)
+            : month > 6 && month < 9
+            ? (month = 6)
+            : month > 9 && month < 12
+            ? (month = 9)
+            : month;
+        const subBadge =
+          tier === 1
+            ? `subscriber/${month}`
+            : tier === 2
+            ? `subscriber/${2000 + month}`
+            : `subscriber/${3000 + month}`;
+        badge.push(subBadge);
+      }
+
+      const pullData = {
+        user_name: name.toLowerCase(),
+        display_name: name,
+        user_id: userId,
+        message,
+        emote_list: emoteList,
+        badge_list: badge,
+        channel,
+        name_color: color,
+        first_time: firstTime
+      };
+      LB.trigger(0, {
+        message,
+        broadcaster: form.chatBroadcaster.checked,
+        moderator: form.chatMod.checked,
+        sub: form.chatSub.checked,
+        vip: form.chatVip.checked,
+        founder: form.chatFounder.checked,
+        trigger_data: pullData
+      });
+    },
+
+    LBTestTwitchFollow(form, pullData) {
+      sendTriggerToLB(
+        6,
+        `${pullData.display_name} followed you!`,
+        {},
+        pullData
+      );
     }
   };
-  lioranboardclient.send(JSON.stringify(raid_obj));
-} //function fakehost() { if (ihostamount.value < 1) { ihostamount.value = 1; } console.log(`Fake Host of ${ihostamount.value} sent.`); lioranboardclient.send(`{"type":"MESSAGE","topic":"FakeNotification","fake":2,"amount":"${ihostamount.value}","name":"${fakename()}"}`); }
-// fake chat message testing
+
+  class ConstructPullData {
+    constructor(type) {
+      const name = generateName();
+      this.user_name =
+        type !== "LBTestTwitchHost" ? name.toLowerCase() : undefined;
+      this.display_name = type !== "LBTestTwitchBits" ? name : undefined;
+      this.user_id =
+        type !== "LBTestTwitchHost"
+          ? Math.floor(Math.random() * 1000000000)
+          : undefined;
+
+      this.addvalues = (params) => {
+        Object.assign(this, params);
+      };
+    }
+  }
+
+  const forms = document.querySelectorAll(".LBTestTriggers");
+  Array.prototype.slice.call(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (e) => {
+        e.preventDefault();
+        const pullData = new ConstructPullData(form.id);
+        processTrigger[form.id](form, pullData);
+      },
+      false
+    );
+  });
+
+  function generateName(name = "") {
+    const names = [
+      "Lioran",
+      "nutella4eva",
+      "Kottpower",
+      "Neverwho",
+      "Deomew",
+      "Doodybeard",
+      "Exeldro",
+      "AuralMoral",
+      "SuperMetroid",
+      "Melonax",
+      "Ptoil",
+      "LinksDarkHalf",
+      "Derpiii_",
+      "CoD360_420",
+      "Bill",
+      "Kurocha",
+      "Lisa",
+      "DeathByButtonMash",
+      "Daryl",
+      "Sebas",
+      "Ramsreef",
+      "Kelvin214",
+      "wellzish",
+      "Andilippi",
+      "MrWaldo",
+      "MrRubberDucky",
+      "Cyanidesugar",
+      "MisterK",
+      "Silverlink"
+    ];
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    if (name !== randomName) return randomName;
+    return generateName(name);
+  }
+
+  function generateMessage() {
+    const messages = [
+      "Hello World!",
+      "Love your stream, you are a very genuine guy and you're not affraid to say it how it is. But, I would just prefer if you didn't give your opinion, just saying.",
+      "Alright, I'll be honest with ya, Bob. My name's not Kirk. It's Skywalker. Luke Skywalker.",
+      "Well, that never happened in any of the simulations.",
+      "You know, you blow up one sun and suddenly everyone expects you to walk on water.",
+      "How's a needle in my butt gonna get water out of my ears?",
+      "If you immediately know the candle light is fire, then the meal was cooked a long time ago.",
+      "All that glitters is not gold. Fair is foul, and foul is fair Hover through the fog and filthy air. These violent delights have violent ends. Hell is empty and all the devils are here. By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!"
+    ];
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    return randomMessage;
+  }
+
+  function generateUUID() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+
+  function sendTriggerToLB(
+    type,
+    message = "Test trigger fired.",
+    data = {},
+    triggerData
+  ) {
+    data.trigger_data = triggerData;
+    LB.trigger(type, data);
+    LB.alert(message);
+  }
+} // fake chat message testing
 
 function fakechatmsg() {
   const name = ichatname.value || fakename();
@@ -810,28 +1328,16 @@ function fakechatmsg() {
   }
 
   const chat_obj = {
-    rq: "SendTrigger",
-    id: "",
-    Type: 0,
-    Data: {
-      message: msg,
-      broadcaster: ichatbroadcaster.checked,
-      moderator: ichatmod.checked,
-      sub: ichatsub.checked,
-      vip: ichatvip.checked,
-      founder: ichatfounder.checked,
-      trigger_data: {
-        emote_list: "304822798:0-9/304682444:11-19",
-        user_name: name.toLowerCase(),
-        display_name: name,
-        user_id: 123456789,
-        name_color: "#189A8D",
-        badge_list: badge.join(),
-        message: msg,
-        channel: name,
-        first_time: false
-      }
-    }
+    emotes: "304822798:0-9/304682444:11-19",
+    login: name.toLowerCase(),
+    display_name: name,
+    user_id,
+    color: "#189A8D",
+    badge: badge.join(),
+    message: msg,
+    channel: name,
+    topic: "chatmessage",
+    type: "MESSAGE"
   };
   lioranboardclient.send(JSON.stringify(chat_obj));
 } // fake names for testing
@@ -864,348 +1370,383 @@ function fakename(name = "none") {
   const randomName = names[Math.floor(Math.random() * names.length)];
   if (name !== randomName) return randomName;
   return fakename(name);
-} // Receiver connection
-// connect to LB
+} // load LB connection params from storage
+
+function load_connection() {
+  const ls = JSON.parse(localStorage.getItem("lsParams")) || {};
+  nIPbox.value = ls.ip || "127.0.0.1";
+  nPortBox.value = ls.port || 9425;
+  nPassBox.value = ls.pass || "";
+} // manually connect/disconnect from LB via button
 
 function connectbutton() {
-  if (receiver_on == 1) {
-    lioranboardclient.send('{"rq":"Close","id":""}');
-    force_close = true;
-    lioranboardclient.close();
+  var _lioranboardclient;
+
+  const p = LBVars;
+
+  if (
+    (_lioranboardclient = lioranboardclient) !== null &&
+    _lioranboardclient !== void 0 &&
+    _lioranboardclient._connected
+  ) {
+    p.force_close = true;
+    lioranboardclient.send("Close");
+    lioranboardclient.disconnect();
     ConnectionStatus("toclient", "disconnected", "Connection Closed", "red");
     document.querySelector("#cnctbutton").innerText = "Disconnecting";
-    console.log("Force disconnected");
   } else {
-    if (lioranboardclient == -1) {
-      console.log("Manual Connection.");
+    console.log("LioranBoard Manual Connection.");
 
-      if (waiting_to_connect != -1) {
-        clearTimeout(waiting_to_connect);
-      }
+    try {
+      clearTimeout(p.waiting_to_connect);
+    } catch (e) {}
 
-      connecttoboard();
-    }
+    connecttoboard();
   }
-}
-
-var lioranboardclient = -1;
-var waiting_to_connect = -1;
-connecttoboard(); // function to establish connection to LB
+} // Connect to LB and listen for events
 
 function connecttoboard() {
-  waiting_to_connect = -1;
-  lioranboardclient = new WebSocket(
-    "ws://" + nIPbox.value + ":" + nPortBox.value
-  ); //lioranboardclient.binaryType = 'arraybuffer';
-  // reconnect on disconnect unless force closed
+  LBDebugLog(dbgReceiver);
 
-  lioranboardclient.onclose = () => {
-    document.querySelector("#cnctbutton").innerText = "Connect";
-    receiver_on = 0; //close pubsub if on
+  try {
+    clearTimeout(p.waiting_to_connect);
+  } catch (e) {}
 
-    if (server_on != 0) {
-      server_on = 0;
+  const p = LBVars; // CONNECT TO LIORANBOARD
+
+  lioranboardclient.connect({
+    address: `${nIPbox.value || "127.0.0.1"}:${nPortBox.value || 9425}`,
+    password: `${nPassBox.value || ""}`,
+    name: "Transmitter"
+  }); // CONNECTION OPENED
+
+  lioranboardclient.on("ConnectionOpened", () => {
+    document.querySelector("#cnctbutton").innerText = "Disconnect";
+    console.log("LioranBoard Connection opened!");
+  });
+  lioranboardclient.on("error", (err) => {
+    lioranboardclient.disconnect();
+  }); // AUTH SUCCESSFUL
+
+  lioranboardclient.on("AuthenticationSuccess", async () => {
+    // Send all extension commands to LB
+    sendExtensionCommands(); // Get Twitch list and connect to Pubsub
+
+    await LB.getTwitchList().then((data) => {
+      p.twitchList = data.twitch_list;
+      connectPubSubserver();
+    }); // Save connection params to storage
+
+    const ls = {
+      ip: nIPbox.value,
+      port: nPortBox.value,
+      pass: nPassBox.value
+    };
+    localStorage.setItem("lsParams", JSON.stringify(ls));
+    ConnectionStatus("toclient", "connected", "Connected", "green");
+    console.log("LioranBoard Authentication successsful!");
+  }); // CONNECTION CLOSED
+
+  lioranboardclient.on("ConnectionClosed", () => {
+    try {
+      clearTimeout(p.waiting_to_connect);
+    } catch (e) {}
+
+    lioranboardclient.removeAllListeners(); // Attempt to force disconnect from PubSub
+
+    try {
       pubsubserver.close();
-    }
+    } catch (e) {} // Attempt to reconnect if not manual disconnect
 
-    lioranboardclient = -1; //toclient
-
-    if (force_close == false) {
+    if (!p.force_close) {
       ConnectionStatus(
         "toclient",
         "disconnected",
         "Disconnected, attempting to reconnect.",
         "red"
       );
-      waiting_to_connect = setTimeout(connecttoboard, 2000); //connecttoboard();
+      console.log("LioranBoard disconnected. Attempting to reconnect in 2s.");
+      p.waiting_to_connect = setTimeout(() => {
+        connecttoboard();
+      }, 2000);
     } else {
+      console.log("LioranBoard disconnected by user.");
       ConnectionStatus("toclient", "disconnected", "Connection Closed", "red");
     }
 
-    force_close = false;
-  }; // notice that connection is established
+    p.force_close = false;
+    document.querySelector("#cnctbutton").innerText = "Connect";
+  }); // CONNECTION ERROR
 
-  lioranboardclient.onopen = (event) => {
-    document.querySelector("#cnctbutton").innerText = "Disconnect";
-    receiver_on = 1;
-    var i_obj = {
-      rq: "Authentication",
-      id: "",
-      Name: "Transmitter"
-    };
-    lioranboardclient.send(JSON.stringify(i_obj));
-  }; // receiving a message
+  lioranboardclient.on("ConnectionError", (e) => {
+    // Try to force close the connection
+    try {
+      lioranboard.disconnect();
+    } catch (e) {}
 
-  lioranboardclient.onmessage = (event) => {
-    var data = event.data;
-    if (typeof data == "object") {
-		var u,x;
-		u = URL.createObjectURL(data);
-		x = new XMLHttpRequest();
-		x.open('GET', u, false); // although sync, you're not fetching over internet
-		x.send();
-		URL.revokeObjectURL(u);
-		boardmessage(x.responseText);
-    } else {
-      boardmessage(data);
-    }
-  };
-} // receiving a message from lioranboard
+    console.log("LioranBoard Connection error");
+  }); // RELOAD TRANSMITTER
 
-function boardmessage(str) {
-  //console.log(str);
-  var TheJSON = JSON.parse(str);
-  if (!("rq" in TheJSON)) {
-    switch (TheJSON.upd) {
-      case "Ping":
-        {
-          lioranboardclient.send('{"rq":"Pong","id":""}');
-        }
-        break;
+  lioranboardclient.on("ResetPlease", () => {
+    location.reload();
+  }); // EXECUTE COMMAND
 
-      case "ResetPlease":
-        {
-          location.reload();
-        }
-        break;
-      //extension triggered
+  lioranboardclient.on("ExecuteCommand", (json) => {
+    LBExtensionReceived(json.CommandName, json.Data);
+  });
+}
 
-      case "ExecuteCommand":
-        {
-          LBExtensionReceived(TheJSON.CommandName, TheJSON.Data);
-        }
-        break;
-    }
-  } else {
-    switch (TheJSON.rq) {
-      //ping back when requested
-      case "Ping":
-        {
-          lioranboardclient.send('{"rq":"Pong","id":""}');
-        }
-        break;
-      //authentication check
-
-      case "Authentication":
-        {
-          if (TheJSON.AuthRequired == false) {
-            LBconnected();
-          } else {
-            var i_obj = {
-              rq: "Authenticate",
-              id: "",
-              Name: "Transmitter"
-            };
-            i_obj.Enigma = LBAuthenticate(
-              TheJSON.Salt,
-              TheJSON.Challenge,
-              nPassBox.value
-            );
-            lioranboardclient.send(JSON.stringify(i_obj));
-          }
-        }
-        break;
-
-      case "Authenticate":
-        {
-          if (TheJSON.success == true) {
-            LBconnected();
-          }
-        }
-        break;
-
-      case "GetTwitchList":
-        {
-          twitch_list = TheJSON.twitch_list;
-          connectPubSubserver();
-        }
-        break;
-
-      default:
-        {
-          LBExtensionReceived(TheJSON.id, TheJSON);
-        }
-        break;
-    }
-  }
-} //when transmitter connect to LB, this happens
-
-function LBconnected() {
-  localStorage.setItem("nIPbox", nIPbox.value);
-  localStorage.setItem("nPortBox", nPortBox.value);
-  localStorage.setItem("nPassBox", nPassBox.value);
-  ConnectionStatus("toclient", "connected", "Connected", "green");
-  console.log("LB connected successfully"); // Your LioranBoard extension command will be inserted here
-
+function sendExtensionCommands() {
+  // You LioranBoard extension commands will be inserted here
   /*INSERT PART 2*/
-
-
-  var i_obj = {
-    rq: "GetTwitchList",
-    id: ""
-  };
-  lioranboardclient.send(JSON.stringify(i_obj));
-} /// PubSub connection
-// connect to Twitch pubsub
+} // Connect to PubSub
 
 function connectPubSubserver() {
-  //connect
+  const p = LBVars; // Do not connect if user's Twitch account isn't linked
+
+  if (Object.keys(p.twitchList).length === 0) {
+    ConnectionStatus(
+      "topubsub",
+      "disconnected",
+      "No linked account found.",
+      "grey"
+    );
+    return;
+  }
+
   pubsubserver = new WebSocket("wss://pubsub-edge.twitch.tv");
-  server_on = 1; //ping interval
 
   function PubSubPing() {
-    pubsubserver.send('{"type": "PING"}');
+    pubsubserver.send(
+      JSON.stringify({
+        type: "PING"
+      })
+    );
   } // attempt to reconnect on disconnect, unless LioranBoard is disconnected
 
-  pubsubserver.onclose = function (event) {
-    if (on_server == 2) {
-      clearInterval(pubsubinterval);
-    }
+  pubsubserver.onclose = () => {
+    var _lioranboardclient2;
 
-    on_server = 0;
+    try {
+      clearInterval(p.pubsubinterval);
+    } catch (e) {}
+
+    const i_obj = {
+      topic: "pubsubdisconnected",
+      type: "MESSAGE"
+    };
     ConnectionStatus(
       "topubsub",
       "disconnected",
       "Connection closed. Attempting to reconnect.",
       "red"
     );
-
-    if (receiver_on != 0) {
+    if (
+      (_lioranboardclient2 = lioranboardclient) !== null &&
+      _lioranboardclient2 !== void 0 &&
+      _lioranboardclient2._connected
+    )
       connectPubSubserver();
-    }
-  }; //once connected, listen for stuff
+  }; // once connected, listen for stuff
 
-  pubsubserver.onopen = function (event) {
+  pubsubserver.onopen = () => {
+    p.pubsubinterval = setInterval(PubSubPing, 120000);
     console.log("Twitch PubSub connected successfully.");
-    pubsubinterval = setInterval(PubSubPing, 120000);
-    on_server = 2;
-    ConnectionStatus("topubsub", "connected", "Connected", "green"); //go through the whole list and listen to everything the user selected
+    ConnectionStatus("topubsub", "connected", "Connected", "green"); // List of available Pubsub topic versions
 
-    var i_count = 0;
+    const listenTopics = {
+      listen_bits: ["bits", "channel-bits-events-v2"],
+      listen_follow: ["follows", "following"],
+      listen_moderation: ["mod", "chat_moderator_actions"],
+      listen_redeem: ["redeem", "channel-points-channel-v1"],
+      listen_subs: ["subs", "channel-subscribe-events-v1"],
+      listen_whispers: ["whispers", "whispers"],
+      listen_hypetrain: ["hypetrain", "hype-train-events-v1"],
+      listen_predictions: ["predictions", "predictions-channel-v1"],
+      listen_polls: ["polls", "polls"]
+    }; // Construct a listen object to send to Pubsub
 
-    while (Object.keys(twitch_list)[i_count] != undefined) {
-      //repeat for the amount of keys
-      var i_key;
-      i_key = Object.keys(twitch_list)[i_count]; //listen for bits
+    function PubsubConstructListen(id, token) {
+      this.type = "LISTEN";
+      this.data = {
+        auth_token: token
+      };
 
-      if (twitch_list[i_key].listen_bits == true) {
-        pubsubserver.send(
-          '{"type":"LISTEN","nonce":"' +
-            "bits-" +
-            i_key +
-            '","data":{"topics":["channel-bits-events-v2.' +
-            i_key +
-            '"],"auth_token":"' +
-            twitch_list[i_key].token +
-            '"}}'
-        );
-      } //listen for follow. twitch blocked this so it doesnt work
+      this.changeTopic = (type, topic) => {
+        this.nonce = `${type}-${id}`;
+        this.data.topics = [`${topic}.${id}`];
+      };
+    } // Go through the Twitch list and listen to everything the user selected
 
-      if (twitch_list[i_key].listen_follow == true) {
-        //pubsubserver.send('{"type":"LISTEN","nonce":"'+'follows-'+i_key+'","data":{"topics":["follows.'+i_key+'"],"auth_token":"'+twitch_list[i_key].token+'"}}');
-      } //listen moderation
+    Object.values(p.twitchList).forEach((params) => {
+      const pubsubListen = new PubsubConstructListen(
+        params.user_id,
+        params.token
+      );
+      Object.keys(params).forEach((key) => {
+        if (key.includes("listen_") && params[key]) {
+          pubsubListen.changeTopic(listenTopics[key][0], listenTopics[key][1]);
+          pubsubserver.send(JSON.stringify(pubsubListen));
+        }
+      });
+    });
+  }; // Send data from Pubsub to LioranBoard
 
-      if (twitch_list[i_key].listen_moderation == true) {
-        pubsubserver.send(
-          '{"type":"LISTEN","nonce":"' +
-            "mod-" +
-            i_key +
-            '","data":{"topics":["chat_moderator_actions.' +
-            i_key +
-            '"],"auth_token":"' +
-            twitch_list[i_key].token +
-            '"}}'
-        );
-      } //listen redeem
-
-      if (twitch_list[i_key].listen_redeem == true) {
-        pubsubserver.send(
-          '{"type":"LISTEN","nonce":"' +
-            "redeem-" +
-            i_key +
-            '","data":{"topics":["channel-points-channel-v1.' +
-            i_key +
-            '"],"auth_token":"' +
-            twitch_list[i_key].token +
-            '"}}'
-        );
-      } //listen subs
-
-      if (twitch_list[i_key].listen_subs == true) {
-        pubsubserver.send(
-          '{"type":"LISTEN","nonce":"' +
-            "subs-" +
-            i_key +
-            '","data":{"topics":["channel-subscribe-events-v1.' +
-            i_key +
-            '"],"auth_token":"' +
-            twitch_list[i_key].token +
-            '"}}'
-        );
-      }
-
-      if (twitch_list[i_key].listen_whispers == true) {
-        pubsubserver.send(
-          '{"type":"LISTEN","nonce":"' +
-            "whispers-" +
-            i_key +
-            '","data":{"topics":["whispers.' +
-            i_key +
-            '"],"auth_token":"' +
-            twitch_list[i_key].token +
-            '"}}'
-        );
-      }
-
-      i_count++;
-    }
-  }; // receive data from pubsub, so send it to LioranBoard
-
-  pubsubserver.onmessage = function (event) {
-    //send pubsub message to lioranboard, let it deal with it
-    lioranboardclient.send(
-      '{"rq":"PubSubMessage","id":"","Data":' + event.data + "}"
-    );
+  pubsubserver.onmessage = (event) => {
+    // send pubsub message to lioranboard, let it deal with it
+    lioranboardclient.send("PubSubMessage", {
+      Data: JSON.parse(event.data)
+    });
+    if (LBDebugPost && p.LBdebug.pubsub) LBDebugPost("pubsub", event.data);
   };
 }
-/*
-START EXTENSION STUFF HERE
-Extension are a way to connect LioranBoard to other apps and services. 
-You can build your extension in any language you want and have it connect through this Transmitter using websockets (Receiver supports only one connection).
-To Send a message to LioranBoard, simply use the function lioranboardclient.send(JSONstring);
-Find more info on all messages you can send to LioranBoard in lioranboard/extension/How to make extensions.txt file.
-*/
-// You can receive message from lioranboard using the command "Send to Extension". The data you send is a JSON string. The String will be converted to a JSON object called LioranBoardJSON.
-// In the JSON you can include any data you want if you use manual extension.
-// for any other extension, the datatype will be what's in the extension box.
 
 function LBExtensionReceived(hook, LioranBoardJSON) {
   switch (hook) {
-    // datatype you specified.
+    // hook you specified.
     default:
-      {
-        console.log("missing hook [" + hook + "]");
-      }
       break;
-    //nohook
-
-    case "":
-      {
-      }
-      break;
-    //Your hooks will be inserted here
+    //You hooks will be inserted here
 
     /*INSERT PART 3*/
-
-
   }
-} // your main script will be inserted here
+} // Message Logging
+
+(function initDebugLogging() {
+  dbgReceiver.checked = LBVars.LBdebug.receiver;
+  dbgPubsub.checked = LBVars.LBdebug.pubsub;
+  LBDebugLog(dbgPubsub);
+  LBDebugLog(dbgReceiver);
+})();
+
+function LBDebugLog(e) {
+  const receiver = document.getElementById("LBreceiverlog");
+  const pubsub = document.getElementById("LBpubsublog");
+  const listening = "<samp>Listening for traffic.</samp>";
+  const disabled = "<samp>Logging is disabled.</samp>"; // disable or enable debug logging and display it
+
+  switch (e.id) {
+    default:
+      break;
+
+    case "dbgReceiver":
+      if (e.checked) {
+        if (localStorage.debug === "lb-websocket-js:*") {
+          const _debug = console.debug.bind(console);
+
+          logIt = function (...args) {
+            const msg = {};
+
+            _debug.apply(console, arguments);
+
+            if (!LBDebugPost) return;
+            Object.assign(msg, args[args.length - 2]);
+            if (args[0].includes("Sending Message"))
+              LBDebugPost("receiverSent", msg);
+            else if (args[0].includes("Message received")) {
+              LBDebugPost("receiver", msg);
+            }
+          };
+
+          receiver.innerHTML = listening;
+        } else {
+          receiver.innerHTML =
+            "<samp>Logging will be enabled once Transmitter is reloaded.</samp>";
+        }
+
+        localStorage.debug = "lb-websocket-js:*";
+      } else {
+        if (localStorage.debug == 0) receiver.innerHTML = disabled;
+        else {
+          receiver.innerHTML =
+            "<samp>Logging will be disabled once Transmitter is reloaded.</samp>";
+        }
+        logIt = null;
+        localStorage.debug = 0;
+      }
+
+      LBVars.LBdebug.receiver = !!e.checked;
+      break;
+
+    case "dbgPubsub":
+      pubsub.innerHTML = e.checked ? listening : disabled;
+      LBVars.LBdebug.pubsub = !!e.checked;
+      break;
+  }
+
+  localStorage.setItem("LBdebug", JSON.stringify(LBVars.LBdebug));
+}
+
+function LBDebugPost(type, msg) {
+  const p = LBVars;
+  if (!p.LBdebug) return;
+  const receiverlog = document.getElementById("LBreceiverlog");
+  const pubsublog = document.getElementById("LBpubsublog");
+  const arrowDown =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/> </svg>';
+  const arrowUp =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-arrow-up" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/> </svg>'; // post a message into the debug log if enabled
+
+  switch (type) {
+    default:
+      break;
+
+    case "receiver":
+    case "receiverSent":
+      if (p.LBdebug.receiver) {
+        const request = msg.rq;
+        const { id } = msg;
+
+        try {
+          delete msg.id;
+          delete msg.rq;
+        } catch (e) {}
+
+        if (request === "Pong" || request === "Ping" || msg.upd === "Ping")
+          return;
+        receiverlog.innerHTML += `<br> ${
+          type === "receiver" ? arrowUp : arrowDown
+        } <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(
+          msg
+        )} </samp>`;
+      }
+
+      break;
+
+    case "pubsub":
+      console.log(msg);
+      if (p.LBdebug.pubsub && !msg.includes("PONG"))
+        pubsublog.innerHTML += `<br> ${arrowDown} <samp>${StringifyandReplace(
+          msg
+        )} </samp>`;
+      break;
+  } // stringify if message is an object and replace some symbols
+  // for better readability
+
+  function StringifyandReplace(obj) {
+    if (typeof obj === "object") obj = JSON.stringify(obj);
+    const strRpl =
+      typeof obj === "string"
+        ? obj
+            .replace(/\r\n/g, "")
+            .replace(/\\/g, "")
+            .replace(/\\/g, "")
+            .replace(/%s/g, "")
+            .replace(/%o/g, "")
+            .replace(/%c/g, "")
+        : obj;
+    return strRpl;
+  }
+}
+// Your main script will be inserted here
 
 /*INSERT PART 4*/
 
-
-  </script>
+</script>
+  <script src="https://cdn.jsdelivr.net/gh/LioranBoard/LioranBoard-2-Websocket@main/dist/lb-websocket.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/obs-websocket-js@4.0.2/dist/obs-websocket.js"></script>
   </html>
