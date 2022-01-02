@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.02-->
+<!--Transmitter V5.03-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,8 +198,75 @@ button:active{
 </div>  
  <!-- Tab Content -->
  <div class="tab-content" id="extensions-tabContent">
-<!--Twitch Triggers -->
-<div class="tab-pane" id="content-basic" role="tabpanel" title="Twitch Triggers" data-type="default">
+<div class="tab-pane" id="content-basic" role="tabpanel" title="Status" data-type="default">
+  <div class='row pt-3'>
+    <h5>Transmitter Connection</h5>
+    <div class="col">
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">IP Address:</label>
+      <div class="col-sm-4 w-auto">
+        <input type="text" id="nIPbox" name="nIPbox" value='127.0.0.1' class="form-control form-control-sm" >
+      </div>
+    </div>
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">Port:</label>
+      <div class="col-sm-4 w-auto">
+        <input type="number" min="0" max="65535" id="nPortBox" name="nPortBox" value=9425 class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="row">
+      <label for="inputPassword" class="col-sm-5 col-form-label">Password (optional):</label>
+      <div class="col-sm-4 w-auto">
+        <input id="nPassBox" type="password" name="nPassBox" size="20" value='' class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="mt-1 row">
+      <button type="button" id="cnctbutton" class="btn btn-primary btn-sm mb-2 w-auto ms-3" onclick="connectbutton()">Connect</button>
+    </div>
+    </div>
+ </div>
+  <div class='row pt-3'>
+     <h5>Appearance</h5>
+     <div class="col col-md-auto"><button type="button" class="btn btn-primary btn-sm mb-2 w-auto me-2" onclick="TSLNoTabs()">No Tabs</button><button type="button" class="btn btn-primary btn-sm mb-2 w-auto" onclick="TSLTabs()">Show Tabs</button></div>
+  </div>
+<div class='row pt-3 d-block'>
+    <h5>Message Logging</h5>
+    <div class='pl-5 ml-5'>
+       <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="dbgReceiver" onclick="LBDebugLog(this)" >
+          <label class="form-check-label"for="flexSwitchCheckDefault">Receiver</label>
+       </div>
+       <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="dbgPubsub" onclick="LBDebugLog(this)">
+          <label class="form-check-label" for="flexSwitchCheckDefault">PubSub</label>
+       </div>
+       <ul class="nav nav-tabs mt-3" id="debugLog" role="tablist">
+          <li class="nav-item" role="presentation">
+             <button class="nav-link active" id="LBreceiver-tab" data-bs-toggle="tab" data-bs-target="#LBreceiver" type="button" role="tab" aria-controls="LBreceiver" aria-selected="true">Receiver</button>
+          </li>
+          <li class="nav-item" role="presentation">
+             <button class="nav-link" id="LBPubSub-tab" data-bs-toggle="tab" data-bs-target="#LBPubSub" type="button" role="tab" aria-controls="LBPubSub" aria-selected="false">PubSub</button>
+          </li>
+       </ul>
+       <div class="tab-content p-0 " id="debugLogContent">
+          <!--LB Receiver Log-->
+          <div class="tab-pane fade show active" id="LBreceiver" role="tabpanel" aria-labelledby="LBreceiver-tab" >
+             <div id="LBreceiverlog" class="col col-10 text-wrap">Logging is disabled.</div>
+          </div>
+          <!--LB Pubsub Log-->
+          <div class="tab-pane fade" id="LBPubSub" role="tabpanel" aria-labelledby="LBPubSub-tab">
+             <div id="LBpubsublog" class="col col-10 text-wrap">Logging is disabled.</div>
+          </div>
+       </div>
+    </div>
+ </div>
+</div>
+<!--Your external script will be inserted here-->
+<!--<script src="example.js"></script>-->
+<!--INSERT PART 1-->
+ 
+<!--Twitch Triggers-->
+<div class="tab-pane" id="content-triggers" role="tabpanel" title="Twitch Triggers" data-type="default">
    <form id="LBTestTwitchFollow" class="LBTestTriggers">
       <button type="submit" class="btn btn-primary btn-sm me-1">Test Follower</button>
    </form>
@@ -226,7 +293,6 @@ button:active{
     <div>
    </form>
    <form id="LBTestTwitchSubGift" class="LBTestTriggers">
-
        <button type="submit" class="btn btn-primary btn-sm me-1">Test Subs Gift Amount</button>
        Amount:
        <input type="number" min="1" max="99" id="subGiftAmount" value=1> 
@@ -237,7 +303,7 @@ button:active{
     <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#hidebits" role="button" aria-expanded="false" aria-controls="hidebits"></a>
     <div class='collapse' id="hidebits"> 
        Amount of bits:
-       <input type="number" min="0" max="999" id="bitsamount" value=1>
+       <input type="number" min="0" max="999" id="bitsamount" value=10>
        Total bits: 	
        <input type="number" min="0" max="999" id="bitstotal" value=100><br/>
        Message:	
@@ -286,76 +352,6 @@ button:active{
     </div>
    </form>
   </div>
-  <!--Twitch Triggers end-->
-<div class="tab-pane" id="content-status" role="tabpanel" title="Status" data-type="default">
-  <div class='row pt-3'>
-    <h5>Transmitter Connection</h5>
-    <div class="col">
-    <div class="row">
-      <label for="inputPassword" class="col-sm-5 col-form-label">IP Address:</label>
-      <div class="col-sm-4 w-auto">
-        <input type="text" id="nIPbox" name="nIPbox" value='127.0.0.1' class="form-control form-control-sm" >
-      </div>
-    </div>
-    <div class="row">
-      <label for="inputPassword" class="col-sm-5 col-form-label">Port:</label>
-      <div class="col-sm-4 w-auto">
-        <input type="number" min="0" max="65535" id="nPortBox" name="nPortBox" value=9425 class="form-control form-control-sm">
-      </div>
-    </div>
-    <div class="row">
-      <label for="inputPassword" class="col-sm-5 col-form-label">Password (optional):</label>
-      <div class="col-sm-4 w-auto">
-        <input id="nPassBox" type="password" name="nPassBox" size="20" value='' class="form-control form-control-sm">
-      </div>
-    </div>
-    <div class="mt-1 row">
-      <button type="button" id="cnctbutton" class="btn btn-primary btn-sm mb-2 w-auto ms-3" onclick="connectbutton()">Connect</button>
-    </div>
-    </div>
- </div>
-  <div class='row pt-3'>
-     <h5>Appearance</h5>
-     <div class="col col-md-auto"><button type="button" class="btn btn-primary btn-sm mb-2 w-auto me-2" onclick="TSLNoTabs()">No Tabs</button><button type="button" class="btn btn-primary btn-sm mb-2 w-auto" onclick="TSLTabs()">Show Tabs</button></div>
-  </div>
-<!--Message Logging -->
-<div class='row pt-3 d-block'>
-    <h5>Message Logging</h5>
-    <div class='pl-5 ml-5'>
-       <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="dbgReceiver" onclick="LBDebugLog(this)" >
-          <label class="form-check-label"for="flexSwitchCheckDefault">Receiver</label>
-       </div>
-       <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="dbgPubsub" onclick="LBDebugLog(this)">
-          <label class="form-check-label" for="flexSwitchCheckDefault">PubSub</label>
-       </div>
-       <ul class="nav nav-tabs mt-3" id="debugLog" role="tablist">
-          <li class="nav-item" role="presentation">
-             <button class="nav-link active" id="LBreceiver-tab" data-bs-toggle="tab" data-bs-target="#LBreceiver" type="button" role="tab" aria-controls="LBreceiver" aria-selected="true">Receiver</button>
-          </li>
-          <li class="nav-item" role="presentation">
-             <button class="nav-link" id="LBPubSub-tab" data-bs-toggle="tab" data-bs-target="#LBPubSub" type="button" role="tab" aria-controls="LBPubSub" aria-selected="false">PubSub</button>
-          </li>
-       </ul>
-       <div class="tab-content p-0 " id="debugLogContent">
-          <!--LB Receiver Log-->
-          <div class="tab-pane fade show active" id="LBreceiver" role="tabpanel" aria-labelledby="LBreceiver-tab" >
-             <div id="LBreceiverlog" class="col col-10 text-wrap">Logging is disabled.</div>
-          </div>
-          <!--LB Pubsub Log-->
-          <div class="tab-pane fade" id="LBPubSub" role="tabpanel" aria-labelledby="LBPubSub-tab">
-             <div id="LBpubsublog" class="col col-10 text-wrap">Logging is disabled.</div>
-          </div>
-       </div>
-    </div>
- </div>
-<!--Message Logging end-->
-</div>
-<!--Your external script will be inserted here-->
-<!--<script src="example.js"></script>-->
-<!--INSERT PART 1-->
- 
 </div>
 <div class="row justify-content-center mt-3 px-2 mb-5" id="footer"> <a class="tslCollapse collapsed" data-bs-toggle="collapse" href="#installedextensions" role="button" aria-expanded="false" aria-controls="installedextensions"></a>
   <span class='collapse' id="installedextensions"></span>
@@ -373,17 +369,17 @@ button:active{
  * No promise example: LB.setVariable(myVariable, 'some value', 'someButtonID')
  * Promise example: LB.getVariable(myVariable, 'someButtonID').then(reply=>console.log(reply))
  */
- function LBCommands() {
+function LBCommands() {
   const LBSendCommand = {
     /**
      * Get a variable from LB
      * @param {string} name - name of the variable
      * @param {string} buttonId - button ID for local variable, default = global variable
      */
-    async getVariable(name, buttonId = "global") {
-      return sendToLB("GetVariable", {
+    async getVariable(name, buttonId = 'global') {
+      return sendToLB('GetVariable', {
         Variable: name,
-        ButtonId: buttonId
+        ButtonId: buttonId,
       });
     },
 
@@ -393,11 +389,11 @@ button:active{
      * @param {(string|number|object|array|null)} value - new value of the variable
      * @param {string} buttonId - button ID for local variable, default = global variable
      */
-    async setVariable(name, value, buttonId = "global") {
-      return sendToLB("SetVariable", {
+    async setVariable(name, value, buttonId = 'global') {
+      return sendToLB('SetVariable', {
         Variable: name,
         Value: value,
-        ButtonId: buttonId
+        ButtonId: buttonId,
       });
     },
 
@@ -406,8 +402,8 @@ button:active{
      * @param {string} msg - message to send
      */
     async popUp(msg) {
-      return sendToLB("PopupMessage", {
-        Message: msg
+      return sendToLB('PopupMessage', {
+        Message: msg,
       });
     },
 
@@ -416,8 +412,8 @@ button:active{
      * @param {string} msg - message to send
      */
     async alert(msg) {
-      return sendToLB("AlertMessage", {
-        Message: msg
+      return sendToLB('AlertMessage', {
+        Message: msg,
       });
     },
 
@@ -443,8 +439,8 @@ button:active{
         ext.addBox(key, value);
       }
 
-      return sendToLB("SendExtensionCommands", {
-        Data: [ext]
+      return sendToLB('SendExtensionCommands', {
+        Data: [ext],
       });
     },
 
@@ -452,7 +448,7 @@ button:active{
      * Close LioranBoard connection to Transmitter.
      */
     async close() {
-      return sendToLB("Close");
+      return sendToLB('Close');
     },
 
     /**
@@ -460,8 +456,8 @@ button:active{
      * @param {boolean} enabled - enable or disable updates
      */
     async stayInformed(enabled) {
-      return sendToLB("SetStayInformed", {
-        Enabled: enabled
+      return sendToLB('SetStayInformed', {
+        Enabled: enabled,
       });
     },
 
@@ -471,7 +467,7 @@ button:active{
      * - Use crc32 value to verify deck you saved localy is the same
      */
     async getDeckList() {
-      return sendToLB("GetDeckList");
+      return sendToLB('GetDeckList');
     },
 
     /**
@@ -480,8 +476,8 @@ button:active{
      * - Replies with an object containing a full deck
      */
     async getDeck(id) {
-      return sendToLB("GetDeck", {
-        UniqueId: id
+      return sendToLB('GetDeck', {
+        UniqueId: id,
       });
     },
 
@@ -491,8 +487,8 @@ button:active{
      * - Replies with an object containing the Base64 string of the image
      */
     async getImage(fileName) {
-      return sendToLB("GetImage", {
-        FileName: fileName
+      return sendToLB('GetImage', {
+        FileName: fileName,
       });
     },
 
@@ -501,8 +497,8 @@ button:active{
      * @param {string} fileName - file name without the path (image.png)
      */
     async getSum(fileName) {
-      return sendToLB("GetSum", {
-        Name: fileName
+      return sendToLB('GetSum', {
+        Name: fileName,
       });
     },
 
@@ -511,14 +507,14 @@ button:active{
      * - Replies with an array of button param objects
      */
     async getActiveButtons() {
-      return sendToLB("GetOngoingButtons");
+      return sendToLB('GetOngoingButtons');
     },
 
     /**
      * Retrieves params of all linked Twitch accounts
      */
     async getTwitchList() {
-      return sendToLB("GetTwitchList");
+      return sendToLB('GetTwitchList');
     },
 
     /**
@@ -530,9 +526,9 @@ button:active{
      * @param {object} data - whatever data is required for the trigger, see manual
      */
     async trigger(type, data) {
-      return sendToLB("SendTrigger", {
+      return sendToLB('SendTrigger', {
         Type: type,
-        Data: data
+        Data: data,
       });
     },
 
@@ -541,39 +537,39 @@ button:active{
      * @param {string} id - button ID to trigger
      */
     async triggerButton(id) {
-      return sendToLB("TriggerButton", {
-        ButtonId: id
+      return sendToLB('TriggerButton', {
+        ButtonId: id,
       });
     },
 
     /**
      * Releases a button
-     * @param {string} id - button ID to trigger
+     * @param {string} id - button ID to release
      */
     async releaseButton(id) {
-      return sendToLB("ReleaseButton", {
-        ButtonId: id
+      return sendToLB('ReleaseButton', {
+        ButtonId: id,
       });
     },
 
     /**
      * Modifies a button
-     * @param {string} id - button ID to trigger
+     * @param {string} id - button ID to modify
      * @param {number|undefined} color - decimal button color (BGR)
      * @param {string|undefined} text - button text
      * @param {string|undefined} image - button image file name
      * @param {number|undefined} border - border size, 0-7
      * - leave parameters empty to reset button back to default values
      */
-    async modifyButton(id, color, text = "", image, border) {
-      return sendToLB("ModifyButton", {
+    async modifyButton(id, color, text = '', image, border) {
+      return sendToLB('ModifyButton', {
         ButtonId: id,
         Data: {
           color: color || undefined,
           text: text || undefined,
           image: image || undefined,
-          border: border || undefined
-        }
+          border: border || undefined,
+        },
       });
     },
 
@@ -582,7 +578,7 @@ button:active{
      * - object of button objects that are currently modified
      */
     async getModifiedButtons() {
-      return sendToLB("GetModifications");
+      return sendToLB('GetModifications');
     },
 
     /**
@@ -591,9 +587,9 @@ button:active{
      * @param {object} data - object containing all trigger pull data
      */
     async triggerExt(trigger, data = {}) {
-      return sendToLB("ExtensionTrigger", {
+      return sendToLB('ExtensionTrigger', {
         Trigger: trigger,
-        Data: data
+        Data: data,
       });
     },
 
@@ -602,52 +598,52 @@ button:active{
      * @param {string} name - name of the variable
      * @param {string} buttonId - button ID for local variable, default = global variable
      */
-    async deleteVariable(name, buttonId = "global") {
-      return sendToLB("DeleteVariable", {
+    async deleteVariable(name, buttonId = 'global') {
+      return sendToLB('DeleteVariable', {
         Variable: name,
-        ButtonId: buttonId
+        ButtonId: buttonId,
       });
     },
 
     /**
-     * Insert an array value
+     * Inserts an array value
      * @param {string} arrayName - name of the array
      * @param {number} index - index to insert the new item at
      * @param {string|number|object|array} value - item value
      * @param {string} buttonId - button id, default is global
      */
-    async insertArray(arrayName, index, value, buttonId = "global") {
-      return sendToLB("InsertArrayValue", {
+    async insertArray(arrayName, index, value, buttonId = 'global') {
+      return sendToLB('InsertArrayValue', {
         Array: arrayName,
-        Slot: slot,
+        Slot: index,
         Value: value,
-        ButtonId: buttonId
+        ButtonId: buttonId,
       });
     },
 
     /**
-     * Delete an array slot
+     * Deletes an array value at specified index
      * @param {string} arrayName - name of the array
      * @param {number} index - index of the item to delete
      * @param {string} buttonId - button id, default is global
      */
-    async deleteArray(arrayName, slot, buttonId = "global") {
-      return sendToLB("DeleteArraySlot", {
+    async deleteArray(arrayName, slot, buttonId = 'global') {
+      return sendToLB('DeleteArraySlot', {
         Array: arrayName,
         Slot: slot,
-        ButtonId: buttonId
+        ButtonId: buttonId,
       });
     },
 
     /**
-     * Shows a message bubble from the tray icon
+     * Sends a notification (tray icon bubble) message to LBn
      * @param {string} msg - message to show
      */
     async notification(msg) {
-      return sendToLB("NotificationMessage", {
-        Message: msg
+      return sendToLB('NotificationMessage', {
+        Message: msg,
       });
-    }
+    },
   };
 
   async function sendToLB(command, data) {
@@ -675,272 +671,247 @@ button:active{
   }
 
   return LBSendCommand;
-} // Twitch client ID to use for Twitch API requests
+}
 
-const TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n"; // init object with all available LB command methods
-
-const LB = new LBCommands(); // Expose websocket client, pubsub client and logIt function for global access
-
-let lioranboardclient;
-let pubsubserver;
-let logIt;
-let i_force = ""; // LioranBoard global object with variables
-
+// Twitch client ID to use for Twitch API requests
+const TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n";
+// init object with all available LB command methods
+const LB = new LBCommands ()
+// Expose websocket client, pubsub client and logIt function for global access
+let lioranboardclient
+let pubsubserver
+let logIt
+let i_force = "";
+// LioranBoard global object with variables
 const LBVars = {
-  LBdebug: JSON.parse(localStorage.getItem("LBdebug")) || {},
-  pubsubinterval: null,
-  twitchList: {},
-  force_close: false,
-  box_newline: 0,
-  box_checkbox: 2,
-  box_keyboard: 7,
-  box_compare: 8,
-  box_math: 9,
-  cbox_sound: 10,
-  box_slider: 11,
-  box_normal: 14,
-  box_variable: 15,
-  box_color: 17,
-  box_selectvalue: 18,
-  box_selectstring: 19,
-  box_selectstringwritable: 20,
-  box_loadfile: 22,
-  box_imagefile: 23
-}; // define LioranBoard connection on load and try to immediately connect
+LBdebug : JSON.parse(localStorage.getItem('LBdebug')) || {},
+pubsubinterval: null,
+twitchList: {},
+force_close : false, 
+box_newline : 0,
+box_checkbox : 2,
+box_keyboard : 7,
+box_compare : 8,
+box_math : 9,
+cbox_sound : 10,
+box_slider : 11,
+box_normal : 14,
+box_variable : 15,
+box_color : 17,
+box_selectvalue : 18,
+box_selectstring : 19,
+box_selectstringwritable : 20,
+box_loadfile : 22,
+box_imagefile : 23
+}
 
-window.addEventListener(
-  "load",
-  function () {
-    lioranboardclient = new LBWebSocket();
-    load_connection();
-    connecttoboard();
-    LBTestTriggers();
-  },
-  false
-); // modify UI on load
+// define LioranBoard connection on load and try to immediately connect
+window.addEventListener('load', function (){
+lioranboardclient = new LBWebSocket()
+load_connection();
+connecttoboard();
+LBTestTriggers();
 
-window.addEventListener("load", LBLoadTabsUI, false);
+}, false);
 
+// modify UI on load
+window.addEventListener('load', LBLoadTabsUI, false);
 function LBLoadTabsUI() {
   const tabList = {};
-  let tabSortList = JSON.parse(localStorage.getItem("tabsSortList")) || [];
+  let tabSortList = JSON.parse(localStorage.getItem('tabsSortList')) || [];
   const newtabSortList = [];
-  const tabsVisibility =
-    JSON.parse(localStorage.getItem("tabsVisibility")) || [];
-  let lastActiveTab = localStorage.getItem("tabsActive") || "content-basic";
-  lastActiveTab = document.getElementById(lastActiveTab)
-    ? lastActiveTab
-    : "content-basic";
-  const installedExt = document.querySelector("#installedextensions");
-  const ul = document.getElementById("extensions-tab");
-  const parent = document.getElementById("extensions-tabContent");
-  const contentLi = parent.querySelectorAll(".tab-pane");
-  const contentAll = [].slice
-    .call(contentLi)
-    .filter(
-      (n) => n.parentNode.closest(".tab-pane") === parent.closest(".tab-pane")
-    );
-  const defaultContent = contentAll.filter((e) => e.dataset.type === "default");
-  const addedContent = contentAll.filter((e) => e.dataset.type !== "default");
+  const tabsVisibility = JSON.parse(localStorage.getItem('tabsVisibility')) || [];
+  let lastActiveTab = localStorage.getItem('tabsActive') || 'content-basic';
+  lastActiveTab = (document.getElementById(lastActiveTab)) ? lastActiveTab : 'content-basic';
+  const installedExt = document.querySelector('#installedextensions');
+  const ul = document.getElementById('extensions-tab');
+  const parent = document.getElementById('extensions-tabContent');
+  const contentLi = parent.querySelectorAll('.tab-pane');
+  const contentAll = [].slice.call(contentLi).filter((n) => n.parentNode.closest('.tab-pane') === parent.closest('.tab-pane'));
+  const defaultContent = contentAll.filter((e) => e.dataset.type === 'default');
+  const addedContent = contentAll.filter((e) => e.dataset.type !== 'default');
   const content = defaultContent.concat(addedContent.reverse());
   const activeTab = document.getElementById(lastActiveTab);
-  activeTab.className = "tab-pane active"; // create tabs and checkboxes
+  activeTab.className = 'tab-pane active';
 
+  // create tabs and checkboxes
   content.forEach((e) => {
     createExtensionTab(e);
     createExtensionBox(e);
   });
   SortTabs();
-  tabSortList = newtabSortList;
-  localStorage.setItem("tabsSortList", JSON.stringify(newtabSortList)); // add drag and sort functionality to tabs
 
+  tabSortList = newtabSortList;
+  localStorage.setItem('tabsSortList', JSON.stringify(newtabSortList));
+
+  // add drag and sort functionality to tabs
   const draggable = new Draggable.Sortable(ul, {
-    draggable: "li",
+    draggable: 'li',
     distance: 1,
     sortAnimation: {
       duration: 200,
-      easingFunction: "ease-in-out"
+      easingFunction: 'ease-in-out',
     },
-    plugins: [Draggable.Plugins.SortAnimation]
-  }); // save a new sort order
+    plugins: [Draggable.Plugins.SortAnimation],
+  });
 
-  draggable.on("sortable:sorted", (e) => {
-    const sortArr = JSON.parse(localStorage.getItem("tabsSortList"));
+  // save a new sort order
+  draggable.on('sortable:sorted', (e) => {
+    const sortArr = JSON.parse(localStorage.getItem('tabsSortList'));
     sortArr.splice(e.newIndex, 0, sortArr.splice(e.oldIndex, 1)[0]);
-    localStorage.setItem("tabsSortList", JSON.stringify(sortArr));
-  }); // change and save tab visibility
+    localStorage.setItem('tabsSortList', JSON.stringify(sortArr));
+  });
 
-  document.querySelector("#installedextensions").onclick = (ev) => {
+  // change and save tab visibility
+  document.querySelector('#installedextensions').onclick = (ev) => {
     if (ev.target.value) {
       const id = ev.target.id.slice(8);
       const li = document.querySelector(`[aria-controls="${id}"]`);
 
       if (ev.target.checked) {
-        li.classList.remove("d-none");
+        li.classList.remove('d-none');
       } else {
-        li.classList.add("d-none");
+        li.classList.add('d-none');
       }
-
       SaveExttabsVisibility();
     }
-  }; // show all tabs
+  };
 
-  document.querySelector("#extensionsshow").onclick = () => {
-    localStorage.removeItem("tabsVisibility");
+  // show all tabs
+  document.querySelector('#extensionsshow').onclick = () => {
+    localStorage.removeItem('tabsVisibility');
     location.reload();
-  }; // hide all tabs
+  };
 
-  document.querySelector("#extensionshide").onclick = () => {
+  // hide all tabs
+  document.querySelector('#extensionshide').onclick = () => {
     const tabsVisiblity = {};
-    document
-      .querySelectorAll("#installedextensions input[type=checkbox]")
-      .forEach((e) => {
-        const id = e.id.slice(8);
-        tabsVisiblity[id] = false;
-      });
-    localStorage.setItem("tabsVisibility", JSON.stringify(tabsVisiblity));
+    document.querySelectorAll('#installedextensions input[type=checkbox]').forEach((e) => {
+      const id = e.id.slice(8);
+      tabsVisiblity[id] = false;
+    });
+    localStorage.setItem('tabsVisibility', JSON.stringify(tabsVisiblity));
     window.location.reload();
-  }; // reset tab order
+  };
 
-  document.querySelector("#extensionsresetorder").onclick = () => {
-    localStorage.removeItem("tabsSortList");
+  // reset tab order
+  document.querySelector('#extensionsresetorder').onclick = () => {
+    localStorage.removeItem('tabsSortList');
     window.location.reload();
-  }; // save active tab
+  };
 
-  ul.querySelectorAll("button").forEach(
-    (btn) =>
-      (btn.onclick = (btn) => {
-        localStorage.setItem("tabsActive", btn.target.id.slice(0, -4));
-      })
-  ); // create all tabs
+  // save active tab
+  ul.querySelectorAll('button').forEach((btn) => btn.onclick = (btn) => {
+    localStorage.setItem('tabsActive', btn.target.id.slice(0, -4));
+  });
 
+  // create all tabs
   function createExtensionTab(e) {
     const { title } = e;
     const { id } = e;
-    const li = document.createElement("li");
-    const button = document.createElement("button");
-    const hide =
-      typeof tabsVisibility[id] !== "undefined" && tabsVisibility[id] === false
-        ? "d-none"
-        : "";
-    const active = lastActiveTab === id ? "active" : "";
-    li.setAttributes({
-      class: "nav-item",
-      role: "presentation",
-      draggable: "true"
-    });
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    const hide = (typeof tabsVisibility[id] !== 'undefined' && tabsVisibility[id] === false) ? 'd-none' : '';
+    const active = (lastActiveTab === id) ? 'active' : '';
+    li.setAttributes({ class: 'nav-item', role: 'presentation', draggable: 'true' });
     button.setAttributes({
-      class: `nav-link draggable-source ${active} ${hide}`,
-      id: `${id}-tab`,
-      "data-bs-toggle": "pill",
-      "data-bs-target": `#${id}`,
-      type: "button",
-      role: "tab",
-      "aria-controls": id,
-      "aria-selected": "false",
-      draggable: "true"
+      class: `nav-link draggable-source ${active} ${hide}`, id: `${id}-tab`, 'data-bs-toggle': 'pill', 'data-bs-target': `#${id}`, type: 'button', role: 'tab', 'aria-controls': id, 'aria-selected': 'false', draggable: 'true',
     });
     button.innerHTML = title;
     li.appendChild(button);
     tabList[id] = li;
-  } // create all tab check boxes
+  }
 
+  // create all tab check boxes
   function createExtensionBox(e) {
-    const checkbox = document.createElement("input");
-    const text = document.createElement("span");
+    const checkbox = document.createElement('input');
+    const text = document.createElement('span');
     text.innerHTML = `${e.title}  `;
-    checkbox.type = "checkbox";
+    checkbox.type = 'checkbox';
     checkbox.id = `checkbox${e.id}`;
-    checkbox.checked = !(
-      typeof tabsVisibility[e.id] !== "undefined" &&
-      tabsVisibility[e.id] === false
-    );
+    checkbox.checked = !((typeof tabsVisibility[e.id] !== 'undefined' && tabsVisibility[e.id] === false));
     text.prepend(checkbox);
     installedExt.appendChild(text);
-  } // sort tabs
+  }
 
+  // sort tabs
   function SortTabs() {
     let i = 0;
-
     do {
       const childId = tabSortList[i] || Object.keys(tabList)[0];
-
       try {
         ul.appendChild(tabList[childId]);
         newtabSortList.push(childId);
-      } catch (e) {
-        console.log(e);
-      }
-
+      } catch (e) { console.log(e); }
       delete tabList[childId];
       i += 1;
     } while (Object.keys(tabList).length > 0);
-  } // save tabs visiblity
-
-  function SaveExttabsVisibility() {
-    const tabsVisiblity =
-      JSON.parse(localStorage.getItem("tabsVisibility")) || {};
-    document
-      .querySelectorAll("#installedextensions input[type=checkbox]")
-      .forEach((e) => {
-        const id = e.id.slice(8);
-        tabsVisiblity[id] = e.checked;
-      });
-    localStorage.setItem("tabsVisibility", JSON.stringify(tabsVisiblity));
   }
-} // switch to no tabs UI
 
+  // save tabs visiblity
+  function SaveExttabsVisibility() {
+    const tabsVisiblity = JSON.parse(localStorage.getItem('tabsVisibility')) || {};
+    document.querySelectorAll('#installedextensions input[type=checkbox]').forEach((e) => {
+      const id = e.id.slice(8);
+      tabsVisiblity[id] = e.checked;
+    });
+    localStorage.setItem('tabsVisibility', JSON.stringify(tabsVisiblity));
+  }
+}
+
+// switch to no tabs UI
 function TSLNoTabs() {
-  document.getElementById("extensions-tab").className = "d-none d-flex";
-  document.getElementById("extensions-tabContent").className = "notabs";
-  document.getElementById("extensions-tab-buttons").className = "d-none mt-2";
-} // switch to tabs UI
+  document.getElementById('extensions-tab').className = 'd-none d-flex';
+  document.getElementById('extensions-tabContent').className = 'notabs';
+  document.getElementById('extensions-tab-buttons').className = 'd-none mt-2';
+}
 
+// switch to tabs UI
 function TSLTabs() {
-  document.getElementById("extensions-tab").className = "nav nav-pills mb-3";
-  document.getElementById("extensions-tabContent").className = "tab-content";
-  document.getElementById("extensions-tab-buttons").className = "mt-2";
-} // change connection status UI
+  document.getElementById('extensions-tab').className = 'nav nav-pills mb-3';
+  document.getElementById('extensions-tabContent').className = 'tab-content';
+  document.getElementById('extensions-tab-buttons').className = 'mt-2';
+}
 
+// change connection status UI
 function ConnectionStatus(id, status, text, fill) {
   document.getElementById(id).className = `${status} d-none d-md-inline-flex`;
   document.getElementById(id).innerHTML = ` ${text}`;
-  document.getElementById(`${id}_circle`).setAttribute("fill", fill);
-} // helper function to set multiple element attributes at once
+  document.getElementById(`${id}_circle`).setAttribute('fill', fill);
+}
 
+// helper function to set multiple element attributes at once
 Element.prototype.setAttributes = function (obj) {
   for (const prop in obj) {
     this.setAttribute(prop, obj[prop]);
   }
 };
-
-// fake subscriber testing
-
+// Fake Triggers testing
 function LBTestTriggers() {
   const processTrigger = {
-    LBTestTwitchSubs(form, notUsed, gifted = false, gifterName = "") {
+    LBTestTwitchSubs(form, notUsed, gifted = false, gifterName = '') {
       const type = 1;
       const subtype = form.subgift.checked
         ? 2
         : form.anongift.checked
-        ? 4
-        : gifted
-        ? 2
-        : 1;
+          ? 4
+          : gifted
+            ? 2
+            : 1;
       const context = form.subgift.checked
-        ? "subgift"
+        ? 'subgift'
         : form.anongift.checked
-        ? "anonsubgift"
-        : gifted
-        ? "subgift"
-        : "resub";
+          ? 'anonsubgift'
+          : gifted
+            ? 'subgift'
+            : 'resub';
       const month = parseInt(form.submonths.value) || 1;
       const name = gifted
         ? gifterName
         : form.anongift.checked
-        ? "Anonymous User"
-        : generateName();
-      const giftedName = subtype !== 1 ? generateName(name) : "";
+          ? 'Anonymous User'
+          : generateName();
+      const giftedName = subtype !== 1 ? generateName(name) : '';
       const message = form.submessage.value || generateMessage();
       const tiers = form.querySelectorAll('input[name="tier"]');
       let selectedTier;
@@ -952,23 +923,21 @@ function LBTestTriggers() {
         }
       }
 
-      const selecterTierNum =
-        selectedTier === "Tier 1"
-          ? 1
-          : selectedTier === "Tier 2"
+      const selecterTierNum = selectedTier === 'Tier 1'
+        ? 1
+        : selectedTier === 'Tier 2'
           ? 2
-          : selectedTier === "Tier 3"
-          ? 4
-          : 8;
-      const msg =
-        subtype !== 1
-          ? `${name} gifted a sub to ${giftedName}!`
-          : `${name} subscribed for ${month} months!`;
+          : selectedTier === 'Tier 3'
+            ? 4
+            : 8;
+      const msg = subtype !== 1
+        ? `${name} gifted a sub to ${giftedName}!`
+        : `${name} subscribed for ${month} months!`;
       const data = {
         tier: selecterTierNum,
         month,
         subtype,
-        communitygift: gifted ? 1 : 0
+        communitygift: gifted ? 1 : 0,
       };
       const pullData = {
         user_name: name.toLowerCase(),
@@ -981,13 +950,13 @@ function LBTestTriggers() {
         context,
         message,
         month,
-        community_gift: gifted ? 1 : 0
+        community_gift: gifted ? 1 : 0,
       };
       sendTriggerToLB(type, msg, data, pullData);
     },
 
     LBTestTwitchSubGift(form) {
-      const subForm = document.getElementById("LBTestTwitchSubs");
+      const subForm = document.getElementById('LBTestTwitchSubs');
       if (subForm.prime.checked) subForm.tier1.checked = true;
       if (subForm.anongift.checked === false) subForm.subgift.checked = true;
       const tiers = subForm.querySelectorAll('input[name="tier"]');
@@ -999,16 +968,15 @@ function LBTestTriggers() {
         }
       }
 
-      const selecterTierNum =
-        selectedTier === "Tier 1"
-          ? 1
-          : selectedTier === "Tier 2"
+      const selecterTierNum = selectedTier === 'Tier 1'
+        ? 1
+        : selectedTier === 'Tier 2'
           ? 2
-          : selectedTier === "Tier 3"
-          ? 4
-          : 1;
+          : selectedTier === 'Tier 3'
+            ? 4
+            : 1;
       const gifterName = subForm.anongift.checked
-        ? "Anonymous user"
+        ? 'Anonymous user'
         : generateName();
       const amount = parseInt(form.subGiftAmount.value) || 1;
       const pullData = {
@@ -1016,16 +984,16 @@ function LBTestTriggers() {
         display_name: gifterName,
         user_id: 123456789,
         amount,
-        tier: selectedTier
+        tier: selectedTier,
       };
       sendTriggerToLB(
         2,
         `${gifterName} has gifted ${amount} subs!`,
         {
           tier: selecterTierNum,
-          amount
+          amount,
         },
-        pullData
+        pullData,
       );
 
       for (let i = 0; i < amount; i++) {
@@ -1042,28 +1010,27 @@ function LBTestTriggers() {
       pullData.addvalues({
         amount,
         total_amount: totalAmount,
-        message
+        message,
       });
       sendTriggerToLB(
         5,
         `${pullData.user_name} donated ${amount} bits!`,
         {
-          amount
+          amount,
         },
-        pullData
+        pullData,
       );
     },
 
     LBTestTwitchPoints(form, pullData) {
       const channelID = Math.floor(Math.random() * 1000000000);
-      const redeemName = form.channelPointsName.value || "Test Reward";
+      const redeemName = form.channelPointsName.value || 'Test Reward';
       const userInput = form.channelPointsInput.checked;
       const message = userInput
         ? form.channelPointsMsg.value || generateMessage()
         : undefined;
       const cost = parseInt(form.channelPointsCost.value) || 50;
-      const image =
-        "https://static-cdn.jtvnw.net/custom-reward-images/default-4.png";
+      const image = 'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png';
       const rewardId = generateUUID();
       const redeemId = generateUUID();
       pullData.addvalues({
@@ -1073,46 +1040,46 @@ function LBTestTriggers() {
         cost,
         image,
         reward_id: rewardId,
-        redeem_id: redeemId
+        redeem_id: redeemId,
       });
       sendTriggerToLB(
-        5,
+        3,
         `${pullData.display_name} has redeemed ${redeemName}!`,
         {
           redeemname: redeemName,
-          message
+          message,
         },
-        pullData
+        pullData,
       );
     },
 
     LBTestTwitchRaid(form, pullData) {
       const amount = parseInt(form.raidAmount.value) || 5;
       pullData.addvalues({
-        amount
+        amount,
       });
       sendTriggerToLB(
         4,
         `${pullData.display_name} is raiding you with ${amount} viewers!`,
         {
-          amount
+          amount,
         },
-        pullData
+        pullData,
       );
     },
 
     LBTestTwitchHost(form, pullData) {
       const amount = parseInt(form.hostamount.value) || 5;
       pullData.addvalues({
-        amount
+        amount,
       });
       sendTriggerToLB(
         14,
         `${pullData.display_name} is hosting you with ${amount} viewers!`,
         {
-          amount
+          amount,
         },
-        pullData
+        pullData,
       );
     },
 
@@ -1121,33 +1088,30 @@ function LBTestTriggers() {
       const userId = Math.floor(Math.random() * 1000000000);
       const message = form.chatMsg.value || generateMessage();
       const channel = Math.floor(Math.random() * 1000000000);
-      const color = "#189A8D";
-      const emoteList = "304822798:0-9/304682444:11-19";
+      const color = '#189A8D';
+      const emoteList = '304822798:0-9/304682444:11-19';
       const firstTime = form.chatFirstTime.checked;
       const badge = [];
-      if (form.chatBroadcaster.checked) badge.push("broadcaster/1");
-      if (form.chatMod.checked) badge.push("moderator/1");
-      if (form.chatVip.checked) badge.push("vip/1");
-      if (form.chatFounder.checked) badge.push("founder/1");
+      if (form.chatBroadcaster.checked) badge.push('broadcaster/1');
+      if (form.chatMod.checked) badge.push('moderator/1');
+      if (form.chatVip.checked) badge.push('vip/1');
+      if (form.chatFounder.checked) badge.push('founder/1');
 
       if (form.chatSub.checked) {
         const tier = parseInt(form.chatMsgSubTier.value);
-        let month =
-          form.chatMsgSubMonth.value != 1
-            ? parseInt(form.chatMsgSubMonth.value)
-            : 0;
-        month =
-          month > 3 && month < 6
-            ? (month = 3)
-            : month > 6 && month < 9
+        let month = form.chatMsgSubMonth.value != 1
+          ? parseInt(form.chatMsgSubMonth.value)
+          : 0;
+        month = month > 3 && month < 6
+          ? (month = 3)
+          : month > 6 && month < 9
             ? (month = 6)
             : month > 9 && month < 12
-            ? (month = 9)
-            : month;
-        const subBadge =
-          tier === 1
-            ? `subscriber/${month}`
-            : tier === 2
+              ? (month = 9)
+              : month;
+        const subBadge = tier === 1
+          ? `subscriber/${month}`
+          : tier === 2
             ? `subscriber/${2000 + month}`
             : `subscriber/${3000 + month}`;
         badge.push(subBadge);
@@ -1162,7 +1126,7 @@ function LBTestTriggers() {
         badge_list: badge,
         channel,
         name_color: color,
-        first_time: firstTime
+        first_time: firstTime,
       };
       LB.trigger(0, {
         message,
@@ -1171,7 +1135,7 @@ function LBTestTriggers() {
         sub: form.chatSub.checked,
         vip: form.chatVip.checked,
         founder: form.chatFounder.checked,
-        trigger_data: pullData
+        trigger_data: pullData,
       });
     },
 
@@ -1180,21 +1144,19 @@ function LBTestTriggers() {
         6,
         `${pullData.display_name} followed you!`,
         {},
-        pullData
+        pullData,
       );
-    }
+    },
   };
 
   class ConstructPullData {
     constructor(type) {
       const name = generateName();
-      this.user_name =
-        type !== "LBTestTwitchHost" ? name.toLowerCase() : undefined;
-      this.display_name = type !== "LBTestTwitchBits" ? name : undefined;
-      this.user_id =
-        type !== "LBTestTwitchHost"
-          ? Math.floor(Math.random() * 1000000000)
-          : undefined;
+      this.user_name = type !== 'LBTestTwitchHost' ? name.toLowerCase() : undefined;
+      this.display_name = type !== 'LBTestTwitchBits' ? name : undefined;
+      this.user_id = type !== 'LBTestTwitchHost'
+        ? Math.floor(Math.random() * 1000000000)
+        : undefined;
 
       this.addvalues = (params) => {
         Object.assign(this, params);
@@ -1202,50 +1164,50 @@ function LBTestTriggers() {
     }
   }
 
-  const forms = document.querySelectorAll(".LBTestTriggers");
+  const forms = document.querySelectorAll('.LBTestTriggers');
   Array.prototype.slice.call(forms).forEach((form) => {
     form.addEventListener(
-      "submit",
+      'submit',
       (e) => {
         e.preventDefault();
         const pullData = new ConstructPullData(form.id);
         processTrigger[form.id](form, pullData);
       },
-      false
+      false,
     );
   });
 
-  function generateName(name = "") {
+  function generateName(name = '') {
     const names = [
-      "Lioran",
-      "nutella4eva",
-      "Kottpower",
-      "Neverwho",
-      "Deomew",
-      "Doodybeard",
-      "Exeldro",
-      "AuralMoral",
-      "SuperMetroid",
-      "Melonax",
-      "Ptoil",
-      "LinksDarkHalf",
-      "Derpiii_",
-      "CoD360_420",
-      "Bill",
-      "Kurocha",
-      "Lisa",
-      "DeathByButtonMash",
-      "Daryl",
-      "Sebas",
-      "Ramsreef",
-      "Kelvin214",
-      "wellzish",
-      "Andilippi",
-      "MrWaldo",
-      "MrRubberDucky",
-      "Cyanidesugar",
-      "MisterK",
-      "Silverlink"
+      'Lioran',
+      'nutella4eva',
+      'Kottpower',
+      'Neverwho',
+      'Deomew',
+      'Doodybeard',
+      'Exeldro',
+      'AuralMoral',
+      'SuperMetroid',
+      'Melonax',
+      'Ptoil',
+      'LinksDarkHalf',
+      'Derpiii_',
+      'CoD360_420',
+      'Bill',
+      'Kurocha',
+      'Lisa',
+      'DeathByButtonMash',
+      'Daryl',
+      'Sebas',
+      'Ramsreef',
+      'Kelvin214',
+      'wellzish',
+      'Andilippi',
+      'MrWaldo',
+      'MrRubberDucky',
+      'Cyanidesugar',
+      'MisterK',
+      'Silverlink',
     ];
     const randomName = names[Math.floor(Math.random() * names.length)];
     if (name !== randomName) return randomName;
@@ -1254,148 +1216,63 @@ function LBTestTriggers() {
 
   function generateMessage() {
     const messages = [
-      "Hello World!",
+      'Hello World!',
       "Love your stream, you are a very genuine guy and you're not affraid to say it how it is. But, I would just prefer if you didn't give your opinion, just saying.",
       "Alright, I'll be honest with ya, Bob. My name's not Kirk. It's Skywalker. Luke Skywalker.",
-      "Well, that never happened in any of the simulations.",
-      "You know, you blow up one sun and suddenly everyone expects you to walk on water.",
+      'Well, that never happened in any of the simulations.',
+      'You know, you blow up one sun and suddenly everyone expects you to walk on water.',
       "How's a needle in my butt gonna get water out of my ears?",
-      "If you immediately know the candle light is fire, then the meal was cooked a long time ago.",
-      "All that glitters is not gold. Fair is foul, and foul is fair Hover through the fog and filthy air. These violent delights have violent ends. Hell is empty and all the devils are here. By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!"
+      'If you immediately know the candle light is fire, then the meal was cooked a long time ago.',
+      'All that glitters is not gold. Fair is foul, and foul is fair Hover through the fog and filthy air. These violent delights have violent ends. Hell is empty and all the devils are here. By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!',
     ];
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
     return randomMessage;
   }
 
   function generateUUID() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (
+      c
+        ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16));
   }
 
   function sendTriggerToLB(
     type,
-    message = "Test trigger fired.",
+    message = 'Test trigger fired.',
     data = {},
-    triggerData
+    triggerData,
   ) {
     data.trigger_data = triggerData;
     LB.trigger(type, data);
     LB.alert(message);
   }
-} // fake chat message testing
-
-function fakechatmsg() {
-  const name = ichatname.value || fakename();
-  const msg = ichatmsg.value.replace(/"/g, "'") || "This is a test message.";
-  const badge = [];
-  const user_id = "123456789";
-
-  if (ichatbroadcaster.checked) {
-    badge.push("broadcaster/1");
-  }
-
-  if (ichatmod.checked) {
-    badge.push("moderator/1");
-  }
-
-  if (ichatvip.checked) {
-    badge.push("vip/1");
-  }
-
-  if (ichatsub.checked) {
-    const tier = parseInt(chatmsgsubtier.value);
-    let month =
-      chatmsgsubmonth.value != 1 ? parseInt(chatmsgsubmonth.value) : 0;
-    month =
-      month > 3 && month < 6
-        ? (month = 3)
-        : month > 6 && month < 9
-        ? (month = 6)
-        : month > 9 && month < 12
-        ? (month = 9)
-        : month;
-    const subBadge =
-      tier === 1
-        ? `subscriber/${month}`
-        : tier === 2
-        ? `subscriber/${2000 + month}`
-        : `subscriber/${3000 + month}`;
-    badge.push(subBadge);
-  }
-
-  const chat_obj = {
-    emotes: "304822798:0-9/304682444:11-19",
-    login: name.toLowerCase(),
-    display_name: name,
-    user_id,
-    color: "#189A8D",
-    badge: badge.join(),
-    message: msg,
-    channel: name,
-    topic: "chatmessage",
-    type: "MESSAGE"
-  };
-  lioranboardclient.send(JSON.stringify(chat_obj));
-} // fake names for testing
-
-function fakename(name = "none") {
-  const names = [
-    "Lioran",
-    "nutella4eva",
-    "Kottpower",
-    "Neverwho",
-    "Deomew",
-    "Doodybeard",
-    "Exeldro",
-    "AuralMoral",
-    "SuperMetroid",
-    "Melonax",
-    "Ptoil",
-    "LinksDarkHalf",
-    "Derpiii_",
-    "CoD360_420",
-    "Bill",
-    "Kurocha",
-    "Lisa",
-    "DeathByButtonMash",
-    "Daryl",
-    "Sebas",
-    "Ramsreef",
-    "Kelvin214"
-  ];
-  const randomName = names[Math.floor(Math.random() * names.length)];
-  if (name !== randomName) return randomName;
-  return fakename(name);
-} // load LB connection params from storage
-
+}  
+// load LB connection params from storage
 function load_connection() {
-  const ls = JSON.parse(localStorage.getItem("lsParams")) || {};
-  nIPbox.value = ls.ip || "127.0.0.1";
+  const ls = JSON.parse(localStorage.getItem('lsParams')) || {};
+  nIPbox.value = ls.ip || '127.0.0.1';
   nPortBox.value = ls.port || 9425;
-  nPassBox.value = ls.pass || "";
-} // manually connect/disconnect from LB via button
+  nPassBox.value = ls.pass || '';
+}
 
+// manually connect/disconnect from LB via button
 function connectbutton() {
-  var _lioranboardclient;
+  let _lioranboardclient;
 
   const p = LBVars;
 
   if (
-    (_lioranboardclient = lioranboardclient) !== null &&
-    _lioranboardclient !== void 0 &&
-    _lioranboardclient._connected
+    (_lioranboardclient = lioranboardclient) !== null
+    && _lioranboardclient !== void 0
+    && _lioranboardclient._connected
   ) {
     p.force_close = true;
-    lioranboardclient.send("Close");
+    lioranboardclient.send('Close');
     lioranboardclient.disconnect();
-    ConnectionStatus("toclient", "disconnected", "Connection Closed", "red");
-    document.querySelector("#cnctbutton").innerText = "Disconnecting";
+    ConnectionStatus('toclient', 'disconnected', 'Connection Closed', 'red');
+    document.querySelector('#cnctbutton').innerText = 'Disconnecting';
   } else {
-    console.log("LioranBoard Manual Connection.");
+    console.log('LioranBoard Manual Connection.');
 
     try {
       clearTimeout(p.waiting_to_connect);
@@ -1403,8 +1280,9 @@ function connectbutton() {
 
     connecttoboard();
   }
-} // Connect to LB and listen for events
+}
 
+// Connect to LB and listen for events
 function connecttoboard() {
   LBDebugLog(dbgReceiver);
 
@@ -1412,98 +1290,110 @@ function connecttoboard() {
     clearTimeout(p.waiting_to_connect);
   } catch (e) {}
 
-  const p = LBVars; // CONNECT TO LIORANBOARD
+  const p = LBVars;
 
+  // CONNECT TO LIORANBOARD
   lioranboardclient.connect({
-    address: `${nIPbox.value || "127.0.0.1"}:${nPortBox.value || 9425}`,
-    password: `${nPassBox.value || ""}`,
-    name: "Transmitter"
-  }); // CONNECTION OPENED
-
-  lioranboardclient.on("ConnectionOpened", () => {
-    document.querySelector("#cnctbutton").innerText = "Disconnect";
-    console.log("LioranBoard Connection opened!");
+    address: `${nIPbox.value || '127.0.0.1'}:${nPortBox.value || 9425}`,
+    password: `${nPassBox.value || ''}`,
+    name: 'Transmitter',
   });
-  lioranboardclient.on("error", (err) => {
-    lioranboardclient.disconnect();
-  }); // AUTH SUCCESSFUL
 
-  lioranboardclient.on("AuthenticationSuccess", async () => {
+  // CONNECTION OPENED
+  lioranboardclient.on('ConnectionOpened', () => {
+    document.querySelector('#cnctbutton').innerText = 'Disconnect';
+    console.log('LioranBoard Connection opened!');
+  });
+  lioranboardclient.on('error', (err) => {
+    lioranboardclient.disconnect();
+  });
+
+  // AUTH SUCCESSFUL
+  lioranboardclient.on('AuthenticationSuccess', async () => {
     // Send all extension commands to LB
     sendExtensionCommands(); // Get Twitch list and connect to Pubsub
 
     await LB.getTwitchList().then((data) => {
       p.twitchList = data.twitch_list;
       connectPubSubserver();
-    }); // Save connection params to storage
+    });
 
+    // Save connection params to storage
     const ls = {
       ip: nIPbox.value,
       port: nPortBox.value,
-      pass: nPassBox.value
+      pass: nPassBox.value,
     };
-    localStorage.setItem("lsParams", JSON.stringify(ls));
-    ConnectionStatus("toclient", "connected", "Connected", "green");
-    console.log("LioranBoard Authentication successsful!");
-  }); // CONNECTION CLOSED
+    localStorage.setItem('lsParams', JSON.stringify(ls));
+    ConnectionStatus('toclient', 'connected', 'Connected', 'green');
+    console.log('LioranBoard Authentication successsful!');
+  });
 
-  lioranboardclient.on("ConnectionClosed", () => {
+  // CONNECTION CLOSED
+  lioranboardclient.on('ConnectionClosed', () => {
     try {
       clearTimeout(p.waiting_to_connect);
     } catch (e) {}
 
-    lioranboardclient.removeAllListeners(); // Attempt to force disconnect from PubSub
+    lioranboardclient.removeAllListeners();
 
+    // Attempt to force disconnect from PubSub
     try {
       pubsubserver.close();
-    } catch (e) {} // Attempt to reconnect if not manual disconnect
+    } catch (e) {}
 
+    // Attempt to reconnect if not manual disconnect
     if (!p.force_close) {
       ConnectionStatus(
-        "toclient",
-        "disconnected",
-        "Disconnected, attempting to reconnect.",
-        "red"
+        'toclient',
+        'disconnected',
+        'Disconnected, attempting to reconnect.',
+        'red',
       );
-      console.log("LioranBoard disconnected. Attempting to reconnect in 2s.");
+      console.log('LioranBoard disconnected. Attempting to reconnect in 2s.');
       p.waiting_to_connect = setTimeout(() => {
         connecttoboard();
       }, 2000);
     } else {
-      console.log("LioranBoard disconnected by user.");
-      ConnectionStatus("toclient", "disconnected", "Connection Closed", "red");
+      console.log('LioranBoard disconnected by user.');
+      ConnectionStatus('toclient', 'disconnected', 'Connection Closed', 'red');
     }
 
     p.force_close = false;
-    document.querySelector("#cnctbutton").innerText = "Connect";
-  }); // CONNECTION ERROR
+    document.querySelector('#cnctbutton').innerText = 'Connect';
+  });
 
-  lioranboardclient.on("ConnectionError", (e) => {
+  // CONNECTION ERROR
+  lioranboardclient.on('ConnectionError', (e) => {
     // Try to force close the connection
     try {
       lioranboard.disconnect();
     } catch (e) {}
 
-    console.log("LioranBoard Connection error");
-  }); // RELOAD TRANSMITTER
+    console.log('LioranBoard Connection error');
+  });
 
-  lioranboardclient.on("ResetPlease", () => {
+  // RELOAD TRANSMITTER
+  lioranboardclient.on('ResetPlease', () => {
     location.reload();
-  }); // EXECUTE COMMAND
+  });
 
-  lioranboardclient.on("ExecuteCommand", (json) => {
+  // EXECUTE COMMAND
+  lioranboardclient.on('ExecuteCommand', (json) => {
     LBExtensionReceived(json.CommandName, json.Data);
   });
 }
 
 function sendExtensionCommands() {
-  // You LioranBoard extension commands will be inserted here
-  /*INSERT PART 2*/
-} // Connect to PubSub
+// You LioranBoard extension commands will be inserted here
+/*INSERT PART 2*/
+}
 
+// Connect to PubSub
 function connectPubSubserver() {
-  const p = LBVars; // Do not connect if user's Twitch account isn't linked
-
+  const p = LBVars; 
+  
+  // Do not connect if user's Twitch account isn't linked
   if (Object.keys(p.twitchList).length === 0) {
     ConnectionStatus(
       "topubsub",
@@ -1522,10 +1412,11 @@ function connectPubSubserver() {
         type: "PING"
       })
     );
-  } // attempt to reconnect on disconnect, unless LioranBoard is disconnected
-
+  } 
+  
+  // Attempt to reconnect on disconnect, unless LioranBoard is disconnected
   pubsubserver.onclose = () => {
-    var _lioranboardclient2;
+    var _lioranboardclient;
 
     try {
       clearInterval(p.pubsubinterval);
@@ -1542,13 +1433,14 @@ function connectPubSubserver() {
       "red"
     );
     if (
-      (_lioranboardclient2 = lioranboardclient) !== null &&
-      _lioranboardclient2 !== void 0 &&
-      _lioranboardclient2._connected
+      (_lioranboardclient = lioranboardclient) !== null &&
+      _lioranboardclient !== void 0 &&
+      _lioranboardclient._connected
     )
       connectPubSubserver();
-  }; // once connected, listen for stuff
-
+  }; 
+  
+  // Once connected, listen for stuff
   pubsubserver.onopen = () => {
     p.pubsubinterval = setInterval(PubSubPing, 120000);
     console.log("Twitch PubSub connected successfully.");
@@ -1564,8 +1456,9 @@ function connectPubSubserver() {
       listen_hypetrain: ["hypetrain", "hype-train-events-v1"],
       listen_predictions: ["predictions", "predictions-channel-v1"],
       listen_polls: ["polls", "polls"]
-    }; // Construct a listen object to send to Pubsub
+    };
 
+    // Construct a listen object to send to Pubsub
     function PubsubConstructListen(id, token) {
       this.type = "LISTEN";
       this.data = {
@@ -1576,8 +1469,9 @@ function connectPubSubserver() {
         this.nonce = `${type}-${id}`;
         this.data.topics = [`${topic}.${id}`];
       };
-    } // Go through the Twitch list and listen to everything the user selected
-
+    } 
+    
+    // Go through the Twitch list and listen to everything the user selected
     Object.values(p.twitchList).forEach((params) => {
       const pubsubListen = new PubsubConstructListen(
         params.user_id,
@@ -1590,8 +1484,9 @@ function connectPubSubserver() {
         }
       });
     });
-  }; // Send data from Pubsub to LioranBoard
-
+  }; 
+  
+  // Send data from Pubsub to LioranBoard
   pubsubserver.onmessage = (event) => {
     // send pubsub message to lioranboard, let it deal with it
     lioranboardclient.send("PubSubMessage", {
@@ -1606,140 +1501,105 @@ function LBExtensionReceived(hook, LioranBoardJSON) {
     // hook you specified.
     default:
       break;
-    //You hooks will be inserted here
-
-    /*INSERT PART 3*/
-  }
-} // Message Logging
+//You hooks will be inserted here
+/*INSERT PART 3*/
+   }
+}
 
 (function initDebugLogging() {
   dbgReceiver.checked = LBVars.LBdebug.receiver;
   dbgPubsub.checked = LBVars.LBdebug.pubsub;
-  LBDebugLog(dbgPubsub);
-  LBDebugLog(dbgReceiver);
-})();
+  LBDebugLog(dbgPubsub); LBDebugLog(dbgReceiver);
+}());
 
 function LBDebugLog(e) {
-  const receiver = document.getElementById("LBreceiverlog");
-  const pubsub = document.getElementById("LBpubsublog");
-  const listening = "<samp>Listening for traffic.</samp>";
-  const disabled = "<samp>Logging is disabled.</samp>"; // disable or enable debug logging and display it
+  const receiver = document.getElementById('LBreceiverlog');
+  const pubsub = document.getElementById('LBpubsublog');
+  const listening = '<samp>Listening for traffic.</samp>';
+  const disabled = '<samp>Logging is disabled.</samp>';
+  // disable or enable debug logging and display it
 
   switch (e.id) {
     default:
       break;
-
-    case "dbgReceiver":
+    case 'dbgReceiver':
       if (e.checked) {
-        if (localStorage.debug === "lb-websocket-js:*") {
+        if (localStorage.debug === 'lb-websocket-js:*') {
           const _debug = console.debug.bind(console);
-
           logIt = function (...args) {
             const msg = {};
-
             _debug.apply(console, arguments);
-
             if (!LBDebugPost) return;
             Object.assign(msg, args[args.length - 2]);
-            if (args[0].includes("Sending Message"))
-              LBDebugPost("receiverSent", msg);
-            else if (args[0].includes("Message received")) {
-              LBDebugPost("receiver", msg);
+            if (args[0].includes('Sending Message')) LBDebugPost('receiverSent', msg);
+            else if (args[0].includes('Message received')) {
+              LBDebugPost('receiver', msg);
             }
           };
-
           receiver.innerHTML = listening;
         } else {
-          receiver.innerHTML =
-            "<samp>Logging will be enabled once Transmitter is reloaded.</samp>";
+          receiver.innerHTML = '<samp>Logging will be enabled once Transmitter is reloaded.</samp>';
         }
-
-        localStorage.debug = "lb-websocket-js:*";
+        localStorage.debug = 'lb-websocket-js:*';
       } else {
         if (localStorage.debug == 0) receiver.innerHTML = disabled;
         else {
-          receiver.innerHTML =
-            "<samp>Logging will be disabled once Transmitter is reloaded.</samp>";
+          receiver.innerHTML = '<samp>Logging will be disabled once Transmitter is reloaded.</samp>';
         }
         logIt = null;
         localStorage.debug = 0;
       }
-
-      LBVars.LBdebug.receiver = !!e.checked;
+      LBVars.LBdebug.receiver = !!(e.checked);
       break;
-
-    case "dbgPubsub":
-      pubsub.innerHTML = e.checked ? listening : disabled;
-      LBVars.LBdebug.pubsub = !!e.checked;
+    case 'dbgPubsub':
+      pubsub.innerHTML = (e.checked) ? listening : disabled;
+      LBVars.LBdebug.pubsub = !!(e.checked);
       break;
   }
-
-  localStorage.setItem("LBdebug", JSON.stringify(LBVars.LBdebug));
+  localStorage.setItem('LBdebug', JSON.stringify(LBVars.LBdebug));
 }
 
 function LBDebugPost(type, msg) {
   const p = LBVars;
   if (!p.LBdebug) return;
-  const receiverlog = document.getElementById("LBreceiverlog");
-  const pubsublog = document.getElementById("LBpubsublog");
-  const arrowDown =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/> </svg>';
-  const arrowUp =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-arrow-up" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/> </svg>'; // post a message into the debug log if enabled
+  const receiverlog = document.getElementById('LBreceiverlog');
+  const pubsublog = document.getElementById('LBpubsublog');
+  const arrowDown = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/> </svg>';
+  const arrowUp = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-arrow-up" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/> </svg>';
 
+  // post a message into the debug log if enabled
   switch (type) {
     default:
       break;
-
-    case "receiver":
-    case "receiverSent":
+    case 'receiver':
+    case 'receiverSent':
       if (p.LBdebug.receiver) {
         const request = msg.rq;
         const { id } = msg;
-
         try {
-          delete msg.id;
-          delete msg.rq;
+          delete msg.id; delete msg.rq;
         } catch (e) {}
-
-        if (request === "Pong" || request === "Ping" || msg.upd === "Ping")
-          return;
-        receiverlog.innerHTML += `<br> ${
-          type === "receiver" ? arrowUp : arrowDown
-        } <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(
-          msg
-        )} </samp>`;
+        if (request === 'Pong' || request === 'Ping' || msg.upd === 'Ping') return;
+        receiverlog.innerHTML += `<br> ${type === 'receiver' ? arrowUp : arrowDown} <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(msg)} </samp>`;
       }
-
       break;
-
-    case "pubsub":
+    case 'pubsub':
       console.log(msg);
-      if (p.LBdebug.pubsub && !msg.includes("PONG"))
-        pubsublog.innerHTML += `<br> ${arrowDown} <samp>${StringifyandReplace(
-          msg
-        )} </samp>`;
+      if (p.LBdebug.pubsub && !msg.includes('PONG')) pubsublog.innerHTML += `<br> ${arrowDown} <samp>${StringifyandReplace(msg)} </samp>`;
       break;
-  } // stringify if message is an object and replace some symbols
-  // for better readability
+  }
 
+  // stringify if message is an object and replace some symbols
+  // for better readability
   function StringifyandReplace(obj) {
-    if (typeof obj === "object") obj = JSON.stringify(obj);
-    const strRpl =
-      typeof obj === "string"
-        ? obj
-            .replace(/\r\n/g, "")
-            .replace(/\\/g, "")
-            .replace(/\\/g, "")
-            .replace(/%s/g, "")
-            .replace(/%o/g, "")
-            .replace(/%c/g, "")
-        : obj;
+    if (typeof obj === 'object') obj = JSON.stringify(obj);
+    const strRpl = (typeof obj === 'string') ? obj.replace(/\r\n/g, '').replace(/\\/g, '').replace(/\\/g, '').replace(/%s/g, '')
+      .replace(/%o/g, '')
+      .replace(/%c/g, '') : obj;
     return strRpl;
   }
 }
 // Your main script will be inserted here
-
 /*INSERT PART 4*/
 
 </script>

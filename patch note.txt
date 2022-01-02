@@ -1,3 +1,49 @@
+2.03.0 [January 2nd 2022]
+	-HypeTrain triggers are now in, make sure you listen for it in the twitch connection window.
+	-Added a feature for extension designer that allow them to hide extension commands so they can be selected in other ways
+	-Save decks now create backups
+	-Get Twitch Connection Info now has a default selection to get main account info, this will help extension makers
+	-Get Twitch Connection Info now has extra get value
+	-Keyboard Simulated Press now has a variable box instead of text for duration
+	-Channel point trigger now allow for wild card, (BY DEFAULT you can never get the wild card, it is always not case sensitive and can not have empty wild card since this is highly decided by you.)
+	-Can no longer trigger a button through hotkey if the ctrl+alt+shift variant does not match perfectly. so Setting "A" hotkey and doing "alt+A" will not trigger the button
+	-Changed it so if Lioranboard didn't close properly, Lioranboard Startup triggers and Repeat interval will have a 30 seconds grace period
+		to make sure you're not triggering a faulty button and being unable to start LB
+	-Image management on the receiver side has been changed to no longer be saved internally as base64
+	-Copying a deck now allows you to transfer images as well... won't overwrite them if they already exists on the other end.
+	-LB will now tell you if a second transmitter tries to connect.
+	-Added new icon that tells you if things are connected
+	-The transmitter will now restart when you close the Twitch Connection window
+	-you can now reference any non existant object and array inside a yellow box, it will return undefined if one is missing instead of crashing.
+		in that sense, yellow box should never cause a crash unless you do some bogus complex math.
+	-new global array "twitch_accounts" a list of all twitch accounts, order may randomly change, join chat as account is always first
+	-Moving a button around a deck is now made much simplier when in non snapping mode
+	-Can now see how many http request are currently pending when any, near the version number at the bottom.
+	-Can now turn Dev mode on and off by clicking reset 10 times
+		New encryption system for decks, to be used by Extension devs to prevent theft.
+	-new record mode record_command_stack="1" , this is for crash checking, if your button is crashing and you do not know what command is crashing it
+		this will write to a file constantly while buttons are underway so use it wisely, should only be on when testing.
+	-Fixed Twitch: Get User Info not working with User ID
+	-Fixed a problem that would happen with Simulated key press not being released properly if the button was ended prematuterly (exit/Stop Button), keypress will be released immediatly on button end now
+	-Fixed a crash that would happened if you started your complex math with -
+	-Fixed a unicode conversion problem that happened when doing complex math with strings
+	-New Commands
+		Button Get Own ID							Get the id or group id of the button that calls this command
+		Sound Effect Change Volume                  Changes the volume of a given sound ID
+		Sound Effect Change Speed                   Changes the speed of a given sound ID
+		Wait for Timeout                  			Just a basic wait function that freezes the button for the duration
+		Trigger Extension Triggers					This is to trigger any button that has an extension trigger, you can also pass data along with it. Made For Extension designer
+		Object Get Size								return the size of an object
+		Object Get First Key 						return the first key, undefined if empty, this is not based on the order they were added
+		Object Get Next Key 						return the next key after the one you provide, undefined if its the end of the object, this based on the order as well.
+
+	2.05 Stream deck changes
+	-Fixed a bug with the streamdeck that would happen if you got a modified button update while in the select screen.
+	-Increased the range of possible character from 32-127 to 32-255, unicode character will never be included.
+	-borderless button now fully cover their area.
+	-Added a loading icon at the bottom corner when loading an image or a deck
+	-...
+
 2.02.0 [December 23rd 2021]
 	-New check all box for disabling commands
 	-Disabling a statement command will now hide its content.
