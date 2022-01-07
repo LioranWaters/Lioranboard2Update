@@ -1,3 +1,28 @@
+2.04.0 [January 7th 2022]
+	-New Compilling method, Lioranboard receiver should be incredibly faster by at least x2 speed and more in some cases,
+		let me know of any behavior changes you may notice. This is a delicate change so let me know
+	-Fixed Wait For Timeout
+	-Fixed font resizing for the stream deck
+	-Added CSV support with a few new commands
+	-transmitter change log https://github.com/LioranBoard/LioranBoard-2-Transmitter/blob/main/README.md
+	-New Commands
+		CSV Create
+		CSV Delete
+		CSV Add Columns
+		CSV Add Row
+		CSV Get Box
+		CSV Set Box
+		CSV Column Find Value
+		CSV Row Find Value
+		CSV Sort
+		CSV Move Column
+		CSV Move Row
+		CSV Delete Column
+		CSV Delete Row
+		CSV Save
+		CSV Load
+		
+
 2.03.0 [January 2nd 2022]
 	-HypeTrain triggers are now in, make sure you listen for it in the twitch connection window.
 	-Added a feature for extension designer that allow them to hide extension commands so they can be selected in other ways

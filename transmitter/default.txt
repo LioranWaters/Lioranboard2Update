@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.03-->
+<!--Transmitter V5.04-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -711,7 +711,6 @@ lioranboardclient = new LBWebSocket()
 load_connection();
 connecttoboard();
 LBTestTriggers();
-
 }, false);
 
 // modify UI on load
@@ -1574,13 +1573,22 @@ function LBDebugPost(type, msg) {
     case 'receiver':
     case 'receiverSent':
       if (p.LBdebug.receiver) {
-        const request = msg.rq;
+        const request = msg.rq || msg.upd;
         const { id } = msg;
         try {
           delete msg.id; delete msg.rq;
         } catch (e) {}
         if (request === 'Pong' || request === 'Ping' || msg.upd === 'Ping') return;
-        receiverlog.innerHTML += `<br> ${type === 'receiver' ? arrowUp : arrowDown} <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(msg)} </samp>`;
+        if (request === 'GetTwitchList' && msg.twitch_list) {
+          Object.values(msg.twitch_list).forEach((user) => {
+            user.token = '****';
+          });
+        }
+        if (msg.rq) {
+          receiverlog.innerHTML += `<br> ${type === 'receiver' ? arrowUp : arrowDown} <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(msg)} </samp>`;
+        } else {
+          receiverlog.innerHTML += `<br> ${type === 'receiver' ? arrowUp : arrowDown} <samp>Update: ${request}, Data: ${StringifyandReplace(msg)} </samp>`;
+        }
       }
       break;
     case 'pubsub':
@@ -1599,6 +1607,7 @@ function LBDebugPost(type, msg) {
     return strRpl;
   }
 }
+
 // Your main script will be inserted here
 /*INSERT PART 4*/
 
