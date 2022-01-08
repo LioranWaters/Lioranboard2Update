@@ -1,3 +1,17 @@
+2.04.1 [January 8th 2022]
+	-Added the option to Sort CSV by numerical value instead of text.
+	-Can now set deck background color properly again
+	-Commands Array Insert/Remove/pull/replace/sort/shuffle/size/random won't crash anymore if the array does not exists.
+	-Double click delay check changed from 250ms to 400ms, should make double click easier now.
+	-renamed a few commands for naming consistency, i'm sure there are more
+	-Fixed a visual glitch when you made LB2 window too thin in the command window
+	-Fixed a Crash that would happen sometimes, when pasting a command above a if statement
+	-...
+
+	Streamdeck 2.07 Changes
+	-Fixed a visual bug that would prevent button from doing their end of button animation
+	-...
+
 2.04.0 [January 7th 2022]
 	-New Compilling method, Lioranboard receiver should be incredibly faster by at least x2 speed and more in some cases,
 		let me know of any behavior changes you may notice. This is a delicate change so let me know
@@ -23,7 +37,7 @@
 		CSV Delete Row
 		CSV Save
 		CSV Load
-		
+	-...
 
 2.03.0 [January 2nd 2022]
 	-HypeTrain triggers are now in, make sure you listen for it in the twitch connection window.
