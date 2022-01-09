@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.04-->
+<!--Transmitter V5.05-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1579,11 +1579,6 @@ function LBDebugPost(type, msg) {
           delete msg.id; delete msg.rq;
         } catch (e) {}
         if (request === 'Pong' || request === 'Ping' || msg.upd === 'Ping') return;
-        if (request === 'GetTwitchList' && msg.twitch_list) {
-          Object.values(msg.twitch_list).forEach((user) => {
-            user.token = '****';
-          });
-        }
         if (msg.rq) {
           receiverlog.innerHTML += `<br> ${type === 'receiver' ? arrowUp : arrowDown} <samp>Request: ${request}, Id: ${id}, Data: ${StringifyandReplace(msg)} </samp>`;
         } else {
@@ -1600,10 +1595,13 @@ function LBDebugPost(type, msg) {
   // stringify if message is an object and replace some symbols
   // for better readability
   function StringifyandReplace(obj) {
+    const regexToken = /"token":"[^"]*"/i;
     if (typeof obj === 'object') obj = JSON.stringify(obj);
     const strRpl = (typeof obj === 'string') ? obj.replace(/\r\n/g, '').replace(/\\/g, '').replace(/\\/g, '').replace(/%s/g, '')
       .replace(/%o/g, '')
-      .replace(/%c/g, '') : obj;
+      .replace(/%c/g, '')
+      .replace(regexToken, '"token":"xxxxx"')
+      : obj;
     return strRpl;
   }
 }
