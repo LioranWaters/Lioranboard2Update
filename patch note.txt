@@ -1,6 +1,3 @@
-2.04.2 [January 8th 2022]
-	-CSV Get Box will now return undefined instead of saying the box doesnt existsits 
-
 2.04.1 [January 8th 2022]
 	-Added the option to Sort CSV by numerical value instead of text.
 	-Can now set deck background color properly again
