@@ -1,9 +1,36 @@
+2.05.0 [January 13th 2022]
+	-IMPORTANT -CHANGED THE ENCRYPTION SYSTEM, If you used the deck encryption system, i dont think anyone did but, decrypt them before updating
+		The encryption was very slow so had to modify it to make it fast and changing it in the process.
+	-CSV Get Box will now return undefined instead of saying the box doesnt exists
+	-When Lioranboard window doesnt have focus, the main screen will now only render twice a second to save processing power if you don't close to tray
+	-You no longer have to select the search box in the variable window to type in it
+	-Changed a few commands name for better consistency.
+	-String Digits now include the first - and . it sees, if numbers are already included, - wont be included
+	-Arrys in the variable window are now hidden by default, click the eye to see its content
+	-Strings that are too length in the variable are now hidden by default, click the eye to see them entirely
+	-Strings no longer appear off the screen in the variable window
+	-Should have fixed all the empty space that showed up in popup boxes
+	-Can now type in the OBS box for obs commands, so you can use inserts in them.
+	-Delete Variable now delete all variable if you leave the box empty or a button id
+	-Command  Line command should no longer show any quick popups
+	-Fixed CSV Get Box the save variable should be the right one now
+	-Fixed the drop down menu search result going off the screen 
+	-New Command
+		Wait For User Choice                wait until the user select yes or no
+		Wait For User Input                 wait until the user input some text in a box
+		String Format                       Format a string with provided values
+	-...
+	
+	Streamdeck 2.08 Changes
+	-Fixed a visual glitch with an arrow
+	-Fixed a visual glitch with button that had an estimated duration of 0 but lasted longer not showing that the button was underway
+
 2.04.1 [January 8th 2022]
 	-Added the option to Sort CSV by numerical value instead of text.
 	-Can now set deck background color properly again
 	-Commands Array Insert/Remove/pull/replace/sort/shuffle/size/random won't crash anymore if the array does not exists.
 	-Double click delay check changed from 250ms to 400ms, should make double click easier now.
-	-renamed a few commands for naming consistency, i'm sure there are more
+	-renamed a few commands for naming consistency, i'm sure there are more   
 	-Fixed a visual glitch when you made LB2 window too thin in the command window
 	-Fixed a Crash that would happen sometimes, when pasting a command above a if statement
 	-...
