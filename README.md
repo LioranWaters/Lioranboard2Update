@@ -16,7 +16,7 @@ Mac
 - `TBA`
 
 Android
-- [Stream Deck APK](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard 2 Official Stream Deck.apk)
+- [Stream Deck APK](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
 
 
 ### How to use
