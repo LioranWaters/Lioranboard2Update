@@ -1,10 +1,15 @@
-2.05.1 [January ? 2022]
+2.05.1 [January 18th 2022]
 	-Can now copy object path in the variable window.
 	-Yellow boxes will now nag you if you put /$ $/ in them.
 	-Headers for HTTP request will now be properly displayed in the variable window instead of a number.
 	-Number to String now works on every value type not just numbers
+	-Twitch: Send Message was renamed to Twitch: Send Chat Message
 	-Fixed Wildcard pull command crashing LB if using on a queue'd trigger
 	-Fixed not being able to use inserts in Get Global Variable
+	-Fixed CSV Get Box not returning the right row or column
+	-Fixed CSV Delete Row not deleting the row from the existing list preventing the creation of the same row
+	-New Command
+		CSV Get Size                      Return the size of the CSV either amount of row or amount of column
 	-...
 	
 	Stream Deck 2.09 change
