@@ -1,3 +1,17 @@
+2.05.1 [January ? 2022]
+	-Can now copy object path in the variable window.
+	-Yellow boxes will now nag you if you put /$ $/ in them.
+	-Headers for HTTP request will now be properly displayed in the variable window instead of a number.
+	-Number to String now works on every value type not just numbers
+	-Fixed Wildcard pull command crashing LB if using on a queue'd trigger
+	-Fixed not being able to use inserts in Get Global Variable
+	-...
+	
+	Stream Deck 2.09 change
+	-Optimized the rendering method
+	-APK is now available for android.
+	-...
+
 2.05.0 [January 13th 2022]
 	-IMPORTANT -CHANGED THE ENCRYPTION SYSTEM, If you used the deck encryption system, i dont think anyone did but, decrypt them before updating
 		The encryption was very slow so had to modify it to make it fast and changing it in the process.
