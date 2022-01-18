@@ -15,6 +15,10 @@ Linux
 Mac
 - `TBA`
 
+Android
+- [Stream Deck APK](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard 2 Official Stream Deck.apk)
+
+
 ### How to use
 
 - Unzip whole package in a New Directory. 
