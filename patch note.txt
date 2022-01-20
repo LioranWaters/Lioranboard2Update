@@ -1,9 +1,19 @@
+2.05.2 [January 20th 2022]
+	-Fetch OBS Data will now return undefined if an obs error is detected, if you attempt to fetch the whole json, it will return the whole error instead of undefined
+	-Fixed a crash that could randomly happen with twitch chat
+	-...
+	
+	Stream Deck 2.10 change for android only
+	-change the way ads get displayed to no long hve a loading screen and have a 5 seconds notice on the full screen ad
+	-...
+	
 2.05.1 [January 18th 2022]
 	-Can now copy object path in the variable window.
 	-Yellow boxes will now nag you if you put /$ $/ in them.
 	-Headers for HTTP request will now be properly displayed in the variable window instead of a number.
 	-Number to String now works on every value type not just numbers
 	-Twitch: Send Message was renamed to Twitch: Send Chat Message
+	-Fixed not being able to use inserts
 	-Fixed Wildcard pull command crashing LB if using on a queue'd trigger
 	-Fixed not being able to use inserts in Get Global Variable
 	-Fixed CSV Get Box not returning the right row or column
