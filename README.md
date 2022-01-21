@@ -13,7 +13,7 @@ Linux
 - `TBA`
 
 Mac
-- `TBA`
+- `Not planned`
 
 Android
 - [Stream Deck APK](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)

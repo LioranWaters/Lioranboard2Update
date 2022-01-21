@@ -1,3 +1,8 @@
+2.13 Stream Deck For Android [January 21st 2022]
+	-Fixed a crash that would happen on connect
+	-Changed the way the websocket connection is managed
+	-...
+	
 2.05.2 [January 20th 2022]
 	-Fetch OBS Data will now return undefined if an obs error is detected, if you attempt to fetch the whole json, it will return the whole error instead of undefined
 	-Fixed a crash that could randomly happen with twitch chat
