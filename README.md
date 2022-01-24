@@ -25,7 +25,7 @@ Android
 - [APK installer](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
 
 Browser 
-- [Official HTML5 version](http://lioran.servehttp.com/lb2sd.html) (good for iphone/ipad)
+- [Official HTML5 version](http://lioran.servehttp.com/lb2sd.html) I went out of my way to make this one so, make sure you donate if you use this one. [Paypal](https://www.paypal.com/donate/?hosted_button_id=3X8ARVKX63R34) 
 
 iOS
 - `Not planned` use html version instead.
