@@ -21,8 +21,8 @@ Windows
 - `Included with the main package`
 
 Android
+- [Google Play Store](https://play.google.com/store/apps/details?id=lioranboard.ca.lioranboard.streamdeck)
 - [APK installer](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
-- `Google Play Store Coming Soon`
 
 Browser 
 - [Official HTML5 version](http://lioran.servehttp.com/lb2sd.html) (good for iphone/ipad)
