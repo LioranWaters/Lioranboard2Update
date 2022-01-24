@@ -1,3 +1,23 @@
+2.05.3 [January 24th 2022]
+	-button border size 1 will now be a borderless button like in lioranboard 1 border size 0
+	-Fixed all the OBS Motion commands not accepting inserts
+	-Fixed a date get return issue with some st/nd/rd
+	-browser_name new global variable that is set when the transmitter connects, telling you which browser its using "OBS" for when its from dock mode
+	-administrator_mode new global variable that tells you if lioranboard is running as admin or not(this takes a few frame to figure out at the start of LB)
+	-can now get Lan IP when you click the stream deck icon,
+		under normal circonstance this ip can be used for both PC stream deck and Android Stream deck as long it is connected to the same network as the receiver
+		To connect from outside the network such as over the internet you will need to use your ISP IP and forward some ports
+	-New Command
+		Array Format to String                         Generate a string from an array with a given separator
+		String Split to Array                          fill an array with a formated string
+		Modify Button/Group From Object                Modify a button with an object instead of the normal modify button command
+	-...
+	
+	Stream Deck Changes
+	-Various source code changes to allow for a Browser port of the stream deck.
+	-support for borderless button
+	-...
+
 2.13 Stream Deck For Android [January 21st 2022]
 	-Fixed a crash that would happen on connect
 	-Changed the way the websocket connection is managed

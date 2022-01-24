@@ -15,9 +15,20 @@ Linux
 Mac
 - `Not planned`
 
-Android
-- [Stream Deck APK](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
+##  Stream Deck Downloads
 
+Windows
+- `Included with the main package`
+
+Android
+- [APK installer](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
+- `Google Play Store Coming Soon`
+
+Browser 
+- [Official HTML5 version](http://lioran.servehttp.com/lb2sd.html) (good for iphone/ipad)
+
+iOS
+- `Not planned` use html version instead.
 
 ### How to use
 

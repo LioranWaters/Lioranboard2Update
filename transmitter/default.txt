@@ -1,12 +1,12 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.05-->
+<!--Transmitter V5.06-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="title" content="LioranBoard Transmitter">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="LioranBoard component which allows Receiver to connect to Twitch and its extensions.">
+<meta name="description" content="LioranBoard component which allows LioranBoard to connect to Twitch and its extensions.">
 <meta name="keywords" content="LioranBoard, Transmitter, Twitch, Stream">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
@@ -183,7 +183,7 @@ button:active{
     <svg id="toclient_circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-circle-fill d-md-none me-1" viewBox="0 0 16 16">
         <circle cx="8" cy="8" r="8"/>
       </svg>
-    <span>Receiver</span><span class="d-none d-md-inline-flex me-1">: </span><span id="toclient" class="disconnected d-none d-md-inline-flex">Not connected.</span>
+    <span>LioranBoard</span><span class="d-none d-md-inline-flex me-1">: </span><span id="toclient" class="disconnected d-none d-md-inline-flex">Not connected.</span>
   </div>
   <div class="col col-auto">
     <svg id="topubsub_circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-circle-fill d-md-none me-1" viewBox="0 0 16 16">
@@ -234,7 +234,7 @@ button:active{
     <div class='pl-5 ml-5'>
        <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="dbgReceiver" onclick="LBDebugLog(this)" >
-          <label class="form-check-label"for="flexSwitchCheckDefault">Receiver</label>
+          <label class="form-check-label"for="flexSwitchCheckDefault">LioranBoard</label>
        </div>
        <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="dbgPubsub" onclick="LBDebugLog(this)">
@@ -242,7 +242,7 @@ button:active{
        </div>
        <ul class="nav nav-tabs mt-3" id="debugLog" role="tablist">
           <li class="nav-item" role="presentation">
-             <button class="nav-link active" id="LBreceiver-tab" data-bs-toggle="tab" data-bs-target="#LBreceiver" type="button" role="tab" aria-controls="LBreceiver" aria-selected="true">Receiver</button>
+             <button class="nav-link active" id="LBreceiver-tab" data-bs-toggle="tab" data-bs-target="#LBreceiver" type="button" role="tab" aria-controls="LBreceiver" aria-selected="true">LioranBoard</button>
           </li>
           <li class="nav-item" role="presentation">
              <button class="nav-link" id="LBPubSub-tab" data-bs-toggle="tab" data-bs-target="#LBPubSub" type="button" role="tab" aria-controls="LBPubSub" aria-selected="false">PubSub</button>
@@ -1324,6 +1324,10 @@ function connecttoboard() {
       pass: nPassBox.value,
     };
     localStorage.setItem('lsParams', JSON.stringify(ls));
+
+    // set current browser as global variable
+    LB.setVariable('browser_name', browser);
+
     ConnectionStatus('toclient', 'connected', 'Connected', 'green');
     console.log('LioranBoard Authentication successsful!');
   });
@@ -1382,6 +1386,24 @@ function connecttoboard() {
     LBExtensionReceived(json.CommandName, json.Data);
   });
 }
+
+// Get Browser Name
+
+const browser = (function () {
+  const test = function (regexp) { return regexp.test(window.navigator.userAgent); };
+  switch (true) {
+    case test(/OBS/i): return 'OBS';
+    case test(/edg/i): return 'Microsoft Edge';
+    case test(/trident/i): return 'Microsoft Internet Explorer';
+    case test(/firefox|fxios/i): return 'Mozilla Firefox';
+    case test(/opr\//i): return 'Opera';
+    case test(/ucbrowser/i): return 'UC Browser';
+    case test(/samsungbrowser/i): return 'Samsung Browser';
+    case test(/chrome|chromium|crios/i): return 'Google Chrome';
+    case test(/safari/i): return 'Apple Safari';
+    default: return 'Other';
+  }
+}());
 
 function sendExtensionCommands() {
 // You LioranBoard extension commands will be inserted here
