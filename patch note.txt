@@ -1,3 +1,42 @@
+2.06.0 []
+	-Added Youtube Integration
+	-New triggers to go with Youtube Integration
+	-Added a warning when linking twitch account that the Token will be visible on the url bar to prevent people from flashing it on stream by accident.
+	-Added a duplicate deck button
+	-Added a copy full path for the transmitter, to make it easier to copy it to a OBS dock.
+	-Improved the file checking when saving a deck, Lioranboard will now tell you if it failed to save.
+	-An alert message will now appear if Lioranboard main deck file is empty and load older deck instead to prevent crashes on start up.
+	-Renamed more commands for consistency issue
+	-Yellow alert message will no longer cover the bottom bar
+	-can now type in the image box for modified button
+	-Improved the websocket packet instructions, should prevent some bugs when getting data form OBS. 
+	-Get Latest Poll/prediction has been rename to Twitch: Get Latest Poll/Prediciton ID
+	-Twitch: Get Latest Poll/Prediciton ID no longer behave in the same way,
+		the command now polls twitch for the info so you should now use a wait command after you create a poll/prediction
+	-Fixed a bug with Motion: Position Curve not ending properly randomly
+	-Fixed a bug with CSV sort/move column/move row that would make them show a OOB error.
+	-Fixed a crash that would happened on the receiver side when you click disconnect in the stream deck.
+	-Fixed a crash that could happen with Stop Button/Group command when ending another buttons.
+	-New Commands
+		Youtube: Send Chat Message                     Send a chat message to your current live stream
+		Youtube: Change Status                         Update a live stream title,description, and category
+		Youtube: Ban User                              Ban a user
+		Youtube: Unban User                            Unban a user
+		Youtube: Get Live Stat                         fetch some live stats, this is instant no need for wait
+		File Exists                                    Check if a file exists
+		File Delete                                    Delete a file, THIS IS PERMANENT, will not put it in the recycle bin, yellow message will pop saying a file was deleted
+	-...
+		
+	Stream Deck 2.16 changes
+	-Buttons with stream deck switch option will now be triggerd from the stream deck
+	-Fixed a bug when modifying a group id would only update 1 button on screen
+	-Fixed a bug that sometimes it wouldn't reconnect after disconnecting.
+	-Fixed a bug that happened when an ad cancelled the virtually keyboard making it impossible to type after the ad.
+	-Currently there is a bug on some device that makes the virtual back space undetectable
+		This might be a bug on the compiler side so will have to wait for futur update for that to be fixed
+		Meanwhile if you want to delete text, you will have to delete the whole box or select it with your finger by typing something new.
+	-...
+
 2.05.3 [January 24th 2022]
 	-button border size 1 will now be a borderless button like in lioranboard 1 border size 0
 	-Fixed all the OBS Motion commands not accepting inserts
