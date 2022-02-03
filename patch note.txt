@@ -1,4 +1,13 @@
-2.06.0 []
+2.06.1 [Febuary 3rd 2022]
+	-Can now type more than 2 letters in image box of modify button
+	-Added a button in the command window to open the variable window.
+	-Fixed a bug that would crash or delete a deck when trying to paste a deck.
+	-Fixed a problem with hotkeys when setting the same hotkey with different ctrl/alt/shift
+		you will still experience this bug from older deck, you will need to re-save the triggers.
+		let me know if you still experience this problem
+	-...
+
+2.06.0 [Febuary 3rd 2022]
 	-Added Youtube Integration
 	-New triggers to go with Youtube Integration
 	-Added a warning when linking twitch account that the Token will be visible on the url bar to prevent people from flashing it on stream by accident.
