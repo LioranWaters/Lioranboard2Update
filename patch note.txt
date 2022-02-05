@@ -1,3 +1,12 @@
+
+2.06.X Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
+
+2.06.2 [Febuary 5th 2022]
+	-Tab now open the proper window again
+	-Fixed a bug with transfering boolean with Change Source/Filter Settings
+	-Fixed a memory leak that was introduced a few version ago.
+	-...
+
 2.06.1 [Febuary 3rd 2022]
 	-Can now type more than 2 letters in image box of modify button
 	-Added a button in the command window to open the variable window.
