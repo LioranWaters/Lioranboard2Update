@@ -1,6 +1,13 @@
 
 2.06.X Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.06.3 [Febuary 5th 2022]
+	-Fixed a crash introduced with the boolean fix from previous patch
+	-Fixed a crach that would sometimes happen when dealing with HTTP request and the calling button ending before it was completed.
+	-New command
+		Youtube: User Subscribe Status                return the subscribtion status of a user
+	-...
+
 2.06.2 [Febuary 5th 2022]
 	-Tab now open the proper window again
 	-Fixed a bug with transfering boolean with Change Source/Filter Settings
