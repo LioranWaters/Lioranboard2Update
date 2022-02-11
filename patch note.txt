@@ -1,7 +1,33 @@
+2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
-2.06.X Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
+2.07.0 [Febuary ? 2022]
+	-Completly new error window that will tell you info about what really happened.
+		such as http request or which command in your button crashed
+	-removed record_command_stack
+	-error_log.txt will contain the full error of all your past error, you are being judged.
+	-New Lioranboard Trigger for "Crash", this will trigger the button as lioranboard crash,
+		but everything will only be executed once, and everything must be at 0 delay
+	-Can now roll back to previous stable update by just unchecking the beta check mark.
+	-Renamed Command Youtube: Get Live Stats to Youtube: Get Stats
+	-Can now get  some channel stats as well with Youtube: Get Live Stats
+	-Added the amount of command selected to the copy/delete commands button
+	-updated the how to make extensions.txt thanks to 
+	-Fixed Color box from Extension command not setting themselves to the color you selected.
+	-Fixed Anonymous bits crashing
+	-Fixed a problem when using object inside array boxes. and such
+	-Fixed a crash that happened when using mic/aux 4 in OBS (obs websocket doesnt fully support that slot)
+	-...
 
-2.06.3 [Febuary 5th 2022]
+	Stream Deck 2.18 change
+	-yout previously selected deck will now be remembered when starting the program
+	-android auto connect no longer loads the deck directly, you will need to click Load Deck manually
+	-...
+
+
+
+
+
+2.06.3 [Febuary 6th 2022]
 	-Fixed a crash introduced with the boolean fix from previous patch
 	-Fixed a crach that would sometimes happen when dealing with HTTP request and the calling button ending before it was completed.
 	-New command
