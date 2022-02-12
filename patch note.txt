@@ -1,6 +1,12 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
-2.07.0 [Febuary ? 2022]
+2.07.1 [Febuary 12th 2022]
+	-Forgot to execute the new error window script so it was not visible in 2.07.0
+	-Beta check box state is now saved
+	-File Delete was missing from the command list
+	-...
+
+2.07.0 [Febuary 11th 2022]
 	-Completly new error window that will tell you info about what really happened.
 		such as http request or which command in your button crashed
 	-removed record_command_stack
