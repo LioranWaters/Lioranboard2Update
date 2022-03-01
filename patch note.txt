@@ -1,5 +1,24 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.2 [March 1st 2022]
+	-Added a Button in the Filter/Source Change settings to see what variable are available in said source/filter
+	-Added a History Backward/Forward option for deck switching in button settubgs require stream deck 2.19
+	-Can now force certain extensions when installing an extension
+	-Sub is now forced on when you select Founder in twitch chat triggers,
+	-Renaming or deleting an image from the image folder will no longer result in crash
+		instead you will see a missing image on the button.
+	-Can no longer interact with commands expansion bar when in a different window
+	-Mouse Cursor image will now be more interactive with what you're hovering.
+	-Clicking in purple space on main screen now unselects the current deck.
+	-The tray icon now disapear on crash.
+	-Fixed bit shift << and >> being inverted.
+	-Fixed Get Date/Time sunday not showing up, and removed : from being final character
+	-New Command
+		Twitch: Create Reward                       Create a channel point reward.
+		Twitch: Delete Reward                       Delete a channel point reward.
+		Twitch: Extra Edit Reward                   Edit more reward options that edit reward doesn't
+	-...
+
 2.07.1 [Febuary 12th 2022]
 	-Forgot to execute the new error window script so it was not visible in 2.07.0
 	-Beta check box state is now saved
