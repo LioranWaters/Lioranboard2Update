@@ -1,5 +1,25 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.3 [March 6th 2022]
+	-Fixed Source change setting and filter change settings not working after 2.07.2
+	-Fixed objects not being deleted for extension trigger and whisper trigger causing a memory leak when used
+	-Twitch: Send chat message, channel box is will now be lower case automatically
+	-Moderation host/raid trigger now provide the target
+	-Hype train provides more trigger pull data
+	-Channel is not included in raid trigger(the channel name of the raided, not the raider)
+	-"Check all" box for disabling commands no longer disable Case statement
+	-Swapped / and \ from keyboard menu
+	-Variables from disable decks no longer shows up in the variable window.
+	-raid trigger data now provides the channel name of the person getting raided
+	-...
+	
+	Stream Deck 2.20 change
+		(Changes only apply to the windows stream deck until Stable version release.)
+	-Next Deck will no longer allow a disabled deck
+	-If a disabled deck is loaded it will be displayed clearly.
+	-...
+
+
 2.07.2 [March 1st 2022]
 	-Added a Button in the Filter/Source Change settings to see what variable are available in said source/filter
 	-Added a History Backward/Forward option for deck switching in button settubgs require stream deck 2.19
