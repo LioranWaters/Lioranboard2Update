@@ -1,5 +1,11 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.5 [March 11th 2022]
+	-Fixed math problem when deal with decimal inside paranthese
+	-Fixed a math problem when trying to do a minus number after a divide or multiply
+	-Restored Trigger Extension Triggers command, it should now work.
+	-...
+
 2.07.4 [March 8th 2022]
 	-Fixed a crash that would randomly happen when open the variable window
 	-Fixed a crash introduced in 2.07.3 that could crash the receive when connection to OBS
