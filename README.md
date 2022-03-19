@@ -50,6 +50,114 @@ iOS
 - To Trigger a button you can do it through the Stream Deck or setup a trigger for it in the Edit Triggers window(Twitch Trigger currently require the transmitter to be connected.)
 - You can test Triggers in the Transmitter
 
+###  Install Windows version on Linux
+
+Lioranboard 2 does not currently have a Linux release but it can be run via Wine. Here's the basics of what you need to do for this method to work on Linux. 
+
+##### Important Notes
+
+1. All examples were creating using Fedora but by directly swapping ***apt*** for ***dnf*** where it appears below, this will also work for Ubuntu or other Debian based distributions.
+2. All examples use `username` as the user and `.lioranboard` as the name of the wine prefix; change these as suits your needs where they appear below.
+
+#### Prerequisites
+
+Ensure that Wine is installed on your system. Most modern Linux distros will default to installing a 64 bit Wine unless you actively tell it to install a 32 bit architecture; always check your own PC to make sure which version of LioranBoard 2 you need before downloading.
+
+```shell
+[username@fedora ~]$ which wine
+/usr/bin/wine
+[username@fedora ~]$ wine --version
+wine-7.2 (Staging) 
+[username@fedora ~]$ 
+```
+
+For Fedora, install a 64 bit architecture Wine with the following command
+
+```shell
+sudo dnf install wine -y
+```
+
+Next, we'll create a wine prefix just for Lioranboard. 
+
+```bash
+WINEPREFIX="/home/username/.lioranboard/" winecfg
+```
+
+Adjust any settings, but in my experience the defaults are fine. I, personally, prefer setting the Windows version to Windows 7 during this step.
+
+#### Installing Lioranboard
+
+Now, download the proper Lioranboard archive for your arch from Github. I renamed mine to `lb_` plus the existing filename due merely to personal preference.
+
+for 64 bit:
+
+```bash
+wget https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x64.zip lb_x64.zip
+```
+
+for 32 bit:
+
+```bash
+wget https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x86.zip lb_x86.zip
+```
+
+Open up the file you downloaded above in the archive manager of your choice and extract to the following location: 
+
+```bash
+/home/username/.lioranboard/drive_c/users/username/Desktop/Lioranboard
+```
+
+For ease of use, I create a launcher script named `lioranboard`and place it in the folder `/home/username/bin` containing the following:
+
+```bash
+#!/bin/bash
+cd /home/username/.lioranboard/drive_c/users/username/Desktop/Lioranboard/
+/usr/bin/wine "LioranBoard 2.0.exe"
+```
+
+Make that launcher script executable:
+
+```bash
+chmod +x /home/username/bin/lioranboard
+```
+
+Launch in terminal to run 
+
+```
+./lioranboard &
+```
+
+Lioranboard 2 is now installed and ready to run. See Extra Steps below for other ways to launch Lioranboard 2.
+
+#### Extra Steps
+
+##### Creating a Desktop launcher
+
+For a desktop launcher here's a sample `LioranBoard.desktop` file. Create this in `/usr/shar/applications` on your machine.
+
+```bash
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Lioranboard2
+Icon=/home/username/.lioranboard/drive_c/users/username/Desktop/Lioranboard/lb.png
+Exec=/home/username/bin/lioranboard
+Terminal=false
+Type=Application
+Categories=Application;AudioVideo;
+```
+
+##### Adding Lioranboard to your Applications menu
+
+The methods for setting this up in your applications menu are varied, but the pertinent data you need for doing so are:
+
+- the path to the executable script
+  -  `/home/username/bin/lioranboard`
+- the working directory
+  - `/home/username/.lioranboard/drive_c/users/username/Desktop/Lioranboard/`
+- an icon of your choice
+  - I used a simple LioranBoard butterfly
+
 ## Happy Testing!
 
 Report any bugs on [Discord](https://discord.gg/dXez8Zh) in `#lb2-discussion-suggestions`
