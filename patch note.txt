@@ -1,7 +1,35 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.6 [March 23rd 2022]
+	-Now fully support OBS websocket 5.0.0 beta1
+		What you need to look for.
+		OBS triggers are different then 4.9.1, so you need to set them to the new one
+			data received is not the same for most of them
+		you do not need to change anything to your obs commands, exept for:
+			Duplicate source, which now has 2 different command for both version
+			OBS custom Packet, Needs to be adapted to new protocol
+			Fetch OBS Data, needs to be adapted to new protocol
+	-Channel should now be a pull variable for Cummunity Subs, can't test it so let me know if it works.
+	-Lioranboard now supports ID and name for obs source, works for both 4.9.1 and 5.0.0
+	-Can now select Auto Detect for which type of OBS protocol
+	-All dark purple commands now indicate that the save variable is not instant and should be combined with a wait command
+	-Fixed Twitch: Extra Edit Reward cooldown not applying properly
+	-Fixed Get Button Variable not properly accepting inserts for variable names
+	-Fixed Youtube superchat crashing lioranboard.
+	-New Commands
+		Source Change Blend Mode                       Change the blend mode of a source, only for obsws 5
+		Clear Array                                    Clears an array, so it has 0 entries
+		CSV Exists                                     Check if a CSV exists
+		Number to Hex String                           Turn a number to a hex string  11 -> 0A
+		URL Encode String                              Turn a string into a url valid string   aBc -> %61%42%63
+	-...
+	
+	Transmitter 5.08
+	-Fixed channel moderation actions.
+	-...
+
 2.07.5 [March 11th 2022]
-	-Fixed math problem when deal with decimal inside paranthese
+	-Fixed math problem when dealing with decimal inside paranthese
 	-Fixed a math problem when trying to do a minus number after a divide or multiply
 	-Restored Trigger Extension Triggers command, it should now work.
 	-...

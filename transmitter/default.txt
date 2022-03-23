@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.06-->
+<!--Transmitter V5.08-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1027,7 +1027,7 @@ function LBTestTriggers() {
       const userInput = form.channelPointsInput.checked;
       const message = userInput
         ? form.channelPointsMsg.value || generateMessage()
-        : undefined;
+        : '';
       const cost = parseInt(form.channelPointsCost.value) || 50;
       const image = 'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png';
       const rewardId = generateUUID();
@@ -1488,9 +1488,9 @@ function connectPubSubserver() {
 
       this.changeTopic = (type, topic) => {
         this.nonce = `${type}-${id}`;
-        this.data.topics = [`${topic}.${id}`];
+        this.data.topics = (type !== 'mod') ? [`${topic}.${id}`] : [`${topic}.${id}.${id}`];
       };
-    } 
+    }
     
     // Go through the Twitch list and listen to everything the user selected
     Object.values(p.twitchList).forEach((params) => {
