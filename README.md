@@ -24,11 +24,11 @@ Android
 - [Google Play Store](https://play.google.com/store/apps/details?id=lioranboard.ca.lioranboard.streamdeck)
 - [APK installer](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
 
-Browser 
-- [Official HTML5 version](http://lioran.servehttp.com/lb2sd.html) (I went out of my way to make this one so, make sure you donate if you use it.) [Paypal](https://www.paypal.com/donate/?hosted_button_id=3X8ARVKX63R34)
-
 iOS
 - `Not planned` use html version instead.
+
+##  Lioranboard 1 to 2 converter by Phat32
+- [Lioranboard 1 JSON Converter](https://github.com/Phat32/Lioranboard-1-Json-to-2/)
 
 ### How to use
 
