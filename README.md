@@ -25,7 +25,7 @@ Android
 - [APK installer](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/Lioranboard%202%20Official%20Stream%20Deck.apk)
 
 iOS
-- `Not planned` use html version instead.
+- `Not planned`
 
 ##  Lioranboard 1 to 2 converter by Phat32
 - [Lioranboard 1 JSON Converter](https://github.com/Phat32/Lioranboard-1-Json-to-2/)
