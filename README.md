@@ -27,7 +27,7 @@ Android
 iOS
 - `Not planned`
 
-##  Lioranboard 1 to 2 converter by Phat32
+###  Lioranboard 1 to 2 converter by Phat32
 - [Lioranboard 1 JSON Converter](https://github.com/Phat32/Lioranboard-1-Json-to-2/)
 
 ### How to use

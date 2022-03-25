@@ -1,5 +1,9 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.7 [March 25th 2022]
+	-Fixed a crash that would happen when using OBS ws 4.9.1 when you had a few groups inside a scene.
+	-...
+
 2.07.6 [March 23rd 2022]
 	-Now fully support OBS websocket 5.0.0 beta1
 		What you need to look for.
