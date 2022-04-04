@@ -1,10 +1,11 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
-2.07.8 [March 25th 2022]
+2.07.8 [April 3rd 2022]
 	-Commands from futur version will now show as "unknown command" instead of crash LB on start up.
 	-Motion: Alpha filter was no longer working for OBSws4
 	-Motion: Filter Settings was not working for OBSws5
 	-Fixed a memory leak when receiving messages from OBSws5
+	-Fixed updating transmitter issues when using non default path or updating from beta.
 	-...
 
 2.07.7 [March 25th 2022]
