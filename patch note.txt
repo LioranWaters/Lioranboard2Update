@@ -1,5 +1,12 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.8 [March 25th 2022]
+	-Commands from futur version will now show as "unknown command" instead of crash LB on start up.
+	-Motion: Alpha filter was no longer working for OBSws4
+	-Motion: Filter Settings was not working for OBSws5
+	-Fixed a memory leak when receiving messages from OBSws5
+	-...
+
 2.07.7 [March 25th 2022]
 	-Fixed a crash that would happen when using OBS ws 4.9.1 when you had a few groups inside a scene.
 	-...
