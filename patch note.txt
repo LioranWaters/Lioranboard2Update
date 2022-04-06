@@ -1,5 +1,20 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+2.07.9 [April 6th 2022]
+	-Trigger type for hotkey and repeat interval are now returned properly, the syntax was wrong before.
+	-added a global array for trigger type names.
+	-When lioranboard crash you no longer get a popup telling you it is still running when starting back.
+	-Reset button now clears all buffers and CSV
+	-Fetch OBS Data command should be a bit more reliable now when copy pasting an outside json.
+	-Fixed a Crash that would happen when connected to OBSws5 without a password when a transformed event would happen.
+	-New command
+		OBS Event Subscription (OBSws5)                Allows you to listen for certain OBS event that normally don't come through.
+	-...
+	
+	Stream Deck 2.23
+	-Fixed Randomly not being able to select a deck claiming the deck was disabled when it was not.
+	-..
+
 2.07.8 [April 3rd 2022]
 	-Commands from futur version will now show as "unknown command" instead of crash LB on start up.
 	-Motion: Alpha filter was no longer working for OBSws4
