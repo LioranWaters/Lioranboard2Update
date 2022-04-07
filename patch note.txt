@@ -1,8 +1,11 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
-2.07.9 [April 6th 2022]
+2.07.9b [April 7th 2022]
+	-You can now move a trigger up and down with some new fancy buttons
+	-Stream deck triggered button now return trigger_type 23 and trigger button command return 24 and 25 for hidden delay ones.
 	-Trigger type for hotkey and repeat interval are now returned properly, the syntax was wrong before.
 	-added a global array for trigger type names.
+	-added a copy button for each variable in the variable window, to copy the whole path of the variable
 	-When lioranboard crash you no longer get a popup telling you it is still running when starting back.
 	-Reset button now clears all buffers and CSV
 	-Fetch OBS Data command should be a bit more reliable now when copy pasting an outside json.
