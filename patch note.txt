@@ -1,5 +1,9 @@
 2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
+Stream Deck 2.24 [April 10th 2022]
+	-Disabled deck no longer show up in the list when selecting a deck.
+	-...
+
 2.07.9b [April 7th 2022]
 	-You can now move a trigger up and down with some new fancy buttons
 	-Stream deck triggered button now return trigger_type 23 and trigger button command return 24 and 25 for hidden delay ones.
@@ -10,6 +14,7 @@
 	-Reset button now clears all buffers and CSV
 	-Fetch OBS Data command should be a bit more reliable now when copy pasting an outside json.
 	-Fixed a Crash that would happen when connected to OBSws5 without a password when a transformed event would happen.
+	-Fixed a crash that could happen when youtube had an internal error.
 	-New command
 		OBS Event Subscription (OBSws5)                Allows you to listen for certain OBS event that normally don't come through.
 	-...
