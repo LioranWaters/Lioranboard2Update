@@ -1,4 +1,11 @@
-2.07.X Will be the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
+2.08.0 [April 18th 2022]
+	-no changes were made on the code, Swap of compiler which means, The memory leak should be fixed
+		people should play around with it see if they notice any difference over 2.07.9 (there should be none)
+	-New compiler renders LB2 unusable on Windows 7
+	-...
+
+
+2.07.9 is the Final Version for Windows 7 due to secure connections incompatibilities with winhttp.dll
 
 Stream Deck 2.24 [April 10th 2022]
 	-Disabled deck no longer show up in the list when selecting a deck.
