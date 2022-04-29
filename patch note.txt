@@ -1,5 +1,11 @@
+2.08.1 [April 28th 2022]
+	-Added a way to easily backup Lioranboard data.
+	-Added Twitch scope user:read:follows for Edit Follow and moderation:read for Moderation
+	-Fixed a crash that could happen when deleting a source in OBS
+	-...
+
 2.08.0 [April 18th 2022]
-	-no changes were made on the code, Swap of compiler which means, The memory leak should be fixed
+	-No changes were made on the code, Swap of compiler which means, The memory leak should be fixed
 		people should play around with it see if they notice any difference over 2.07.9 (there should be none)
 	-New compiler renders LB2 unusable on Windows 7
 	-...
