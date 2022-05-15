@@ -1,3 +1,10 @@
+2.08.2 [Mai 15th 2022]
+	-disabled the source deletion detection for OBSws 4.9.1 until the problem is figured out(i need to know if this problem is on 5.0.0 as well)
+	-Fixed a crash that would happen when no internet was available.
+	-Block button command will now delete everything left in the queue if "Allow Queue" is unchecked
+	-Can now pull data on youtube chat message for , is broadcaster/moderator/member/verified(not tested, let us know)
+	-...
+
 2.08.1 [April 28th 2022]
 	-Added a way to easily backup Lioranboard data.
 	-Added Twitch scope user:read:follows for Edit Follow and moderation:read for Moderation
