@@ -1,3 +1,8 @@
+2.08.4 [June 21st 2022]
+	-There will be a yellow message that pops up letting you know that there is a new version when you start up LB(based on your current check up beta/stable)
+	-When LB crash it will ask you if you want to report the bug, this will not happen if this is caused by a button command since it can easily crash at will.
+	-...
+
 2.08.3 [June 20th 2022]
 	-New Bug report system, can be found on the bottom menu, following the "Active Button" option
 	-IMPORTANT Twitch is now fully supported without the transmitter(exept the test buttons), So if you do not need extensions, you do not need the transmitter anymore.
