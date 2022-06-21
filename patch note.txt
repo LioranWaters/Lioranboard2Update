@@ -1,3 +1,14 @@
+2.08.3 [June 20th 2022]
+	-New Bug report system, can be found on the bottom menu, following the "Active Button" option
+	-IMPORTANT Twitch is now fully supported without the transmitter(exept the test buttons), So if you do not need extensions, you do not need the transmitter anymore.
+		If you experience problems, let me know.
+	-The receiver will now send an empty json when being requested "GetTwitchList" by the transmitter since it is no longer needed.
+	-Fixed a bug with Trigger Button failing to trigger overlappable buttons after they triggered once.
+	-Fixed transmitter commands not properly taking custom height and colors as they should.
+	-Made a lot of text changes and fixes.
+	-Added a Social Media button, a list(currently only one) of related social media, will add more as needed.
+	-...
+	
 2.08.2 [Mai 15th 2022]
 	-disabled the source deletion detection for OBSws 4.9.1 until the problem is figured out(i need to know if this problem is on 5.0.0 as well)
 	-Fixed a crash that would happen when no internet was available.
