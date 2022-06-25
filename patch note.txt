@@ -1,3 +1,14 @@
+2.08.5 [June 25th 2022]
+	-Fixed a crash that would happen when you tried to change the appearance of a button to an invalid picture.
+	-The clipboard should no longer be cleared when lioranboard starts
+	-New commands
+		Web Connection Startup             Start a connect to a server of WSS/WS/TCP type
+		Web Connection Send Text           Send text data to the server
+		Web Connection Send Binary         Send binary data(buffer) to the server
+		Web Connection Close               Close an existing connection
+		Web Connection Status              Return the status of a current connection
+	-...
+
 2.08.4 [June 21st 2022]
 	-There will be a yellow message that pops up letting you know that there is a new version when you start up LB(based on your current check up beta/stable)
 	-When LB crash it will ask you if you want to report the bug, this will not happen if this is caused by a button command since it can easily crash at will.
