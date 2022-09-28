@@ -1,4 +1,4 @@
-# LioranBoard 2.0 BETA
+# LioranBoard 2.0
 
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40LioranBoard)](https://twitter.com/LioranBoard)
 [![Discord](https://img.shields.io/discord/1000537775990394971.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/QWxzscsNbm)
@@ -8,6 +8,10 @@
 Windows
 - [64bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x64.zip)
 - [32bits Release](https://github.com/LioranWaters/Lioranboard2Update/raw/main/download/x86.zip)
+
+Final Windows 7 compatible version (2.07.9)
+- [64bits](https://github.com/LioranWaters/Lioranboard2Update/raw/85a9551c71874802140593d3b7a7344c27f0fe5f/download/x64.zip)
+- [32bits](https://github.com/LioranWaters/Lioranboard2Update/raw/85a9551c71874802140593d3b7a7344c27f0fe5f/download/x32.zip)
 
 Linux
 - `TBA`
@@ -52,4 +56,4 @@ iOS
 
 ## Happy Testing!
 
-Report any bugs on [Discord](https://discord.gg/dXez8Zh) in `#lb2-discussion-suggestions`
+Report any bugs on [Discord](https://discord.gg/QWxzscsNbm)

@@ -1,3 +1,10 @@
+2.08.6 [September 28th 2022]
+	-updated link to the documentation
+	-added more social link, including a discord link
+	-made it so default OBS connection is now version 5 instead of 4
+	-youtube service is currently unavailable, not ETA for a fix.
+	...
+
 2.08.5 [June 25th 2022]
 	-Fixed a crash that would happen when you tried to change the appearance of a button to an invalid picture.
 	-The clipboard should no longer be cleared when lioranboard starts
