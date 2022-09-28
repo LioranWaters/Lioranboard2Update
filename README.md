@@ -11,7 +11,7 @@ Windows
 
 Final Windows 7 compatible version (2.07.9)
 - [64bits](https://github.com/LioranWaters/Lioranboard2Update/raw/85a9551c71874802140593d3b7a7344c27f0fe5f/download/x64.zip)
-- [32bits](https://github.com/LioranWaters/Lioranboard2Update/raw/85a9551c71874802140593d3b7a7344c27f0fe5f/download/x32.zip)
+- [32bits](https://github.com/LioranWaters/Lioranboard2Update/raw/85a9551c71874802140593d3b7a7344c27f0fe5f/download/x86.zip)
 
 Linux
 - `TBA`
