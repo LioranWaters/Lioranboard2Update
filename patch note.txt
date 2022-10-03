@@ -1,4 +1,5 @@
 2.08.6 [September 28th 2022]
+	-Fixed the transmitter not connecting(must update the transmitter and reload it)
 	-updated link to the documentation
 	-added more social link, including a discord link
 	-made it so default OBS connection is now version 5 instead of 4
