@@ -1,0 +1,28 @@
+[extension_name]
+Format Number
+[extension_info]
+Extension Version: 2.0
+Author: Flipstream
+[insert_external]
+<div><p>Format Number v2.0 extension is installed.<br>Simple number format that accepts a real value and returns a properly formatted string based on the JavaScript Intl.NumberFormat() function</p>
+<p>Command parameters:</p>
+<ul><li>Raw Number - The real value to convert to a formatted string.  Variable value usage requires /$ $/ tag encapsulation.</li>
+<li>Variable - The variable name to use for the return string value.  Do not use variable tags</li></ul>
+<p>For more Lioranboard extensions, visit <a href="https://flipstream.org" target="_blank">flipstream.org</a>, or watch functionality live at <a href="https://twitch.tv/flipstream" target="_blank">twitch.tv/flipstream</a></p></div>
+[insert_command]
+LB.extCommand("Format Number", 3355443, 52, 
+	{
+		rawNumber: ["Raw Number", 15, "rawNumber"],
+		variable: ["Variable Name", 14, "variable"]
+	});
+[insert_hook]
+case "Format Number":{
+	FormatNumber(LioranBoardJSON.rawNumber,LioranBoardJSON.variable);
+}break
+[insert_script]
+function FormatNumber(rawNumber, variable) {
+
+		LB.setVariable(variable, Intl.NumberFormat().format(rawNumber));
+}
+[insert_over]
+{ "deck_data": "{ \"background_color\": 4210752.0, \"on\": true, \"grid_y\": 3.0, \"snap_grid\": true, \"lb_version\": \"2.07.1\", \"background_image\": \"\", \"adaptive_resizing\": true, \"unique_id\": \"20220214145354842322788\", \"button_list\": [ { \"color\": 12632256.0, \"persistent\": false, \"text\": \"Format\\nNumber\\nExample\", \"release_duration\": 0.0, \"queueable\": false, \"command_list\": [ { \"b1\": \"=\", \"cmd\": 161.0, \"obsid\": \"Main\", \"pos\": 0.0, \"vis\": 1.0, \"ms\": 0.0, \"sel\": 0.0, \"dis\": 0.0, \"xpan\": 0.0, \"b0\": \"formattedValue\", \"b2\": \"\\\"\\\"\" }, { \"b1\": \"=\", \"cmd\": 161.0, \"obsid\": \"Main\", \"pos\": 1.0, \"vis\": 1.0, \"ms\": 0.0, \"sel\": 0.0, \"dis\": 0.0, \"xpan\": 0.0, \"b0\": \"rawNumber\", \"b2\": \"1000000\" }, { \"cmd\": 0.0, \"rawNumber\": \"global.rawNumber\", \"obsid\": \"Main\", \"pos\": 2.0, \"vis\": 1.0, \"ms\": 0.0, \"variable\": \"global.formattedValue\", \"sel\": 0.0, \"dis\": 0.0, \"xpan\": 0.0, \"extcmd\": \"Format Number\", \"ext\": \"Transmitter\" }, { \"cmd\": 137.0, \"obsid\": \"Main\", \"pos\": 3.0, \"vis\": 1.0, \"ms\": 0.0, \"sel\": 0.0, \"dis\": 0.0, \"xpan\": 0.0, \"b0\": \"1000\" } ], \"press_type\": 0.0, \"x\": 0.0, \"border\": 2.0, \"image\": \"\", \"triggers\": [ ], \"group_id\": \"\", \"overlappable\": false, \"init_variable\": \"\", \"deck\": 13.0, \"width\": 0.33333333333333331482961625624739, \"button_id\": \"FLP_FORMATNUM\", \"button_duration\": 1000.0, \"y\": 0.0, \"switch_deck\": \"\", \"height\": 0.33333333333333331482961625624739, \"release_list\": [ ], \"functions\": 1, \"stretch\": false } ], \"deck_name\": \"Number Format Example\", \"grid_x\": 3.0, \"stretch\": 0.0 }", "unique_id": "20220214145354842322788", "deck_verification_code": "661c80833f6b8d08631b6bc990f8d2adc45e1456", "include_image": { } }
