@@ -1,3 +1,18 @@
+2.09.0 [April 13th 2025]
+	-32bits version is no longer available, if you were using the 32bits version you will need to manually update
+	-Bug report winddow has been removed as there was no longer a server for it.
+	-Moved the twitch communication from Pubsub to EventSub
+		This change will most likely bring in a few errors so be patient while I figure out the issues
+		I will try to make this change as seemless as possible for the users.
+	-You can enable recording of the EventSub by addin record_eventsub="1" to the settings.ini file.
+		When an event sub message will be sent it will be recorded in the record_eventsub.txt file in lioranboard's folder.
+	-Hype train triggers have been modified, if you do have hype train buttons you will have to upgate them to the new system.
+	-Moderation trigger are currently disabled until I figure them out.
+	-Subscriber event are currently disabled until I figure out how they are delivered through event subs, Community gift subs should still work.
+	
+	All other triggers should work normaly, report any issues to the lioranboard discord, link in the social media tab in lioranboard.
+	...
+
 2.08.6 [September 28th 2022]
 	-Fixed the transmitter not connecting(must update the transmitter and reload it)
 	-updated link to the documentation
