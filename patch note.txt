@@ -1,5 +1,11 @@
+2.09.1 [April 14th 2025]
+	-Fixed a bug when changing the name of a filter in OBS while lioranboard is connected to OBS
+	-Fixed a bug related to the variable math system. 
+	-Removed a popup that would happen when receiving a twitch channel point redeem
+	...
+
 2.09.0 [April 13th 2025]
-	-32bits version is no longer available, if you were using the 32bits version you will need to manually update
+	-32bits version is no longer available, the updater will update you to the 64bits version automatically if you're on 32bits.
 	-Bug report winddow has been removed as there was no longer a server for it.
 	-Moved the twitch communication from Pubsub to EventSub
 		This change will most likely bring in a few errors so be patient while I figure out the issues
