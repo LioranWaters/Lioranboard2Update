@@ -1,3 +1,7 @@
+2.09.2 (May 1st 2025)
+	-Fixed a problem with the new twitch event sub closing connection random, should now reconnect automatically.
+	...
+	
 2.09.1 [April 14th 2025]
 	-Fixed a bug when changing the name of a filter in OBS while lioranboard is connected to OBS
 	-Fixed a bug related to the variable math system. 
