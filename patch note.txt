@@ -1,3 +1,7 @@
+2.09.3 (May 1st 2025)
+	-Fixed twitch chat not connecting anymore due to twitch API changes.
+	...
+
 2.09.2 (May 1st 2025)
 	-Fixed a problem with the new twitch event sub closing connection random, should now reconnect automatically.
 	...
