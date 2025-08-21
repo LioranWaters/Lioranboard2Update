@@ -1,4 +1,8 @@
-2.09.3 (May 1st 2025)
+2.09.4 (August 20th 2025)
+	-Fixed twitch chat commands sometimes not being sent.
+	...
+
+2.09.3 (August 17th 2025)
 	-Fixed twitch chat not connecting anymore due to twitch API changes.
 	...
 
