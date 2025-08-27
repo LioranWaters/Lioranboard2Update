@@ -1,3 +1,7 @@
+2.09.5 (August 27th 2025)
+	-Fixed a crash that would happen when somebody follows
+	...
+
 2.09.4 (August 20th 2025)
 	-Fixed twitch chat commands sometimes not being sent.
 	...
