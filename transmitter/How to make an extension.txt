@@ -13,13 +13,15 @@ Extensions written for LioranBoard 1.x are not compatible with the LioranBoard 2
 
 For questions or issues creating LB2 extensions, visit the official LioranBoard Discord server (https://discord.gg/dXez8Zh) and post in the Extension section #development channel.  Please remember that there are a limited number of users on the Discord server that can assist with extension development and that they are all volunteers.
 
-------------------------------
-- 2. Extension Template File -
-------------------------------
+------------------------------------------
+- 2. Extension Template File and Example -
+------------------------------------------
 
 See the \transmitter\template.lb2 file under the main LioranBoard 2 folder for an empty extension template.
 
-(To-do: Create a basic extension example here)
+The \transmitter\format_number_example.lb2 file is a functional extension example for LioranBoard 2.x that will convert a real value to a regional formatted string using JavaScript.  The extension creates a new "Format Number" command and deck with an example button after import.
+
+The example extension demonstrates the usage of transmitter tab commentary, how to create a new command with two fields using a helper function, returning a value back to the receiver into a specified variable name using a helper function, and creating a new receiver deck after import.
 
 ------------------------------
 - 3. Extension File Sections -
